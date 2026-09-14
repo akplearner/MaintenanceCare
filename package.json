@@ -1,0 +1,57 @@
+{
+  "name": "maintenancecare",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "pnpm run compliance && eslint",
+    "typecheck": "tsc --noEmit",
+    "compliance": "tsx scripts/compliance-check.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "verify": "pnpm run compliance && pnpm run typecheck && eslint && vitest run",
+    "report:pdf": "tsx scripts/generate-sample-report.ts"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "5.9.1",
+    "@neondatabase/serverless": "1.1.0",
+    "@upstash/ratelimit": "2.1.0",
+    "@upstash/redis": "1.38.4",
+    "@vercel/analytics": "2.0.1",
+    "@vercel/blob": "2.8.0",
+    "clsx": "2.1.1",
+    "drizzle-orm": "0.45.2",
+    "lucide-react": "1.46.0",
+    "next": "16.3.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-hook-form": "7.88.0",
+    "resend": "6.28.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "20.19.9",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.5",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.13",
+    "typescript": "5.9.3",
+    "vitest": "5.0.0"
+  }
+}

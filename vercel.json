@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "pnpm run compliance && pnpm run build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "regions": ["iad1"],
+  "functions": {
+    "app/api/lead/route.ts": { "maxDuration": 20 },
+    "app/api/upload/route.ts": { "maxDuration": 20 }
+  },
+  "redirects": [
+    { "source": "/contact", "destination": "/request", "permanent": true },
+    { "source": "/quote", "destination": "/request", "permanent": true },
+    { "source": "/pricing", "destination": "/plans", "permanent": true },
+    { "source": "/services/handyman", "destination": "/services/home-repair", "permanent": true },
+    { "source": "/property-managers", "destination": "/for/property-managers", "permanent": true },
+    { "source": "/investors", "destination": "/for/investors", "permanent": true }
+  ]
+}
