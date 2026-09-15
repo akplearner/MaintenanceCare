@@ -176,10 +176,7 @@ export default async function CityPage({ params }: PageProps) {
 
       <section className="border-t">
         <Container className="py-12">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <CTABlock variant="single" location={`city-${area.slug}`} />
-            <CTABlock variant="portfolio" location={`city-${area.slug}`} />
-          </div>
+          <CTABlock variant="single" location={`city-${area.slug}`} alt />
         </Container>
       </section>
 

@@ -86,7 +86,7 @@ test.describe('pricing discipline', () => {
 
   test('portfolio pricing is an inquiry, not a public price', async ({ page }) => {
     await page.goto('/plans');
-    await expect(page.getByText('Portfolio pricing — by door count. Ask us.')).toBeVisible();
+    await expect(page.getByText('Portfolio pricing — based on how many properties. Ask us.')).toBeVisible();
     await expect(page.getByText(/\$\d+\s*[–-]\s*\$\d+\s*\/\s*door/i)).toHaveCount(0);
   });
 

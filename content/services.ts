@@ -2,7 +2,7 @@ import type { Service, ServiceId } from './types';
 import { PRICING_EFFECTIVE as E } from './divisions';
 
 /**
- * The priced catalogue. Every item carries an effective date because the
+ * The priced catalog. Every item carries an effective date because the
  * business reviews benchmarks quarterly, and the site renders that date
  * beneath every price table.
  *
@@ -48,7 +48,7 @@ export const services: Service[] = [
     division: 'property-care',
     name: 'HVAC filter service',
     description:
-      'Filter replacement labour with the size recorded on the property file, plus a return-air and thermostat observation. Part of our HVAC filter programme; system repair is handled by a licensed contractor.',
+      'Filter replacement labor with the size recorded on the property file, plus a return-air and thermostat observation. Part of our HVAC filter program; system repair is handled by a licensed contractor.',
     phase: 1,
     pricing: { kind: 'range', low: 25, high: 39, unit: 'per-visit', effectiveDate: E, note: 'Plus filter cost' },
     includes: [
@@ -80,7 +80,7 @@ export const services: Service[] = [
     division: 'property-care',
     name: 'Water heater observation and data capture',
     description:
-      'Age, model, capacity and visible condition recorded with a photograph of the data plate, plus a corrosion and pan check. Any repair is scoped for a licensed plumber.',
+      'Age, model, capacity and visible condition recorded with a photograph of the data plate, plus a corrosion and pan check. Any repair is passed to a licensed plumber.',
     phase: 1,
     pricing: { kind: 'range', low: 45, high: 85, unit: 'per-visit', effectiveDate: E },
     licensedTradeRequired: true,
@@ -145,7 +145,7 @@ export const services: Service[] = [
       'Everything in the Standard check',
       'Severity rating on every finding',
       'Major system inventory with ages where the data plate is readable',
-      'Recommended action and rough cost band per finding',
+      'What we recommend doing about it, and roughly what it costs',
       'Formatted PDF suitable for forwarding to an owner or lender',
     ],
     taxable: 'verify',
@@ -174,12 +174,12 @@ export const services: Service[] = [
     division: 'field-inspections',
     name: 'Vacant Property Watch — weekly',
     description:
-      'A documented visit every week. The cadence most insurers and lenders want to see on an unoccupied asset.',
+      'A documented visit every week. The schedule most insurers and lenders want to see on an empty property.',
     phase: 1,
     pricing: { kind: 'range', low: 149, high: 249, unit: 'per-month', effectiveDate: E },
     includes: [
       'Four documented visits per month',
-      'Everything in the biweekly programme',
+      'Everything in the biweekly program',
       'Weekly photo log suitable for an insurance file',
       'Priority scheduling on any follow-up work',
     ],
@@ -411,9 +411,9 @@ export const services: Service[] = [
     division: 'home-repair',
     name: 'Fixture replacement coordination',
     description:
-      'Faucets, toilets, disposals, ceiling fans and light fixtures. We scope the job, photograph it, supply access and manage a licensed partner contractor through to close-out.',
+      'Faucets, toilets, disposals, ceiling fans and light fixtures. We price the job, photograph it, let the contractor in, and manage a licensed partner through to the end.',
     phase: 1,
-    pricing: { kind: 'quote', note: 'Quoted with the licensed partner — we do not mark up their labour silently' },
+    pricing: { kind: 'quote', note: 'Quoted with the licensed partner — we do not mark up their labor silently' },
     licensedTradeRequired: true,
     taxable: 'verify',
   },

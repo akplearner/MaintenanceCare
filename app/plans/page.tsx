@@ -54,7 +54,7 @@ export default function PlansPage() {
         <FieldNote label="Observation vs. repair" className="mt-6 max-w-[52rem]">
           Areas marked &ldquo;observation only&rdquo; mean exactly that: we look, test what is safe
           to test, photograph what we find and write it down. We do not open a panel or a supply
-          line. When something in those areas needs work, it is scoped and handed to a licensed
+          line. When something in those areas needs work, we price it and hand it to a licensed
           partner contractor — and you get the photographs either way.
         </FieldNote>
       </RecordRail>
@@ -84,10 +84,7 @@ export default function PlansPage() {
 
       <section className="border-t">
         <Container className="py-12">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <CTABlock variant="single" location="plans-footer" />
-            <CTABlock variant="portfolio" location="plans-footer" />
-          </div>
+          <CTABlock variant="single" location="plans-footer" alt />
         </Container>
       </section>
 

@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn';
  *
  * Drawn rather than photographed because no real job photographs exist yet, and
  * BUILD.md 5.1 rules out stock photography — a stock contractor with a clipboard
- * reads as false to the property managers this site is built for. Colours come
+ * reads as false to the property managers this site is built for. Colors come
  * from CSS variables so the scene re-themes with the palette.
  *
  * The `viewBox` supplies the intrinsic aspect ratio, so the box is reserved

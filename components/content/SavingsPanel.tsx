@@ -21,13 +21,13 @@ const CATEGORIES = [
   {
     ref: '03',
     title: 'Dispatch',
-    body: 'One call instead of four. We scope the job before a licensed contractor is dispatched, meet them for access, and verify the work was done — so you are not paying a trip charge because nobody could get in, and not chasing a close-out photograph three weeks later.',
+    body: 'One call instead of four. We price the job before a licensed contractor is sent out, meet them for access, and verify the work was done — so you are not paying a trip charge because nobody could get in, and not chasing a photograph of the finished work three weeks later.',
     example: 'Fewer trip charges, no second visit for access, one invoice to check.',
   },
   {
     ref: '04',
     title: 'Portfolio pricing',
-    body: 'Priced by door count rather than per plan. A portfolio has a mix — occupied, vacant, turning — and pricing every door at the same tier overcharges you on the easy ones. We price against the actual mix and revisit it as the mix changes.',
+    body: 'Priced on how many properties you manage rather than per plan. A portfolio is a mix — occupied, empty, between tenants — and charging the same for every one of them overcharges you on the easy ones. We price against the real mix and revisit it as that changes.',
     example: 'Coverage sized to the portfolio, not to a tier.',
   },
 ] as const;

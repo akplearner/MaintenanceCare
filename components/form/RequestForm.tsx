@@ -173,7 +173,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
         <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register('website')} />
       </div>
 
-      {/* Live region: errors are announced, not just coloured. */}
+      {/* Live region: errors are announced, not just colored. */}
       <div
         ref={errorSummaryRef}
         tabIndex={-1}

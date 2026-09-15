@@ -72,7 +72,7 @@ export const company = {
 } as const;
 
 /**
- * What a customer is actually buying beyond the labour, stated as things we can
+ * What a customer is actually buying beyond the labor, stated as things we can
  * produce on request rather than as adjectives. Rendered by `TrustBar` and
  * `CredentialGrid`.
  *
@@ -101,8 +101,8 @@ export const CREDENTIALS: Credential[] = [
   },
   {
     id: 'verified-partners',
-    label: 'Verified partner licences',
-    detail: 'When a job needs a licensed trade, we check that partner’s state licence and insurance before they are dispatched.',
+    label: 'Verified partner licenses',
+    detail: 'When a job needs a licensed trade, we check that partner’s state license and insurance before they are dispatched.',
     icon: 'badge-check',
   },
 ];
@@ -131,8 +131,8 @@ export const LICENSING_STANCE = {
   heading: 'What we do not do',
   lead: 'We are not a licensed trade contractor, and we will not pretend to be one.',
   body: [
-    'MaintenanceCare performs maintenance, inspection, documentation and general repair work that does not require a state trade licence. That covers a great deal — filters, detectors, drywall, paint, fences, gutters, lawns, punch lists, vacant property checks, and the written record of all of it.',
-    'It does not cover plumbing, electrical, HVAC repair, irrigation or pest control. Those are licensed trades in Texas. When your property needs one, we identify the problem, photograph it, and dispatch a licensed partner contractor whose licence and insurance we have verified — then we stay on it until the work is closed out and documented.',
+    'MaintenanceCare performs maintenance, inspection, documentation and general repair work that does not require a state trade license. That covers a great deal — filters, detectors, drywall, paint, fences, gutters, lawns, punch lists, vacant property checks, and the written record of all of it.',
+    'It does not cover plumbing, electrical, HVAC repair, irrigation or pest control. Those are licensed trades in Texas. When your property needs one, we identify the problem, photograph it, and dispatch a licensed partner contractor whose license and insurance we have verified — then we stay on it until the work is finished and documented.',
   ],
   reassurance:
     'Property managers tell us this is the first thing they check. The vendors who create liability are the ones who quietly do a little electrical work on the side.',
@@ -153,7 +153,7 @@ export const NOT_PROVIDED_DIRECTLY = [
 /** What we route, and what we do around it. Rendered beside the exclusions. */
 export const ROUTED_INSTEAD = [
   { trade: 'Plumbing', we: 'Plumbing coordination — we find the leak, shut it off, photograph it, and dispatch a licensed plumber.' },
-  { trade: 'Electrical', we: 'Electrical inspection and licensed vendor dispatch — we test, document, and hand a scoped job to a licensed electrician.' },
+  { trade: 'Electrical', we: 'Electrical inspection and licensed vendor dispatch — we test, document, and hand a fully described job to a licensed electrician.' },
   { trade: 'HVAC', we: 'HVAC filter program and contractor management — we keep filters on schedule and manage the licensed contractor when a system fails.' },
   { trade: 'Pest', we: 'Pest inspection and vendor coordination — we log evidence and activity and bring in a licensed operator.' },
   { trade: 'Irrigation', we: 'Irrigation observation and licensed irrigator referral — we run the zones, note what failed, and refer a licensed irrigator.' },

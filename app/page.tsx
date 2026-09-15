@@ -14,7 +14,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 
 import { launchedDivisions, upcomingDivisions } from '@/content/divisions';
-import { LICENSING_STANCE, NOT_PROVIDED_DIRECTLY, ROUTED_INSTEAD, company } from '@/content/company';
+import { LICENSING_STANCE, NOT_PROVIDED_DIRECTLY, ROUTED_INSTEAD } from '@/content/company';
 import { faqsFor } from '@/content/faqs';
 import { faqJsonLd, pageMeta } from '@/lib/seo';
 import { HomeHeroCta } from '@/components/content/HomeHeroCta';
@@ -145,7 +145,7 @@ export default function HomePage() {
         <PlanComparison className="mt-6" compact />
         <div className="mt-5">
           <ButtonLink href="/plans" variant="secondary">
-            See exactly what a quarterly inspection covers
+            See what&rsquo;s included
           </ButtonLink>
         </div>
       </RecordRail>
@@ -179,7 +179,7 @@ export default function HomePage() {
                   />
                   <span className="text-steel">
                     <span className="font-medium text-soil">{item.trade}</span> — we identify it,
-                    photograph it, and hand it to a licensed partner whose licence and insurance we
+                    photograph it, and hand it to a licensed partner whose license and insurance we
                     have checked.
                   </span>
                 </li>
@@ -200,7 +200,7 @@ export default function HomePage() {
       <RecordRail reference="REF-05">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <SectionHeading lead="An anonymised report from a real visit. No form, no email address — read it and decide for yourself whether it is worth paying for.">
+            <SectionHeading lead="An anonymized report from a real visit. No form, no email address — read it and decide for yourself whether it is worth paying for.">
               See a real report
             </SectionHeading>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -211,7 +211,7 @@ export default function HomePage() {
           </div>
           <ButtonLink href="/sample-report" size="lg" className="w-fit">
             <FileText aria-hidden size={18} strokeWidth={1.5} />
-            View the sample report
+            See a sample report
           </ButtonLink>
         </div>
       </RecordRail>
@@ -224,20 +224,7 @@ export default function HomePage() {
 
       <section className="border-t">
         <Container className="py-12">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <CTABlock variant="portfolio" location="home-footer" />
-            <CTABlock variant="single" location="home-footer" />
-          </div>
-          <p className="mt-6 text-sm text-steel">
-            Prefer to talk first?{' '}
-            <a
-              href={company.phoneHref}
-              className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
-            >
-              {company.phone}
-            </a>
-            . Monday to Friday 07:30–18:00, Saturday 08:00–14:00.
-          </p>
+          <CTABlock variant="portfolio" location="home-footer" alt />
         </Container>
       </section>
 
@@ -250,14 +237,14 @@ const AUDIENCE_CARDS = [
   {
     href: '/for/property-managers',
     title: 'Property managers',
-    body: 'One vendor for maintenance, inspections and turnovers, with written response times and a report on every door. Start with three properties free.',
-    cta: 'See response times and portfolio pricing',
+    body: 'One company for maintenance, inspections and turnovers, with response times in writing and a report on every unit. Start with three properties free.',
+    cta: 'See response times and pricing',
   },
   {
     href: '/for/investors',
     title: 'Investors & absentee owners',
-    body: 'You do not need a handyman. You need someone physically standing at the asset on a schedule, with photographs to prove they were there.',
-    cta: 'See Vacant Property Watch',
+    body: 'You do not need a handyman. You need someone standing at the property on a schedule, with photographs to prove they were there.',
+    cta: 'See how we watch empty property',
   },
   {
     href: '/for/short-term-rentals',

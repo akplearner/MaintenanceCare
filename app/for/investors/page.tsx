@@ -21,7 +21,7 @@ import { breadcrumbJsonLd, faqJsonLd, pageMeta, serviceJsonLd } from '@/lib/seo'
 export const metadata = pageMeta({
   title: 'For investors and absentee owners — Vacant Property Watch',
   description:
-    'Documented weekly or biweekly checks on vacant and out-of-area property, with dated photographs, condition reporting and escalation within the hour. Elgin, Bastrop, Manor, Taylor and Pflugerville.',
+    'Documented weekly or biweekly checks on vacant and out-of-area property, with dated photographs, condition reporting and a phone call within the hour if something is urgent. Elgin, Bastrop, Manor, Taylor and Pflugerville.',
   path: '/for/investors',
 });
 
@@ -43,7 +43,7 @@ export default function InvestorsPage() {
         eyebrow="For investors & absentee owners"
         title="You do not need a handyman. You need someone standing at the asset."
         lead="A repair company is reactive by definition — it turns up after something has already gone wrong. What an out-of-area owner actually needs is evidence, on a schedule, that the property is still what you think it is."
-        chips={['Weekly or biweekly', 'Dated photographs', 'Escalation within the hour', 'Insurer-ready records']}
+        chips={['Weekly or biweekly', 'Dated photographs', 'Urgent calls within the hour', 'Insurer-ready records']}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <ButtonLink href="/request?type=investor&division=field-inspections" size="lg">
@@ -51,7 +51,7 @@ export default function InvestorsPage() {
             <ArrowRight aria-hidden size={17} strokeWidth={1.75} />
           </ButtonLink>
           <ButtonLink href="/sample-report" variant="secondary" size="lg">
-            See what a report looks like
+            See a sample report
           </ButtonLink>
         </div>
       </AudienceHero>
@@ -69,14 +69,13 @@ export default function InvestorsPage() {
               start — they are attendance problems.
             </p>
             <p>
-              We attend on a fixed cadence, walk the property inside and out, photograph what we
-              find, and send you the record the same day. If something is urgent you get a phone
-              call within the hour, not an email you read on Monday.
+              We visit on a set schedule, walk the property inside and out, and send you a dated
+              photo record the same day. If something is urgent you get a phone call within the
+              hour, not an email you read on Monday.
             </p>
             <p>
-              Most vacancy policies and lender agreements expect documented periodic inspection.
-              A dated photo log is what turns &ldquo;we check on it&rdquo; into something you can
-              actually put in a file.
+              Most vacancy policies and lender agreements expect regular documented inspection.
+              This is the file you hand them.
             </p>
           </div>
           <div>
@@ -108,7 +107,7 @@ export default function InvestorsPage() {
           <PriceTable services={watchServices} />
         </div>
         <FieldNote label="Multiple properties" className="mt-6 max-w-[52rem]">
-          Four or more properties on a watch programme are priced by door count rather than per
+          Four or more properties on a watch program are priced on how many properties you have rather than per
           property — the drive is already being made. Tell us the addresses and we will quote the
           route rather than the list.
         </FieldNote>
@@ -133,7 +132,7 @@ export default function InvestorsPage() {
             </p>
           </div>
           <div>
-            <Callout title="Asset forecasting — Phase 4, not available today" className="mb-4">
+            <Callout title="Forecasting — not available yet" className="mb-4">
               Forecasting remaining life across a portfolio — roofs, water heaters, HVAC, major
               appliances — is a planned Asset Care capability, not something we sell now. We
               capture the underlying data on every visit today, so when it launches your history
@@ -144,7 +143,7 @@ export default function InvestorsPage() {
               <Chip tone="neutral">Severity rating per finding</Chip>
               <Chip tone="neutral">Major system ages captured</Chip>
               <Chip tone="neutral">Comparable visit to visit</Chip>
-              <Chip tone="muted">Forecasting — Phase 4</Chip>
+              <Chip tone="muted">Forecasting — not yet</Chip>
             </div>
           </div>
         </div>
@@ -157,10 +156,7 @@ export default function InvestorsPage() {
 
       <section className="border-t">
         <Container className="py-12">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <CTABlock variant="single" location="investors-footer" />
-            <CTABlock variant="portfolio" location="investors-footer" />
-          </div>
+          <CTABlock variant="single" location="investors-footer" alt />
         </Container>
       </section>
 

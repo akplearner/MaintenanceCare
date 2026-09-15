@@ -123,7 +123,7 @@ export default function PrivacyPage() {
       <h2>Cookies</h2>
       <p>
         This site sets no advertising or tracking cookies. Vercel Analytics and Speed Insights
-        collect aggregated, anonymised page and performance data without profiling individual
+        collect aggregated, anonymized page and performance data without profiling individual
         visitors. Cloudflare Turnstile may set a short-lived token on the request page to
         complete its verification.
       </p>

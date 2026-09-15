@@ -101,8 +101,8 @@ export default async function DivisionPage({ params }: PageProps) {
         {hasLicensedTrade ? (
           <Callout variant="caution" title="Licensed partner work" className="mt-5 max-w-[52rem]">
             Some items below are performed by a verified, insured, licensed partner contractor
-            rather than by our own technicians. We scope the job, supply access, manage the
-            contractor and verify close-out — their labour is quoted directly and never marked up
+            rather than by our own technicians. We price the job, let them in, manage the
+            contractor and check the work is finished — their labor is quoted directly and never marked up
             silently.{' '}
             <Link href="/legal/licensed-partners">How the partner model works</Link>.
           </Callout>

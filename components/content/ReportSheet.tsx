@@ -100,7 +100,7 @@ export function ReportSheet({ className }: { className?: string }) {
       </div>
 
       <footer className="border-t px-5 py-3.5 font-mono text-xs text-steel sm:px-7">
-        {r.reference} · {r.anonymisedNote} · Licensed trade findings are observation only and are
+        {r.reference} · {r.anonymizedNote} · Licensed trade findings are observation only and are
         routed to a licensed partner contractor.
       </footer>
     </article>

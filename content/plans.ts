@@ -29,7 +29,7 @@ export const plans: Plan[] = [
     effectiveDate: E,
     includes: [
       'Quarterly full property inspection — interior and exterior',
-      'HVAC filter replacement labour every visit',
+      'HVAC filter replacement labor every visit',
       'Smoke and carbon monoxide detector testing with battery dates logged',
       'Exterior inspection with photographs of anything changing',
       'Minor adjustments handled on the spot at no extra call-out',
@@ -67,8 +67,8 @@ export const featuredPlan = plans.find((p) => p.featured);
  */
 export const PORTFOLIO_PRICING = {
   heading: 'Managing more than five properties?',
-  body: 'Portfolio pricing is by door count, not per plan. Coverage, cadence and response times are set against your actual portfolio rather than a tier.',
-  cta: 'Portfolio pricing — by door count. Ask us.',
+  body: 'Portfolio pricing is based on how many properties you manage, not on a plan tier. Coverage, visit schedule and response times are set against your actual portfolio rather than a tier.',
+  cta: 'Portfolio pricing — based on how many properties. Ask us.',
   href: '/for/property-managers',
 } as const;
 
@@ -83,7 +83,7 @@ export const INSPECTION_AREAS: { area: string; detail: string }[] = [
   { area: 'Windows and doors', detail: 'Operation, locks, weather seals, glazing and screen condition.' },
   { area: 'HVAC filter and airflow', detail: 'Filter changed and size recorded, return air observed, thermostat settings and batteries.' },
   { area: 'Water heater', detail: 'Age and model from the data plate, corrosion, pan and visible connections.' },
-  { area: 'Visible plumbing fixtures', detail: 'Observation only — drips, stains and running fixtures logged and scoped for a licensed plumber.' },
+  { area: 'Visible plumbing fixtures', detail: 'Observation only — drips, stains and running fixtures logged and passed to a licensed plumber.' },
   { area: 'Electrical panel and outlets', detail: 'Observation only — panel labelling, visible damage, GFCI test at wet locations.' },
   { area: 'Smoke and CO detectors', detail: 'Every unit tested, batteries dated, expired units flagged by room.' },
   { area: 'Ceilings, walls and floors', detail: 'New staining, cracking, soft spots and anything that moved since last visit.' },

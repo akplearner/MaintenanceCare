@@ -5,7 +5,7 @@
  *
  * The PDF is generated from content/sample-report.ts, so the downloadable
  * document and the page can never drift apart. Replace the source data with a
- * genuinely anonymised real report and re-run this; nothing else changes.
+ * genuinely anonymized real report and re-run this; nothing else changes.
  */
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -115,7 +115,7 @@ ${
 <h2 class="sec">Findings — ${r.findings.length} areas inspected</h2>
 <ol class="findings">${findings}</ol>
 <footer>
-  <span class="mono">${esc(r.reference)} · ${esc(r.anonymisedNote)}</span>
+  <span class="mono">${esc(r.reference)} · ${esc(r.anonymizedNote)}</span>
   Licensed trade findings are recorded as observation only and routed to a licensed partner
   contractor. ${esc(LICENSED_PARTNER_DISCLOSURE)}<br>
   ${esc(company.name)} · ${esc(company.address.locality)}, ${esc(company.address.region)} ${esc(company.address.postalCode)} · ${esc(company.phone)}

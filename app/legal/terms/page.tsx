@@ -48,15 +48,15 @@ export default function TermsPage() {
         writing and have accepted it.
       </p>
       <p>
-        Materials are itemised separately from labour. Where a range is shown, photographs
+        Materials are itemised separately from labor. Where a range is shown, photographs
         usually let us quote a point inside it rather than the range.
       </p>
 
       <h2>4. Licensed trade work</h2>
       <p>
-        We do not perform work requiring a state trade licence. Where your property needs it, we
+        We do not perform work requiring a state trade license. Where your property needs it, we
         scope the work and coordinate a verified, insured, licensed partner contractor, who
-        contracts with you for their portion and carries their own licence, insurance and
+        contracts with you for their portion and carries their own license, insurance and
         liability for it. Full detail is on our{' '}
         <Link href="/legal/licensed-partners">licensed partners page</Link>.
       </p>
@@ -85,7 +85,7 @@ export default function TermsPage() {
       <p>
         Property Care plans are billed monthly in advance, run month to month, and may be
         cancelled by either of us with thirty days written notice. Plan visits are scheduled on
-        the cadence of the tier. Unused visits do not roll over. Portfolio agreements are
+        the visit schedule of the tier. Unused visits do not roll over. Portfolio agreements are
         negotiated separately and their own terms apply.
       </p>
 
@@ -107,7 +107,7 @@ export default function TermsPage() {
       <p>
         We photograph our work and keep those photographs as part of the property maintenance
         record. Reports and photographs we produce for you are yours to use. We may use
-        anonymised images of our own work as examples, with the property unidentifiable, unless
+        anonymized images of our own work as examples, with the property unidentifiable, unless
         you tell us not to.
       </p>
 

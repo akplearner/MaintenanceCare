@@ -153,8 +153,11 @@ test.describe('access codes are never collected (BUILD.md 9.4)', () => {
   test('no form control is named after an access credential', async ({ page }) => {
     await page.goto('/request');
     const inputs = page.locator('#main input, #main textarea, #main select');
+    // RequestForm is a client component behind <Suspense>, so `load` can fire
+    // while the skeleton is still showing. locator.count() does not auto-wait,
+    // so poll for the real form instead of snapshotting whatever is there.
+    await expect.poll(() => inputs.count()).toBeGreaterThan(10);
     const count = await inputs.count();
-    expect(count).toBeGreaterThan(10);
     for (let i = 0; i < count; i += 1) {
       const name = (await inputs.nth(i).getAttribute('name')) ?? '';
       const id = (await inputs.nth(i).getAttribute('id')) ?? '';

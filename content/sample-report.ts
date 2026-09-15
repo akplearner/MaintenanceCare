@@ -3,7 +3,7 @@
  *
  * SETUP REQUIRED: this is a format specimen, not a real visit. It is marked
  * SPECIMEN everywhere it renders, in the page copy and on every page of the
- * PDF. Replace it with a genuinely anonymised report from a real inspection
+ * PDF. Replace it with a genuinely anonymized report from a real inspection
  * as soon as one exists — a real one converts better, and the compliance
  * check lists this as an outstanding item until `isSpecimen` is false.
  */
@@ -21,7 +21,7 @@ export const sampleReport = {
   workOrder: 'WO-1428',
   reference: 'MC-26257-K3QB',
   propertyLabel: 'Single-family residence — Elgin, TX 78621',
-  anonymisedNote: 'Address, owner and tenant details removed.',
+  anonymizedNote: 'Address, owner and tenant details removed.',
   planTier: 'Standard — quarterly full property inspection',
   yearBuilt: 1996,
   occupancy: 'Occupied',
@@ -31,7 +31,7 @@ export const sampleReport = {
   weather: 'Clear, 31 °C, dry for six days',
 
   summary:
-    'Property is in good order overall and nothing found today is urgent. Two items need attention: a dripping hose bib on the north elevation, which needs a licensed plumber and has been scoped for one, and a gutter run over the garage holding debris. The water heater is now ten years old — worth budgeting for replacement within the next two to three years rather than waiting for it to decide.',
+    'Property is in good order overall and nothing found today is urgent. Two items need attention: a dripping hose bib on the north elevation, which needs a licensed plumber and is ready for one, and a gutter run over the garage holding debris. The water heater is now ten years old — worth budgeting for replacement within the next two to three years rather than waiting for it to decide.',
 
   findings: [
     {
@@ -86,7 +86,7 @@ export const sampleReport = {
       observation:
         'Hose bib at the north elevation dripping steadily with the valve fully closed. Interior fixtures all dry; no staining under any sink.',
       action:
-        'Licensed partner plumber scoped and quoting. Observation only on our part — this is licensed work.',
+        'Licensed partner plumber has seen it and is quoting. Observation only on our part — this is licensed work.',
       photos: 2,
     },
     {

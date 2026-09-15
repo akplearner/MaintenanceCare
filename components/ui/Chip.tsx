@@ -12,7 +12,7 @@ const STATUS_LABEL: Record<StatusKind, string> = {
 };
 
 /**
- * Colour is never the sole carrier of meaning — every chip has a text label.
+ * Color is never the sole carrier of meaning — every chip has a text label.
  */
 export function StatusChip({ kind, className }: { kind: StatusKind; className?: string }) {
   const tone =

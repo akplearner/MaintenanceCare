@@ -62,7 +62,7 @@ export default function PropertyManagersPage() {
             <ArrowRight aria-hidden size={17} strokeWidth={1.75} />
           </ButtonLink>
           <ButtonLink href="/sample-report" variant="secondary" size="lg">
-            See a sample report first
+            See a sample report
           </ButtonLink>
         </div>
       </AudienceHero>
@@ -131,7 +131,7 @@ export default function PropertyManagersPage() {
                 'Additional insured endorsement arranged on request',
                 'W-9 and vendor onboarding paperwork returned within one business day',
                 'Every technician working under our own insurance, not a subcontractor chain',
-                'Licensed partner contractors carry and evidence their own licence and insurance',
+                'Licensed partner contractors carry and evidence their own license and insurance',
                 'Photo documentation retained and retrievable by property and date',
               ]}
               className="border-t"
@@ -275,7 +275,7 @@ export default function PropertyManagersPage() {
       <JsonLd
         data={[
           serviceJsonLd({
-            name: 'Property management maintenance and inspection programme',
+            name: 'Property management maintenance and inspection program',
             description:
               'Recurring maintenance, documented inspections and coordinated licensed trade work across a managed property portfolio, priced by door count.',
             path: '/for/property-managers',

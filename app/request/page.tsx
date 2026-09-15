@@ -75,7 +75,7 @@ export default async function RequestPage({ searchParams }: { searchParams: Sear
           <p className="mt-4 max-w-[46ch] text-lg text-steel">
             {isAudit
               ? 'Give us three properties and we will inspect them at no cost, then send you the same documented reports your owners would get. No contract, no obligation.'
-              : 'Tell us about the property. We reply within one business day with a written price — and we will tell you honestly if it is not work we should be doing.'}
+              : 'Tell us what needs doing and we will tell you honestly whether it is work we should be taking on.'}
           </p>
 
           <Callout className="mt-6 max-w-[46rem]">
@@ -112,7 +112,7 @@ export default async function RequestPage({ searchParams }: { searchParams: Sear
             </dl>
           </div>
 
-          <div className="mt-4 border p-5">
+          <div className="mt-4 rounded-lg border bg-paper-raised p-5 shadow-sm">
             <p className="text-sm font-semibold text-soil">
               What happens next
             </p>

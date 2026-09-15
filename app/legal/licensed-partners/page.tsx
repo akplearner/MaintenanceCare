@@ -28,13 +28,13 @@ export default function LicensedPartnersPage() {
       {/* compliance-allow-start: negative-context — naming the trades we do NOT perform */}
       <p>
         Texas licenses plumbing, electrical, HVAC, irrigation and pest control work. A company
-        that performs those without the right licence exposes itself, and everyone who hired it,
+        that performs those without the right license exposes itself, and everyone who hired it,
         to real consequences — unpermitted work, voided insurance, and liability that lands on
         the property owner or the managing broker.
       </p>
       {/* compliance-allow-end */}
       <p>
-        {company.name} does not hold those licences and does not perform that work. We say so on
+        {company.name} does not hold those licenses and does not perform that work. We say so on
         the home page, in the footer of every page, on every price table that touches it, and
         here. Property managers tell us this is the first thing they check, and they are right
         to.
@@ -43,7 +43,7 @@ export default function LicensedPartnersPage() {
       <h2>What we do ourselves</h2>
       <p>
         Maintenance, inspection, documentation and general repair that does not require a state
-        trade licence. In practice that is the majority of what a property needs: filters,
+        trade license. In practice that is the majority of what a property needs: filters,
         detectors, drywall, paint, doors, fences, gutters, lawns, pressure washing, punch lists,
         vacant property checks, condition reporting, and the written record of all of it.
       </p>
@@ -51,8 +51,8 @@ export default function LicensedPartnersPage() {
       <h2>What we route, and what we still do around it</h2>
       <p>
         Routing does not mean handing you a phone number and walking away. On a licensed job we
-        stay in it — we scope the work, photograph it, arrange access, meet the contractor, and
-        verify close-out with photographs before it is marked done.
+        stay in it — we price the work, photograph it, arrange access, meet the contractor, and
+        check the work with photographs before it is marked done.
       </p>
       <ul>
         {ROUTED_INSTEAD.map((r) => (
@@ -66,20 +66,20 @@ export default function LicensedPartnersPage() {
       <p>Before a contractor works on a property through us, and annually afterwards:</p>
       <Checklist
         items={[
-          'Active state licence verified directly with the issuing board, not taken on a business card',
+          'Active state license verified directly with the issuing board, not taken on a business card',
           'General liability insurance certificate obtained and checked for current dates',
           'Workers compensation coverage confirmed where the contractor carries employees',
-          'Licence class confirmed to cover the scope we are sending them — a licence is not a blanket',
-          'Written pricing agreed in advance so their labour reaches you unmarked-up and itemised',
-          'Work verified and photographed by us at close-out, not signed off on their word',
-          'Re-verification annually, and immediately if a licence status changes',
+          'License class confirmed to cover the scope we are sending them — a license is not a blanket',
+          'Written pricing agreed in advance so their labor reaches you unmarked-up and itemised',
+          'Work checked and photographed by us when it is finished, not signed off on their word',
+          'Re-verification annually, and immediately if a license status changes',
         ]}
         className="mt-4 border-t"
       />
 
       <h2>What you are billed</h2>
       <p>
-        Partner contractor labour is quoted by the contractor and passed through. We do not
+        Partner contractor labor is quoted by the contractor and passed through. We do not
         silently mark it up. Where we charge for our own work on a licensed job — scoping,
         access, supervision, verification, documentation — it is stated as our line, separately,
         so you can see exactly what you are paying whom for.
@@ -87,7 +87,7 @@ export default function LicensedPartnersPage() {
 
       <h2>If something goes wrong</h2>
       <p>
-        The licensed contractor carries their own licence, insurance and liability for the work
+        The licensed contractor carries their own license, insurance and liability for the work
         they perform. We carry ours for the work we perform. Tell us either way — we hold the
         relationship with the contractor and we would rather resolve it than have you chase two
         companies.

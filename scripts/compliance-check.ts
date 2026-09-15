@@ -301,7 +301,7 @@ async function checkPlaceholders(): Promise<void> {
   }
   if (SAMPLE_REPORT_IS_SPECIMEN) {
     warnings.push(
-      'content/sample-report.ts — still a format specimen. Replace with a real anonymised report.',
+      'content/sample-report.ts — still a format specimen. Replace with a real anonymized report.',
     );
   }
   const pendingPhotos = divisions.filter((d) => d.image.placeholder);

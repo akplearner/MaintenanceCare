@@ -105,7 +105,7 @@ export default function ShortTermRentalsPage() {
           <PriceTable services={strServices} />
         </div>
         <FieldNote label="Multiple listings" className="mt-6 max-w-[52rem]">
-          Running more than a couple of listings puts you into portfolio pricing by door count
+          Running more than a couple of listings puts you into portfolio pricing based on how many you run
           rather than a plan tier. It is usually cheaper, and the scheduling gets easier because
           we are routing one trip instead of three.
         </FieldNote>
@@ -117,7 +117,7 @@ export default function ShortTermRentalsPage() {
           <strong className="font-semibold text-soil">
             Turnover cleaning between guests is not a service we run today.
           </strong>{' '}
-          Full turnover and make-ready coordination is a Phase 2 division. We do one-off cleans
+          Full turnover and make-ready coordination is not running yet. We do one-off cleans
           and we do everything on the maintenance side, but we are not going to take your
           same-day turn and disappoint a guest to win the account. When it is real, we will say
           so on this page.
@@ -131,17 +131,14 @@ export default function ShortTermRentalsPage() {
 
       <section className="border-t">
         <Container className="py-12">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <CTABlock variant="single" location="str-footer" />
-            <CTABlock variant="portfolio" location="str-footer" />
-          </div>
+          <CTABlock variant="single" location="str-footer" alt />
         </Container>
       </section>
 
       <JsonLd
         data={[
           serviceJsonLd({
-            name: 'Short-term rental maintenance programme',
+            name: 'Short-term rental maintenance program',
             description:
               'Scheduled maintenance, inspection and repair for short-term rental property, booked around the operator booking calendar.',
             path: '/for/short-term-rentals',

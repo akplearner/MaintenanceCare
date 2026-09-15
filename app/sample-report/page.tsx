@@ -109,10 +109,7 @@ export default function SampleReportPage() {
 
       <section className="border-t">
         <Container className="py-12">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <CTABlock variant="portfolio" location="sample-report-footer" />
-            <CTABlock variant="single" location="sample-report-footer" />
-          </div>
+          <CTABlock variant="portfolio" location="sample-report-footer" alt />
         </Container>
       </section>
 

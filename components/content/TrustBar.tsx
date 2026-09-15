@@ -12,7 +12,7 @@ const ICON = {
 } as const satisfies Record<Credential['icon'], unknown>;
 
 /**
- * The four things a customer is buying beyond the labour, directly under the
+ * The four things a customer is buying beyond the labor, directly under the
  * fold. A server component on purpose: it sits above the fold on two routes
  * with a CLS budget, so every item must be in the first paint.
  */

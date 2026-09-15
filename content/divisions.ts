@@ -16,7 +16,7 @@ export const divisions: Division[] = [
     name: 'Property Care',
     promise: 'Recurring preventive maintenance on a plan, documented every visit.',
     summary:
-      'A scheduled technician visit on a fixed cadence, the same checks performed every time, and a dated photo record afterwards. This is the division that turns an unpredictable repair budget into a line item.',
+      'A technician visit on a set schedule, the same checks performed every time, and a dated photo record afterwards. This is the division that turns an unpredictable repair budget into a line item.',
     phase: 1,
     fullyLaunched: true,
     audiences: ['homeowner', 'property-manager', 'investor', 'str-operator', 'hoa'],
@@ -38,14 +38,14 @@ export const divisions: Division[] = [
       height: 800,
     },
     included: [
-      'Scheduled visit on a fixed cadence — you know the date in advance',
+      'Visits on a set schedule — you know the date in advance',
       'The same inspection checklist every visit, so findings are comparable over time',
-      'HVAC filter replacement labour with the correct size recorded',
+      'HVAC filter replacement labor with the correct size recorded',
       'Smoke and carbon monoxide detector testing with battery dates logged',
       'Exterior walk with photographs of anything changing',
       'Minor adjustments handled on the spot at no extra call-out',
       'Written photo report delivered by email within 24 hours',
-      'Licensed partner dispatch when a finding needs a trade licence',
+      'Licensed partner dispatch when a finding needs a trade license',
     ],
   },
   {
@@ -148,7 +148,7 @@ export const divisions: Division[] = [
       'Materials itemised separately, never marked up silently',
       'Before and after photographs on every job',
       'Punch lists priced as a block, not per item',
-      'Anything needing a trade licence identified and routed, not attempted',
+      'Anything needing a trade license identified and routed, not attempted',
     ],
   },
   {
@@ -194,7 +194,7 @@ export const divisions: Division[] = [
     name: 'Emergency Response',
     promise: 'After-hours response when a property cannot wait until Monday.',
     summary:
-      'On-call response for water intrusion, storm damage, break-ins and freeze events — stabilise, document, and get the right licensed trade moving.',
+      'On-call response for water intrusion, storm damage, break-ins and freeze events — make it safe, document it, and get the right licensed trade moving.',
     phase: 3,
     fullyLaunched: false,
     audiences: ['property-manager', 'investor', 'str-operator', 'commercial'],
@@ -232,7 +232,7 @@ export const divisions: Division[] = [
     name: 'Trade Coordination',
     promise: 'One number to call, and we manage the licensed contractors behind it.',
     summary:
-      'Scope, dispatch, access, verification and close-out for licensed trade work performed by our partner contractors. Available today inside our other divisions; a standalone programme is a later phase.',
+      'Pricing, dispatch, access, checking and sign-off for licensed trade work performed by our partner contractors. Available today inside our other divisions; a standalone program is a later phase.',
     phase: 5,
     fullyLaunched: false,
     audiences: ['property-manager', 'investor', 'hoa', 'commercial'],
