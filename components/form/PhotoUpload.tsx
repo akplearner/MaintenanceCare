@@ -119,7 +119,7 @@ export function PhotoUpload({
           {photos.map((p) => (
             <li
               key={p.url}
-              className="flex items-center gap-2 border bg-paper-raised py-1.5 pr-1.5 pl-3 text-sm"
+              className="flex items-center gap-2 rounded-md border bg-paper-raised py-1.5 pr-1.5 pl-3 text-sm"
             >
               <span className="max-w-[12rem] truncate text-steel">{p.name}</span>
               <button

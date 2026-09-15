@@ -63,7 +63,7 @@ export function PriceTable({
                       {formatPricing(s.pricing)}
                     </span>
                     {note ? (
-                      <span className="mt-0.5 block text-xs text-steel-light">{note}</span>
+                      <span className="mt-0.5 block text-xs text-ink-muted">{note}</span>
                     ) : null}
                   </td>
                 </tr>
@@ -72,7 +72,7 @@ export function PriceTable({
           </tbody>
         </table>
       </div>
-      <p className="mt-3 font-mono text-xs text-steel">
+      <p className="mt-3 text-xs text-steel">
         Pricing effective {effective ? effectiveLabel(effective) : 'on quote'}. Reviewed quarterly.
         Final price confirmed in writing before any work starts.
       </p>
@@ -95,7 +95,7 @@ export function FlatRateMenu({ services }: { services: Service[] }) {
             <span className="text-sm text-soil">
               {s.name}
               {s.leadPaintGated ? (
-                <span className="ml-1.5 align-middle font-mono text-[0.625rem] text-steel-light">
+                <span className="ml-1.5 align-middle font-mono text-[0.625rem] text-ink-muted">
                   PRE-1978 CHECK
                 </span>
               ) : null}
@@ -106,7 +106,7 @@ export function FlatRateMenu({ services }: { services: Service[] }) {
           </li>
         ))}
       </ul>
-      <p className="mt-3 font-mono text-xs text-steel">
+      <p className="mt-3 text-xs text-steel">
         Pricing effective {effective ? effectiveLabel(effective) : 'on quote'}. Materials itemised
         separately. One service call minimum per visit, not per job.
       </p>

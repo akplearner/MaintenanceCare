@@ -146,7 +146,7 @@ export default function TermsPage() {
 
       <h2>15. Contact</h2>
       <p>
-        <a href={company.phoneHref} className="font-mono">
+        <a href={company.phoneHref} >
           {company.phone}
         </a>{' '}
         · <a href={`mailto:${company.email}`}>{company.email}</a> ·{' '}

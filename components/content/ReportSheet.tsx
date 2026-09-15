@@ -16,17 +16,17 @@ export function ReportSheet({ className }: { className?: string }) {
   const r = sampleReport;
 
   return (
-    <article className={cn('border bg-paper-raised', className)}>
+    <article className={cn('overflow-hidden rounded-lg border bg-paper-raised shadow-sm', className)}>
       <header className="border-b bg-soil px-5 py-4 text-paper sm:px-7">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="font-mono text-xs tracking-wide text-hivis uppercase">
+            <p className="font-mono text-xs tracking-wide text-accent-on-dark uppercase">
               Property inspection record
             </p>
             <p className="mt-1 font-mono text-xl font-medium">{r.workOrder}</p>
-            <p className="mt-0.5 text-sm text-steel-light">{r.propertyLabel}</p>
+            <p className="mt-0.5 text-sm text-ink-on-dark">{r.propertyLabel}</p>
           </div>
-          <span className="rounded-[2px] border-2 border-hivis px-2.5 py-1 font-mono text-xs font-medium tracking-[0.12em] text-hivis uppercase">
+          <span className="rounded-sm border-2 border-accent-on-dark px-2.5 py-1 font-mono text-xs font-medium tracking-[0.12em] text-accent-on-dark uppercase">
             Specimen
           </span>
         </div>
@@ -44,7 +44,7 @@ export function ReportSheet({ className }: { className?: string }) {
           { k: 'Next visit', v: r.nextVisit },
         ].map((row) => (
           <div key={row.k} className="bg-paper-raised px-4 py-2.5">
-            <dt className="font-mono text-[0.625rem] tracking-wide text-steel-light uppercase">
+            <dt className="font-mono text-[0.625rem] tracking-wide text-ink-muted uppercase">
               {row.k}
             </dt>
             <dd className="mt-0.5 text-sm text-soil">{row.v}</dd>
@@ -53,20 +53,20 @@ export function ReportSheet({ className }: { className?: string }) {
       </dl>
 
       <div className="border-b border-l-2 border-l-hivis px-5 py-4 sm:px-7">
-        <p className="font-mono text-xs tracking-wide text-steel-light uppercase">
+        <p className="font-mono text-xs tracking-wide text-ink-muted uppercase">
           Summary for the owner
         </p>
         <p className="mt-1.5 max-w-[46rem] text-base text-soil-soft">{r.summary}</p>
       </div>
 
       <div className="px-5 py-4 sm:px-7">
-        <p className="mb-2 font-mono text-xs tracking-wide text-steel-light uppercase">
+        <p className="mb-2 font-mono text-xs tracking-wide text-ink-muted uppercase">
           Findings — {r.findings.length} areas inspected
         </p>
         <ol className="border-t">
           {r.findings.map((f, i) => (
             <li key={f.area} className="grid gap-2 border-b py-3.5 sm:grid-cols-[2rem_1fr] sm:gap-4">
-              <span className="font-mono text-xs text-steel-light">
+              <span className="font-mono text-xs text-ink-muted">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div>
@@ -74,7 +74,7 @@ export function ReportSheet({ className }: { className?: string }) {
                   <h3 className="text-base font-medium text-soil">{f.area}</h3>
                   <span
                     className={cn(
-                      'inline-flex items-center gap-1.5 rounded-[2px] border px-2 py-0.5 font-mono text-[0.625rem] font-medium tracking-wide uppercase',
+                      'inline-flex items-center gap-1.5 rounded-sm border px-2 py-0.5 font-mono text-[0.625rem] font-medium tracking-wide uppercase',
                       TONE[f.result],
                     )}
                   >
@@ -82,7 +82,7 @@ export function ReportSheet({ className }: { className?: string }) {
                     {RESULT_LABEL[f.result]}
                   </span>
                   {f.photos ? (
-                    <span className="font-mono text-[0.625rem] text-steel-light">
+                    <span className="font-mono text-[0.625rem] text-ink-muted">
                       {f.photos} PHOTO{f.photos > 1 ? 'S' : ''}
                     </span>
                   ) : null}

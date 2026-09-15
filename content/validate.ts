@@ -5,6 +5,7 @@ import { services } from './services';
 import { plans } from './plans';
 import { areas } from './areas';
 import { faqs } from './faqs';
+import { CREDENTIALS } from './company';
 
 /**
  * Content is validated at module load, which means `next build` fails on a
@@ -119,12 +120,21 @@ const faqSchema = z.object({
     .min(1),
 });
 
+const credentialSchema = z.object({
+  id: z.string().min(2),
+  label: z.string().min(3).max(40),
+  // Long enough to say something concrete, short enough to stay a badge.
+  detail: z.string().min(20).max(160),
+  icon: z.enum(['shield', 'user-check', 'file-text', 'badge-check']),
+});
+
 function assertValid(): void {
   z.array(divisionSchema).parse(divisions);
   z.array(serviceSchema).parse(services);
   z.array(planSchema).parse(plans);
   z.array(areaSchema).parse(areas);
   z.array(faqSchema).parse(faqs);
+  z.array(credentialSchema).parse(CREDENTIALS);
 
   // Referential integrity: no dangling service ids on a division.
   const serviceIds = new Set(services.map((s) => s.id));

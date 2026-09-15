@@ -44,16 +44,16 @@ export function CTABlock({
 
   return (
     <div className={cn('border bg-soil px-5 py-8 text-paper sm:px-8 sm:py-10', className)}>
-      <p className="font-mono text-xs tracking-wide text-hivis uppercase">{copy.eyebrow}</p>
+      <p className="text-sm font-semibold text-accent-on-dark">{copy.eyebrow}</p>
       <h2 className="mt-2 max-w-[24ch] text-2xl font-semibold text-paper sm:text-3xl">
         {copy.heading}
       </h2>
-      <p className="mt-3 max-w-[46ch] text-base text-steel-light">{copy.body}</p>
+      <p className="mt-3 max-w-[46ch] text-base text-ink-on-dark">{copy.body}</p>
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Link
           href={target}
           {...ctaAttrs(variant === 'portfolio' ? 'audit' : 'request', location)}
-          className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 border border-hivis bg-hivis px-6 py-3 font-medium text-soil transition-colors hover:bg-transparent hover:text-hivis"
+          className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 border border-accent-on-dark bg-accent-on-dark px-6 py-3 font-medium text-soil transition-colors hover:bg-transparent hover:text-accent-on-dark"
         >
           {copy.primary}
           <ArrowRight aria-hidden size={17} strokeWidth={1.75} />
@@ -61,13 +61,13 @@ export function CTABlock({
         <a
           href={company.phoneHref}
           {...ctaAttrs('call', location)}
-          className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 border border-steel px-6 py-3 font-mono font-medium text-paper transition-colors hover:border-paper"
+          className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 border border-ink-on-dark/60 px-6 py-3 font-medium text-paper transition-colors hover:border-paper"
         >
           <Phone aria-hidden size={16} strokeWidth={1.5} />
           {company.phone}
         </a>
       </div>
-      <p className="mt-4 text-sm text-steel-light">{company.responseCommitment}</p>
+      <p className="mt-4 text-sm text-ink-on-dark">{company.responseCommitment}</p>
     </div>
   );
 }

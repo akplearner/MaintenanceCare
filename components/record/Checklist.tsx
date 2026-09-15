@@ -55,7 +55,7 @@ export function ChecklistDetail({
     <ol className={cn('border-t', className)}>
       {items.map((item, i) => (
         <li key={item.area} className="grid gap-1 border-b py-3 sm:grid-cols-[2.5rem_1fr_1.6fr] sm:gap-4">
-          <span className="font-mono text-xs text-steel-light">
+          <span className="font-mono text-xs text-ink-muted">
             {String(i + 1).padStart(2, '0')}
           </span>
           <span className="text-sm font-medium text-soil">{item.area}</span>

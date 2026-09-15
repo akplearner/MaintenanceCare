@@ -18,7 +18,7 @@ export function DivisionCard({
     <Link
       href={`/services/${division.slug}`}
       className={cn(
-        'group flex flex-col border bg-paper-raised p-5 transition-colors hover:border-soil',
+        'group flex flex-col rounded-lg border bg-paper-raised p-5 shadow-sm transition-shadow hover:shadow-md',
         muted && 'bg-transparent',
         className,
       )}
@@ -36,10 +36,10 @@ export function DivisionCard({
           aria-hidden
           size={18}
           strokeWidth={1.5}
-          className="mt-1 shrink-0 text-steel-light transition-colors group-hover:text-soil"
+          className="mt-1 shrink-0 text-ink-muted transition-colors group-hover:text-soil"
         />
       </div>
-      <p className={cn('mt-2 flex-1 text-sm', muted ? 'text-steel-light' : 'text-steel')}>
+      <p className={cn('mt-2 flex-1 text-sm', muted ? 'text-ink-muted' : 'text-steel')}>
         {division.promise}
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5">

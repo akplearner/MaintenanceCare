@@ -62,8 +62,8 @@ export function Field({
 }
 
 export const inputClass =
-  'w-full min-h-[2.75rem] rounded-none border bg-paper-raised px-3 py-2.5 text-base text-soil ' +
-  'placeholder:text-steel-light transition-colors ' +
+  'w-full min-h-[2.75rem] rounded-md border bg-paper-raised px-3 py-2.5 text-base text-soil ' +
+  'placeholder:text-ink-muted transition-colors ' +
   'aria-[invalid=true]:border-flag aria-[invalid=true]:border-2 ' +
   'hover:border-steel focus:border-soil';
 
@@ -80,7 +80,7 @@ export function ChoiceTile({
   return (
     <div
       className={cn(
-        'flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 border bg-paper-raised px-3 py-2.5 text-sm transition-colors',
+        'flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 rounded-md border bg-paper-raised px-3 py-2.5 text-sm transition-colors',
         checked ? 'border-soil border-2 bg-paper' : 'hover:border-steel',
         className,
       )}

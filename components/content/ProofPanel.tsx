@@ -21,7 +21,7 @@ export function ProofPanel({
 }) {
   return (
     <div className="border bg-paper">
-      <p className="border-b bg-soil px-4 py-2.5 font-mono text-xs tracking-wide text-hivis uppercase">
+      <p className="border-b bg-soil px-4 py-2.5 text-sm font-semibold text-accent-on-dark">
         {heading}
       </p>
       <dl>

@@ -7,6 +7,8 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
+import type { Credential } from './types';
+
 export const PLACEHOLDER_KEYS = [
   'phone',
   'email',
@@ -68,6 +70,42 @@ export const company = {
     google: '',
   },
 } as const;
+
+/**
+ * What a customer is actually buying beyond the labour, stated as things we can
+ * produce on request rather than as adjectives. Rendered by `TrustBar` and
+ * `CredentialGrid`.
+ *
+ * Deliberately absent: any rating, star, review count or "award". Section 8
+ * bans review structured data until there are genuine reviews, and a badge a
+ * company issues to itself is worth nothing to a property manager.
+ */
+export const CREDENTIALS: Credential[] = [
+  {
+    id: 'insurance',
+    label: 'Insured',
+    detail: 'We carry general liability cover, and send the certificate on request before the first visit.',
+    icon: 'shield',
+  },
+  {
+    id: 'background-checked',
+    label: 'Background-checked technicians',
+    detail: 'Every technician who enters a property has been background-checked.',
+    icon: 'user-check',
+  },
+  {
+    id: 'written-price',
+    label: 'Written price first',
+    detail: 'You approve a written price before any work starts. No invoice ever arrives as a surprise.',
+    icon: 'file-text',
+  },
+  {
+    id: 'verified-partners',
+    label: 'Verified partner licences',
+    detail: 'When a job needs a licensed trade, we check that partner’s state licence and insurance before they are dispatched.',
+    icon: 'badge-check',
+  },
+];
 
 /**
  * Required on every page. BUILD.md 9.2. The compliance check asserts this exact

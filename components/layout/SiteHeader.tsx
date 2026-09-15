@@ -58,7 +58,7 @@ export function SiteHeader() {
                       className={cn(
                         'border-b-2 py-1 text-sm font-medium transition-colors',
                         active
-                          ? 'border-hivis text-soil'
+                          ? 'border-accent-ink text-soil'
                           : 'border-transparent text-steel hover:text-soil',
                       )}
                     >
@@ -74,7 +74,7 @@ export function SiteHeader() {
             <a
               href={company.phoneHref}
               {...ctaAttrs('call', 'header')}
-              className="hidden items-center gap-1.5 font-mono text-sm font-medium text-soil hover:text-hivis-ink md:inline-flex"
+              className="hidden items-center gap-1.5 text-sm font-medium text-soil hover:text-hivis-ink md:inline-flex"
             >
               <Phone aria-hidden size={15} strokeWidth={1.5} />
               <span className="sr-only">Call </span>

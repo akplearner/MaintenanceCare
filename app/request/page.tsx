@@ -26,8 +26,8 @@ function first(value: string | string[] | undefined): string | undefined {
 
 /**
  * Prefill from whichever CTA sent the visitor here. A property manager who
- * clicked "Portfolio inquiry" should not have to tell us they are a property
- * manager again — every avoidable field is an avoidable drop-off.
+ * clicked "For properties I manage" should not have to say so again — every
+ * avoidable field is an avoidable drop-off.
  */
 function defaultsFrom(params: Record<string, string | string[] | undefined>): RequestFormDefaults {
   const type = first(params.type);
@@ -69,7 +69,6 @@ export default async function RequestPage({ searchParams }: { searchParams: Sear
     <Container className="py-10 lg:py-14">
       <div className="lg:grid lg:grid-cols-[1fr_20rem] lg:gap-12">
         <div>
-          <p className="font-mono text-xs tracking-wide text-steel">REQ-01</p>
           <h1 className="mt-2 max-w-[18ch] text-3xl font-bold text-soil sm:text-4xl">
             {isAudit ? 'Book the free three-property audit' : 'Request service'}
           </h1>
@@ -93,13 +92,13 @@ export default async function RequestPage({ searchParams }: { searchParams: Sear
         </div>
 
         <aside className="mt-12 lg:mt-14">
-          <div className="border bg-paper-raised p-5">
-            <p className="font-mono text-xs tracking-wide text-steel-light uppercase">
+          <div className="rounded-lg border bg-paper-raised p-5 shadow-sm">
+            <p className="text-sm font-semibold text-soil">
               Rather just call?
             </p>
             <a
               href={company.phoneHref}
-              className="mt-1.5 block font-mono text-xl font-medium text-soil hover:text-hivis-ink"
+              className="mt-1.5 block text-xl font-medium text-soil hover:text-hivis-ink"
             >
               {company.phone}
             </a>
@@ -107,14 +106,14 @@ export default async function RequestPage({ searchParams }: { searchParams: Sear
               {company.hours.map((h) => (
                 <div key={h.days} className="flex justify-between gap-3">
                   <dt>{h.days}</dt>
-                  <dd className="font-mono">{h.open ? `${h.open}–${h.close}` : 'Closed'}</dd>
+                  <dd>{h.open ? `${h.open}–${h.close}` : 'Closed'}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
           <div className="mt-4 border p-5">
-            <p className="font-mono text-xs tracking-wide text-steel-light uppercase">
+            <p className="text-sm font-semibold text-soil">
               What happens next
             </p>
             <ol className="mt-3 space-y-3 text-sm text-steel">
@@ -125,7 +124,7 @@ export default async function RequestPage({ searchParams }: { searchParams: Sear
                 'If it needs a licensed trade, we tell you that instead of guessing.',
               ].map((step, i) => (
                 <li key={step} className="flex gap-3">
-                  <span className="font-mono text-xs text-steel-light">
+                  <span className="font-mono text-xs text-ink-muted">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <span>{step}</span>
@@ -148,7 +147,7 @@ function FormSkeleton() {
   return (
     <div className="mt-8 max-w-[46rem] space-y-4" aria-hidden>
       {[0, 1, 2, 3].map((i) => (
-        <div key={i} className="h-24 border bg-paper-raised" />
+        <div key={i} className="h-24 rounded-lg border bg-paper-raised" />
       ))}
     </div>
   );

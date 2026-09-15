@@ -82,7 +82,7 @@ test.describe('lead submission', () => {
 
   test('the portfolio CTA prefills the form as a property manager', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: /Portfolio inquiry/ }).first().click();
+    await page.getByRole('link', { name: /For properties I manage/ }).first().click();
     await page.waitForURL('**/request**');
 
     await expect(page.getByRole('radio', { name: 'Property manager' })).toBeChecked();

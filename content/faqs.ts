@@ -42,7 +42,7 @@ export const faqs: Faq[] = [
     question: 'How do you get into the property?',
     answer:
       'We arrange access with whoever you tell us to contact — you, a tenant, an on-site manager, or your existing lockbox process. We deliberately do not collect gate, lockbox or alarm codes through this website. Access credentials belong in an access-controlled system, not in a web form or an email inbox.',
-    contexts: ['home', 'request', 'investors'],
+    contexts: ['request', 'investors'],
   },
   {
     id: 'reports',
@@ -56,7 +56,7 @@ export const faqs: Faq[] = [
     question: 'Why do you ask what year the property was built?',
     answer:
       'Because the federal Renovation, Repair and Painting rule can require Lead-Safe Certified Firm status for qualifying work in housing built before 1978, and we gate paint and demolition scheduling on it. Asking up front is how we avoid sending a technician to a job we are not permitted to start.',
-    contexts: ['request', 'home'],
+    contexts: ['request'],
   },
   {
     id: 'vacant',
@@ -77,7 +77,7 @@ export const faqs: Faq[] = [
     question: 'Do you cover my area?',
     answer:
       'We work Elgin, Bastrop, Manor, Taylor and Pflugerville, roughly a thirty-five mile radius from Elgin. Outside that we will still talk to you, but we will be honest about whether the drive time makes it worth your money.',
-    contexts: ['service-area', 'home'],
+    contexts: ['service-area'],
   },
   {
     id: 'str-turnovers',
@@ -91,14 +91,14 @@ export const faqs: Faq[] = [
     question: 'Do you offer after-hours emergency response?',
     answer:
       'Not as a standing programme yet — the on-call rotation is a later phase and we will not advertise a promise we cannot keep at 2am. Plan customers get priority response during business hours, and urgent findings during a visit are escalated by phone immediately.',
-    contexts: ['home', 'property-managers'],
+    contexts: ['property-managers'],
   },
   {
     id: 'pricing-changes',
     question: 'Why does every price on this site carry a date?',
     answer:
       'Because we review our pricing against local benchmarks quarterly, and a price without a date is a price you cannot rely on. If a figure here is out of date, the date tells you so before you call.',
-    contexts: ['plans', 'home'],
+    contexts: ['plans'],
   },
 ];
 

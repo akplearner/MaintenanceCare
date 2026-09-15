@@ -67,8 +67,8 @@ export function SLATable({ rows = SLA_ROWS }: { rows?: SlaRow[] }) {
                 <th scope="row" className="py-3 pr-4 text-sm font-normal text-soil">
                   {r.situation}
                 </th>
-                <td className="py-3 pr-4 font-mono text-sm text-steel">{r.acknowledge}</td>
-                <td className="py-3 font-mono text-sm text-steel">{r.onSite}</td>
+                <td className="py-3 pr-4 text-sm text-steel">{r.acknowledge}</td>
+                <td className="py-3 text-sm text-steel">{r.onSite}</td>
               </tr>
             ))}
           </tbody>

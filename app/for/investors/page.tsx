@@ -80,7 +80,7 @@ export default function InvestorsPage() {
             </p>
           </div>
           <div>
-            <p className="font-mono text-xs tracking-wide text-steel-light uppercase">
+            <p className="text-sm font-semibold text-soil">
               Every visit
             </p>
             <Checklist
@@ -156,7 +156,7 @@ export default function InvestorsPage() {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <div className="grid gap-4 lg:grid-cols-2">
             <CTABlock variant="single" location="investors-footer" />
             <CTABlock variant="portfolio" location="investors-footer" />

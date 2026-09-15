@@ -1,4 +1,5 @@
 import { cn } from '@/lib/cn';
+import { PropertyGlyph } from '@/components/art/PropertyScene';
 import { StatusStamp, type StampKind } from './StatusStamp';
 
 export interface RecordFinding {
@@ -37,7 +38,7 @@ export function RecordCard({
 }) {
   return (
     <article
-      className={cn('border bg-paper-raised', className)}
+      className={cn('overflow-hidden rounded-lg border bg-paper-raised shadow-md', className)}
       aria-label={`Example work order ${data.workOrder}`}
     >
       <header className="flex items-start justify-between gap-4 border-b px-4 py-3 sm:px-5">
@@ -49,7 +50,7 @@ export function RecordCard({
       </header>
 
       <div className="px-4 py-3 sm:px-5">
-        <p className="mb-2 font-mono text-xs tracking-wide text-steel-light uppercase">Findings</p>
+        <p className="mb-2 font-mono text-xs tracking-wide text-ink-muted uppercase">Findings</p>
         <ul>
           {data.findings.map((f) => (
             <li
@@ -81,7 +82,7 @@ export function RecordCard({
 
       {data.photoSlots.length > 0 ? (
         <div className="border-t px-4 py-3 sm:px-5">
-          <p className="mb-2 font-mono text-xs tracking-wide text-steel-light uppercase">
+          <p className="mb-2 font-mono text-xs tracking-wide text-ink-muted uppercase">
             Attached photographs
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -89,9 +90,9 @@ export function RecordCard({
               <div key={p.caption} className="border bg-paper">
                 <div
                   aria-hidden
-                  className="flex aspect-[4/3] items-center justify-center bg-[repeating-linear-gradient(135deg,var(--paper),var(--paper)_8px,var(--paper-raised)_8px,var(--paper-raised)_16px)]"
+                  className="flex aspect-[4/3] items-center justify-center bg-paper px-3"
                 >
-                  <span className="font-mono text-[0.625rem] text-steel-light">IMG</span>
+                  <PropertyGlyph className="max-w-[2.25rem]" />
                 </div>
                 <p className="truncate border-t px-1.5 py-1 text-[0.625rem] text-steel">
                   {p.caption}
@@ -111,10 +112,10 @@ export function RecordCard({
       <footer className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t px-4 py-2.5 font-mono text-xs text-steel sm:px-5">
         <span>
           {data.date}
-          <span className="mx-2 text-steel-light">·</span>
+          <span className="mx-2 text-ink-muted">·</span>
           {data.window}
         </span>
-        {data.technician ? <span className="text-steel-light">{data.technician}</span> : null}
+        {data.technician ? <span className="text-ink-muted">{data.technician}</span> : null}
       </footer>
     </article>
   );

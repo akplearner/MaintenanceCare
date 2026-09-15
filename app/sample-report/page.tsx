@@ -25,21 +25,16 @@ export default function SampleReportPage() {
     <>
       <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">RPT-00</span>
-            </div>
-            <div className="pt-2 pb-10 lg:pt-14 lg:pb-14">
-              <h1 className="max-w-[20ch] text-3xl font-bold text-soil sm:text-4xl">
-                This is what you are actually buying.
-              </h1>
-              <p className="mt-4 max-w-[48ch] text-lg text-steel">
-                Not a visit. A dated, photographed, severity-rated record of your property that
-                you can forward to an owner, a lender or an insurer. Read the whole thing below —
-                there is no form in front of it.
-              </p>
-              <SampleReportDownload />
-            </div>
+          <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
+            <h1 className="max-w-[20ch] text-3xl font-bold text-soil sm:text-4xl">
+              This is what you are actually buying.
+            </h1>
+            <p className="mt-4 max-w-[48ch] text-lg text-steel">
+              Not a visit. A dated, photographed, severity-rated record of your property that
+              you can forward to an owner, a lender or an insurer. Read the whole thing below —
+              there is no form in front of it.
+            </p>
+            <SampleReportDownload />
           </div>
         </Container>
       </section>
@@ -75,7 +70,7 @@ export default function SampleReportPage() {
         <SectionHeading lead="Three things most maintenance reports leave out, and why we do not.">
           Why the report looks like this
         </SectionHeading>
-        <div className="mt-6 grid gap-px bg-steel-light sm:grid-cols-3">
+        <div className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-rule sm:grid-cols-3">
           {[
             {
               n: '01',
@@ -94,7 +89,7 @@ export default function SampleReportPage() {
             },
           ].map((c) => (
             <div key={c.n} className="bg-paper-raised p-5">
-              <p className="font-mono text-xs text-steel-light">{c.n}</p>
+              <p className="text-xs font-semibold text-accent-ink">{c.n}</p>
               <h3 className="mt-1 text-lg font-semibold text-soil">{c.t}</h3>
               <p className="mt-2 text-sm text-steel">{c.b}</p>
             </div>
@@ -113,7 +108,7 @@ export default function SampleReportPage() {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <div className="grid gap-4 lg:grid-cols-2">
             <CTABlock variant="portfolio" location="sample-report-footer" />
             <CTABlock variant="single" location="sample-report-footer" />

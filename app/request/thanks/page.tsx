@@ -26,8 +26,8 @@ export default async function ThanksPage({ searchParams }: { searchParams: Searc
         <h1 className="mt-5 text-3xl font-bold text-soil sm:text-4xl">Request received.</h1>
 
         {reference ? (
-          <div className="mt-6 border bg-paper-raised px-5 py-4">
-            <p className="font-mono text-xs tracking-wide text-steel-light uppercase">
+          <div className="mt-6 rounded-lg border bg-paper-raised px-5 py-4 shadow-sm">
+            <p className="text-sm font-semibold text-soil">
               Your reference
             </p>
             <p className="mt-1 font-mono text-2xl font-medium text-soil">{reference}</p>
@@ -38,7 +38,7 @@ export default async function ThanksPage({ searchParams }: { searchParams: Searc
         ) : null}
 
         <div className="mt-8">
-          <h2 className="font-mono text-xs tracking-wide text-steel-light uppercase">
+          <h2 className="text-sm font-semibold text-soil">
             What happens now
           </h2>
           <ol className="mt-3 border-t">
@@ -61,7 +61,7 @@ export default async function ThanksPage({ searchParams }: { searchParams: Searc
               },
             ].map((row) => (
               <li key={row.when} className="grid gap-1 border-b py-3.5 sm:grid-cols-[11rem_1fr] sm:gap-4">
-                <span className="font-mono text-sm text-steel">{row.when}</span>
+                <span className="text-sm text-steel">{row.when}</span>
                 <span className="text-base text-soil-soft">{row.what}</span>
               </li>
             ))}
@@ -73,7 +73,7 @@ export default async function ThanksPage({ searchParams }: { searchParams: Searc
             Something urgent in the meantime? Call{' '}
             <a
               href={company.phoneHref}
-              className="font-mono font-medium text-soil underline underline-offset-2"
+              className="font-medium text-soil underline underline-offset-2"
             >
               {company.phone}
             </a>

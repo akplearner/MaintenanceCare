@@ -25,7 +25,7 @@ export function StatusChip({ kind, className }: { kind: StatusKind; className?: 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-[2px] border px-2 py-0.5 font-mono text-xs font-medium tracking-wide uppercase',
+        'inline-flex items-center gap-1.5 rounded-sm border px-2 py-0.5 font-mono text-xs font-medium tracking-wide uppercase',
         tone,
         className,
       )}
@@ -49,10 +49,10 @@ export function Chip({
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-[2px] border px-2 py-0.5 text-xs font-medium',
+        'inline-flex items-center rounded-sm border px-2 py-0.5 text-xs font-medium',
         tone === 'accent' && 'border-hivis-ink/40 bg-hivis/15 text-hivis-ink',
         tone === 'neutral' && 'border-steel-light bg-paper-raised text-steel',
-        tone === 'muted' && 'border-steel-light/60 text-steel-light',
+        tone === 'muted' && 'border-steel-light/60 text-ink-muted',
         className,
       )}
     >

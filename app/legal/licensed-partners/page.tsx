@@ -96,7 +96,7 @@ export default function LicensedPartnersPage() {
       <h2>Questions</h2>
       <p>
         Call{' '}
-        <a href={company.phoneHref} className="font-mono">
+        <a href={company.phoneHref} >
           {company.phone}
         </a>{' '}
         or email{' '}

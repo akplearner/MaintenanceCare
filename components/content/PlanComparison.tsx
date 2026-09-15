@@ -18,19 +18,20 @@ export function PlanComparison({
           <div
             key={plan.slug}
             className={cn(
-              'relative flex flex-col border bg-paper-raised p-5',
+              'relative flex flex-col overflow-hidden rounded-lg border bg-paper-raised p-5 shadow-sm',
               plan.featured && 'border-2 border-soil',
             )}
           >
-            {/* Absolute so the three tier headings stay on the same line. */}
+            {/* Absolute so the three tier headings stay on the same line, and
+                top-right so it never sits on top of the left-aligned heading. */}
             {plan.featured ? (
-              <p className="absolute top-0 left-0 bg-hivis px-2.5 py-1 font-mono text-xs font-medium tracking-wide text-soil uppercase">
+              <p className="absolute top-0 right-0 rounded-bl-md bg-accent-ink px-2.5 py-1 text-xs font-semibold tracking-wide text-paper">
                 Most chosen
               </p>
             ) : null}
             <h3 className="text-xl font-semibold text-soil">{plan.name}</h3>
             <p className="mt-3 flex items-baseline gap-1.5">
-              <span className="font-mono text-4xl font-medium text-soil">
+              <span className="text-4xl font-bold tracking-tight text-soil">
                 ${plan.monthlyPrice}
               </span>
               <span className="text-sm text-steel">/month</span>
@@ -58,7 +59,7 @@ export function PlanComparison({
         ))}
       </div>
 
-      <p className="mt-3 font-mono text-xs text-steel">
+      <p className="mt-3 text-xs text-steel">
         Pricing effective {effectiveLabel(plans[0]!.effectiveDate)}. Month to month, cancel with
         thirty days notice. Reviewed quarterly.
       </p>

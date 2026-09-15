@@ -78,32 +78,27 @@ export default async function CityPage({ params }: PageProps) {
     <>
       <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">ARE-01</span>
-            </div>
-            <div className="pt-2 pb-10 lg:pt-14 lg:pb-14">
-              <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
-                <Link href="/service-area" className="underline underline-offset-4 hover:text-soil">
-                  Service area
-                </Link>
-                <span className="mx-2 text-steel-light">/</span>
-                <span className="text-soil">{area.city}</span>
-              </nav>
-              <h1 className="text-3xl font-bold text-soil sm:text-4xl">
-                Property maintenance in {area.city}, Texas
-              </h1>
-              <p className="mt-4 max-w-[46ch] text-lg text-steel">
-                {area.county} · {area.zips.join(', ')} ·{' '}
-                {area.driveTimeMinutes === 0
-                  ? 'Our home base.'
-                  : `About ${area.driveTimeMinutes} minutes from our Elgin base.`}
-              </p>
-              <div className="mt-6">
-                <ButtonLink href={`/request?city=${encodeURIComponent(area.city)}`} size="lg">
-                  Request service in {area.city}
-                </ButtonLink>
-              </div>
+          <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
+            <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
+              <Link href="/service-area" className="underline underline-offset-4 hover:text-soil">
+                Service area
+              </Link>
+              <span className="mx-2 text-ink-muted">/</span>
+              <span className="text-soil">{area.city}</span>
+            </nav>
+            <h1 className="text-3xl font-bold text-soil sm:text-4xl">
+              Property maintenance in {area.city}, Texas
+            </h1>
+            <p className="mt-4 max-w-[46ch] text-lg text-steel">
+              {area.county} · {area.zips.join(', ')} ·{' '}
+              {area.driveTimeMinutes === 0
+                ? 'Our home base.'
+                : `About ${area.driveTimeMinutes} minutes from our Elgin base.`}
+            </p>
+            <div className="mt-6">
+              <ButtonLink href={`/request?city=${encodeURIComponent(area.city)}`} size="lg">
+                Request service in {area.city}
+              </ButtonLink>
             </div>
           </div>
         </Container>
@@ -157,10 +152,10 @@ export default async function CityPage({ params }: PageProps) {
               <li key={a.slug}>
                 <Link
                   href={`/service-area/${a.slug}`}
-                  className="inline-flex items-center gap-2 border bg-paper-raised px-3 py-2 text-sm text-soil transition-colors hover:border-soil"
+                  className="inline-flex items-center gap-2 rounded-md border bg-paper-raised px-3 py-2 text-sm text-soil transition-colors hover:border-soil"
                 >
                   {a.city}
-                  <span className="font-mono text-xs text-steel-light">
+                  <span className="text-xs text-ink-muted">
                     {a.driveTimeMinutes === 0 ? 'BASE' : `${a.driveTimeMinutes}m`}
                   </span>
                 </Link>
@@ -180,7 +175,7 @@ export default async function CityPage({ params }: PageProps) {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <div className="grid gap-4 lg:grid-cols-2">
             <CTABlock variant="single" location={`city-${area.slug}`} />
             <CTABlock variant="portfolio" location={`city-${area.slug}`} />

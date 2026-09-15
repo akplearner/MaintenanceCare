@@ -16,9 +16,9 @@ export function FieldNote({
   className?: string;
 }) {
   return (
-    <aside className={cn('border-l-2 border-l-hivis bg-paper-raised py-3 pr-4 pl-4', className)}>
+    <aside className={cn('rounded-r-md border-l-2 border-l-hivis bg-paper-raised py-3 pr-4 pl-4', className)}>
       {label ? (
-        <p className="mb-1 font-mono text-xs tracking-wide text-steel uppercase">{label}</p>
+        <p className="mb-1 text-sm font-semibold text-soil">{label}</p>
       ) : null}
       <div className="max-w-[34rem] text-sm text-soil-soft">{children}</div>
     </aside>

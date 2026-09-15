@@ -29,20 +29,15 @@ export default function PlansPage() {
     <>
       <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">PLN-00</span>
-            </div>
-            <div className="pt-2 pb-10 lg:pt-14 lg:pb-14">
-              <h1 className="max-w-[20ch] text-3xl font-bold text-soil sm:text-4xl">
-                A maintenance budget you can actually predict.
-              </h1>
-              <p className="mt-4 max-w-[48ch] text-lg text-steel">
-                A technician on a fixed schedule, the same checks every visit, and a dated photo
-                report afterwards. Month to month, cancel with thirty days notice, and every price
-                on this page carries the date it took effect.
-              </p>
-            </div>
+          <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
+            <h1 className="max-w-[20ch] text-3xl font-bold text-soil sm:text-4xl">
+              A maintenance budget you can actually predict.
+            </h1>
+            <p className="mt-4 max-w-[48ch] text-lg text-steel">
+              A technician on a fixed schedule, the same checks every visit, and a dated photo
+              report afterwards. Month to month, cancel with thirty days notice, and every price
+              on this page carries the date it took effect.
+            </p>
           </div>
         </Container>
       </section>
@@ -88,7 +83,7 @@ export default function PlansPage() {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <div className="grid gap-4 lg:grid-cols-2">
             <CTABlock variant="single" location="plans-footer" />
             <CTABlock variant="portfolio" location="plans-footer" />

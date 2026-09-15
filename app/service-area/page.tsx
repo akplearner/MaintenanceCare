@@ -29,21 +29,16 @@ export default function ServiceAreaPage() {
     <>
       <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">ARE-00</span>
-            </div>
-            <div className="pt-2 pb-10 lg:pt-14 lg:pb-14">
-              <h1 className="max-w-[20ch] text-3xl font-bold text-soil sm:text-4xl">
-                Five towns, honestly stated drive times.
-              </h1>
-              <p className="mt-4 max-w-[48ch] text-lg text-steel">
-                Drive time is the fastest way to destroy margin in this business, so we are
-                straightforward about it. Inside the radius below you get our real response times.
-                Outside it we will still talk to you — and tell you whether the drive makes it
-                worth your money.
-              </p>
-            </div>
+          <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
+            <h1 className="max-w-[20ch] text-3xl font-bold text-soil sm:text-4xl">
+              Five towns, honestly stated drive times.
+            </h1>
+            <p className="mt-4 max-w-[48ch] text-lg text-steel">
+              Drive time is the fastest way to destroy margin in this business, so we are
+              straightforward about it. Inside the radius below you get our real response times.
+              Outside it we will still talk to you — and tell you whether the drive makes it
+              worth your money.
+            </p>
           </div>
         </Container>
       </section>
@@ -68,14 +63,14 @@ export default function ServiceAreaPage() {
                       </span>
                     </span>
                     <span className="flex shrink-0 items-center gap-2">
-                      <span className="font-mono text-sm text-steel">
+                      <span className="text-sm text-steel">
                         {a.driveTimeMinutes === 0 ? 'BASE' : `${a.driveTimeMinutes} min`}
                       </span>
                       <ArrowUpRight
                         aria-hidden
                         size={16}
                         strokeWidth={1.5}
-                        className="text-steel-light group-hover:text-soil"
+                        className="text-ink-muted group-hover:text-soil"
                       />
                     </span>
                   </Link>
@@ -103,7 +98,7 @@ export default function ServiceAreaPage() {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <CTABlock variant="single" location="service-area-index" />
         </Container>
       </section>

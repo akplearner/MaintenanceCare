@@ -35,7 +35,7 @@ export default function NotFound() {
           </ButtonLink>
           <a
             href={company.phoneHref}
-            className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 border border-soil px-6 py-3 font-mono font-medium text-soil transition-colors hover:bg-soil hover:text-paper"
+            className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 border border-soil px-6 py-3 font-medium text-soil transition-colors hover:bg-soil hover:text-paper"
           >
             {company.phone}
           </a>

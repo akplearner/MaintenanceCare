@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, FileText } from 'lucide-react';
+import { ArrowRight, BadgeCheck, FileText } from 'lucide-react';
 
 import { Container } from '@/components/layout/Container';
 import { RecordRail } from '@/components/layout/RecordRail';
@@ -18,6 +18,7 @@ import { LICENSING_STANCE, NOT_PROVIDED_DIRECTLY, ROUTED_INSTEAD, company } from
 import { faqsFor } from '@/content/faqs';
 import { faqJsonLd, pageMeta } from '@/lib/seo';
 import { HomeHeroCta } from '@/components/content/HomeHeroCta';
+import { TrustBar } from '@/components/content/TrustBar';
 
 export const metadata = pageMeta({
   title: 'Property maintenance and field services — Elgin & Central Texas',
@@ -31,78 +32,52 @@ const homeFaqs = faqsFor('home');
 export default function HomePage() {
   return (
     <>
-      {/* REF-00 — the hero is the product, not a headline over a photo. */}
-      <section className="border-b">
+      {/* The hero answers "is this for me?" before it answers anything else. */}
+      <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">REF-00</span>
-              <span className="ml-3 font-mono text-xs text-steel-light lg:mt-2 lg:ml-0 lg:block">
-                09.26
-              </span>
+          <div className="grid gap-10 pt-10 pb-12 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-12 lg:pt-14 lg:pb-16">
+            <div>
+              <h1 className="max-w-[18ch] text-4xl font-bold tracking-tight text-soil sm:text-5xl">
+                Someone looking after the property when you can&rsquo;t.
+              </h1>
+              <p className="mt-5 max-w-[46ch] text-lg text-steel">
+                Maintenance on a schedule, and a dated photo record after every visit. For
+                homeowners and for the people who manage doors across Elgin and Central Texas.
+              </p>
+
+              <HomeHeroCta />
+
+              <TrustBar className="mt-8 border-t pt-6" />
             </div>
-            <div className="grid gap-10 pt-4 pb-12 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-12 lg:pt-14 lg:pb-16">
-              <div>
-                <h1 className="max-w-[16ch] text-4xl font-bold tracking-tight text-soil sm:text-5xl">
-                  We maintain property for people who aren&rsquo;t standing in front of it.
-                </h1>
-                <p className="mt-5 max-w-[44ch] text-lg text-steel">
-                  Recurring maintenance, documented inspections, and one number to call. Every
-                  visit ends with a dated, photographed record of exactly what we found and what we
-                  did. Elgin and Central Texas.
-                </p>
 
-                <HomeHeroCta />
-
-                <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t pt-5 text-sm text-steel">
-                  <li className="flex items-center gap-2">
-                    <span aria-hidden className="inline-block h-1.5 w-1.5 bg-verified" />
-                    Reply within one business day
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span aria-hidden className="inline-block h-1.5 w-1.5 bg-verified" />
-                    Written price before work starts
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span aria-hidden className="inline-block h-1.5 w-1.5 bg-verified" />
-                    Certificate of insurance on request
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span aria-hidden className="inline-block h-1.5 w-1.5 bg-verified" />
-                    No long-term contract
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <p className="mb-2 font-mono text-xs tracking-wide text-steel-light uppercase">
-                  What you receive after every visit
-                </p>
-                <RecordCard data={HERO_RECORD} animateStamp />
-                <p className="mt-3 text-sm text-steel">
-                  This is an example record.{' '}
-                  <Link
-                    href="/sample-report"
-                    className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
-                  >
-                    Download a real one
-                  </Link>{' '}
-                  — no email address required.
-                </p>
-              </div>
+            <div>
+              <p className="mb-2 text-sm font-semibold text-soil">
+                What you receive after every visit
+              </p>
+              <RecordCard data={HERO_RECORD} animateStamp />
+              <p className="mt-3 text-sm text-steel">
+                This is an example record.{' '}
+                <Link
+                  href="/sample-report"
+                  className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
+                >
+                  Download a real one
+                </Link>{' '}
+                — no email address required.
+              </p>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* REF-01 — what we do */}
+      {/* What we do */}
       <RecordRail reference="REF-01" date="09.26" divider={false}>
-        <SectionHeading lead="Four divisions are running today. We will tell you plainly which ones are not.">
+        <SectionHeading lead="Four services are running today. We say plainly which ones are not.">
           What we do
         </SectionHeading>
         <DivisionGrid divisions={launchedDivisions} className="mt-6" />
         <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-steel">
-          <span>Also on the roadmap:</span>
+          <span>Coming later:</span>
           {upcomingDivisions.map((d, i) => (
             <span key={d.slug}>
               <Link
@@ -118,15 +93,15 @@ export default function HomePage() {
             href="/services"
             className="inline-flex items-center gap-1 font-medium text-soil underline decoration-hivis decoration-2 underline-offset-4"
           >
-            All divisions
+            See all services
             <ArrowRight aria-hidden size={14} strokeWidth={1.75} />
           </Link>
         </div>
       </RecordRail>
 
-      {/* REF-02 — who we work for */}
+      {/* Who we work for */}
       <RecordRail reference="REF-02">
-        <SectionHeading lead="One relationship, many properties. If you manage doors rather than live in one, start here.">
+        <SectionHeading lead="Whether it is one home or a portfolio of them.">
           Who we work for
         </SectionHeading>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -134,7 +109,7 @@ export default function HomePage() {
             <Link
               key={a.href}
               href={a.href}
-              className="group flex flex-col border bg-paper-raised p-5 transition-colors hover:border-soil"
+              className="group flex flex-col rounded-lg border bg-paper-raised p-5 shadow-sm transition-shadow hover:shadow-md"
             >
               <h3 className="text-xl font-semibold text-soil">{a.title}</h3>
               <p className="mt-2 flex-1 text-sm text-steel">{a.body}</p>
@@ -162,9 +137,9 @@ export default function HomePage() {
         </p>
       </RecordRail>
 
-      {/* REF-03 — plans */}
+      {/* Plans */}
       <RecordRail reference="REF-03">
-        <SectionHeading lead="A fixed monthly amount instead of a repair budget you cannot predict. Month to month, cancel with thirty days notice.">
+        <SectionHeading lead="A fixed monthly amount instead of a repair bill you cannot predict. Cancel with thirty days notice.">
           Property Care plans
         </SectionHeading>
         <PlanComparison className="mt-6" compact />
@@ -175,42 +150,38 @@ export default function HomePage() {
         </div>
       </RecordRail>
 
-      {/* REF-04 — the licensing boundary, as a trust asset */}
+      {/* The licensing boundary, as a trust asset. BUILD.md 6.1: do not bury it. */}
       <RecordRail reference="REF-04" status="verified">
         <SectionHeading>{LICENSING_STANCE.heading}</SectionHeading>
         <p className="mt-3 max-w-[46ch] text-lg text-soil">{LICENSING_STANCE.lead}</p>
-        <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1fr]">
-          <div className="max-w-[34rem] space-y-4 text-base text-steel">
-            {LICENSING_STANCE.body.map((p) => (
-              <p key={p.slice(0, 32)}>{p}</p>
-            ))}
-            <p className="border-l-2 border-l-hivis pl-4 text-soil-soft">
-              {LICENSING_STANCE.reassurance}
-            </p>
-          </div>
-          <div>
-            <p className="font-mono text-xs tracking-wide text-steel-light uppercase">
-              We do not perform
-            </p>
-            <ul className="mt-2 border-t">
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div className="rounded-lg border bg-paper-raised p-5 shadow-sm">
+            <p className="text-sm font-semibold text-soil">We do not perform</p>
+            <ul className="mt-3 space-y-2">
               {NOT_PROVIDED_DIRECTLY.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 border-b py-2.5 text-sm text-steel"
-                >
-                  <span aria-hidden className="mt-[0.55em] inline-block h-[1.5px] w-2.5 bg-flag" />
+                <li key={item} className="flex items-start gap-2.5 text-sm text-steel">
+                  <span aria-hidden className="mt-[0.6em] inline-block h-[2px] w-2.5 shrink-0 bg-flag" />
                   {item}
                 </li>
               ))}
             </ul>
-            <p className="mt-5 font-mono text-xs tracking-wide text-steel-light uppercase">
-              What we do instead
-            </p>
-            <ul className="mt-2 border-t">
+          </div>
+          <div className="rounded-lg border bg-paper-raised p-5 shadow-sm">
+            <p className="text-sm font-semibold text-soil">What we do instead</p>
+            <ul className="mt-3 space-y-2.5">
               {ROUTED_INSTEAD.map((item) => (
-                <li key={item.trade} className="border-b py-2.5 text-sm">
-                  <span className="font-medium text-soil">{item.trade}</span>
-                  <span className="mt-0.5 block text-steel">{item.we}</span>
+                <li key={item.trade} className="flex items-start gap-2.5 text-sm">
+                  <BadgeCheck
+                    aria-hidden
+                    size={16}
+                    strokeWidth={2}
+                    className="mt-0.5 shrink-0 text-verified"
+                  />
+                  <span className="text-steel">
+                    <span className="font-medium text-soil">{item.trade}</span> — we identify it,
+                    photograph it, and hand it to a licensed partner whose licence and insurance we
+                    have checked.
+                  </span>
                 </li>
               ))}
             </ul>
@@ -225,7 +196,7 @@ export default function HomePage() {
         </div>
       </RecordRail>
 
-      {/* REF-05 — the sample report, ungated */}
+      {/* The sample report, ungated */}
       <RecordRail reference="REF-05">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
@@ -245,14 +216,14 @@ export default function HomePage() {
         </div>
       </RecordRail>
 
-      {/* REF-06 — questions */}
+      {/* Questions */}
       <RecordRail reference="REF-06">
         <SectionHeading>Questions people actually ask</SectionHeading>
         <FAQ items={homeFaqs} className="mt-6 max-w-[52rem]" />
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <div className="grid gap-4 lg:grid-cols-2">
             <CTABlock variant="portfolio" location="home-footer" />
             <CTABlock variant="single" location="home-footer" />
@@ -261,7 +232,7 @@ export default function HomePage() {
             Prefer to talk first?{' '}
             <a
               href={company.phoneHref}
-              className="font-mono text-soil underline decoration-hivis decoration-2 underline-offset-4"
+              className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
             >
               {company.phone}
             </a>

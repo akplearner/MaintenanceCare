@@ -6,7 +6,7 @@ type Variant = 'primary' | 'secondary' | 'quiet';
 type Size = 'md' | 'lg';
 
 const BASE =
-  'inline-flex items-center justify-center gap-2 rounded-none border font-medium transition-colors ' +
+  'inline-flex items-center justify-center gap-2 rounded-md border font-medium transition-colors ' +
   'min-h-[2.75rem] disabled:cursor-not-allowed disabled:opacity-60';
 
 const VARIANT: Record<Variant, string> = {

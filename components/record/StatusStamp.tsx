@@ -31,7 +31,7 @@ export function StatusStamp({
   return (
     <span
       className={cn(
-        'inline-flex -rotate-3 items-center gap-2 rounded-[2px] border-2 px-2.5 py-1',
+        'inline-flex -rotate-3 items-center gap-2 rounded-sm border-2 px-2.5 py-1',
         'font-mono text-xs font-medium tracking-[0.12em] uppercase',
         tone,
         animate && 'stamp-animate',

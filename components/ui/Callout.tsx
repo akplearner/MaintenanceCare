@@ -22,7 +22,7 @@ export function Callout({
     <div
       data-callout={variant}
       className={cn(
-        'border border-l-4 bg-paper-raised px-4 py-3.5 text-sm',
+        'rounded-md border border-l-4 bg-paper-raised px-4 py-3.5 text-sm',
         variant === 'caution' ? 'border-l-flag' : 'border-l-hivis',
         className,
       )}

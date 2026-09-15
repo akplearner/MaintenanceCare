@@ -166,3 +166,21 @@ export type FaqContext =
   | 'str'
   | 'service-area'
   | 'request';
+
+/**
+ * A commitment we can actually substantiate if a customer asks us to.
+ *
+ * This is deliberately not a "badge" type. Nothing here is a certification we
+ * award ourselves, and nothing here may be a rating or a review — Section 8
+ * bans that structured data until there are genuine reviews. If a claim cannot
+ * be evidenced on request, it does not belong in this array.
+ */
+export interface Credential {
+  id: string;
+  /** Short enough to read in a badge row. */
+  label: string;
+  /** One sentence saying what the claim actually means in practice. */
+  detail: string;
+  /** Lucide icon name, resolved by the rendering component. */
+  icon: 'shield' | 'user-check' | 'file-text' | 'badge-check';
+}

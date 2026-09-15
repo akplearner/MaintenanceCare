@@ -92,10 +92,10 @@ export default function PropertyManagersPage() {
               &ldquo;when was anyone last at that property?&rdquo; has a one-click answer instead
               of a phone call.
             </p>
-            <p className="text-sm text-steel-light">{AVOIDED_LOSS_FRAMING}</p>
+            <p className="text-sm text-ink-muted">{AVOIDED_LOSS_FRAMING}</p>
           </div>
           <div>
-            <p className="mb-2 font-mono text-xs tracking-wide text-steel-light uppercase">
+            <p className="mb-2 text-sm font-semibold text-soil">
               What lands in your inbox after every visit
             </p>
             <RecordCard data={HERO_RECORD} />
@@ -197,7 +197,7 @@ export default function PropertyManagersPage() {
                 'Quarterly review of the door mix and the price against it',
               ].map((item) => (
                 <li key={item} className="flex gap-2.5 text-steel">
-                  <span aria-hidden className="mt-[0.55em] inline-block h-1.5 w-1.5 shrink-0 bg-hivis" />
+                  <span aria-hidden className="mt-[0.55em] inline-block h-1.5 w-1.5 shrink-0 bg-accent-ink" />
                   {item}
                 </li>
               ))}
@@ -209,9 +209,9 @@ export default function PropertyManagersPage() {
 
       {/* PM-06 — the free audit, the actual opening offer. */}
       <RecordRail reference="PM-06" status="scheduled">
-        <div className="max-w-[58rem] border-2 border-soil bg-paper-raised">
+        <div className="max-w-[58rem] overflow-hidden rounded-lg border border-soil bg-paper-raised shadow-md">
           <div className="border-b bg-soil px-5 py-3 sm:px-7">
-            <p className="font-mono text-xs tracking-wide text-hivis uppercase">
+            <p className="text-sm font-semibold text-accent-on-dark">
               The opening offer
             </p>
             <h2 className="mt-1 text-2xl font-semibold text-paper sm:text-3xl">
@@ -230,12 +230,12 @@ export default function PropertyManagersPage() {
                 lost an afternoon of our time and nothing of yours. That is the whole offer; there
                 is no second step where a salesperson calls.
               </p>
-              <p className="text-sm text-steel-light">
+              <p className="text-sm text-ink-muted">
                 Three properties within our service area. One audit per management company.
               </p>
             </div>
             <div>
-              <p className="font-mono text-xs tracking-wide text-steel-light uppercase">
+              <p className="text-sm font-semibold text-soil">
                 What you get back
               </p>
               <Checklist
@@ -258,7 +258,7 @@ export default function PropertyManagersPage() {
               </ButtonLink>
               <p className="mt-3 text-center text-sm text-steel">
                 or call{' '}
-                <a href={company.phoneHref} className="font-mono text-soil underline underline-offset-2">
+                <a href={company.phoneHref} className="text-soil underline underline-offset-2">
                   {company.phone}
                 </a>
               </p>

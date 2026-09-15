@@ -18,14 +18,14 @@ export default function OpenGraphImage() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          background: '#F2F1ED',
-          color: '#24262A',
+          background: '#F6F4F0',
+          color: '#14263F',
           fontFamily: 'sans-serif',
           padding: 64,
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <div style={{ width: 26, height: 26, background: '#E5B62B', border: '3px solid #24262A' }} />
+          <div style={{ width: 26, height: 26, background: '#C2761B', border: '3px solid #14263F' }} />
           <div style={{ fontSize: 30, fontWeight: 700 }}>{company.name}</div>
         </div>
 
@@ -44,7 +44,7 @@ export default function OpenGraphImage() {
           We maintain property for people who aren&rsquo;t standing in front of it.
         </div>
 
-        <div style={{ display: 'flex', marginTop: 28, fontSize: 28, color: '#5B6670', maxWidth: 900 }}>
+        <div style={{ display: 'flex', marginTop: 28, fontSize: 28, color: '#4F5E74', maxWidth: 900 }}>
           Recurring maintenance, documented inspections, and one number to call.
         </div>
 
@@ -53,11 +53,11 @@ export default function OpenGraphImage() {
             display: 'flex',
             marginTop: 'auto',
             paddingTop: 24,
-            borderTop: '2px solid #B4BAC0',
+            borderTop: '2px solid #D3DAE3',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
             fontSize: 24,
-            color: '#5B6670',
+            color: '#4F5E74',
           }}
         >
           <div style={{ display: 'flex' }}>
@@ -66,8 +66,8 @@ export default function OpenGraphImage() {
           <div
             style={{
               display: 'flex',
-              border: '3px solid #2E6B4F',
-              color: '#2E6B4F',
+              border: '3px solid #1E7A52',
+              color: '#1E7A52',
               padding: '6px 14px',
               fontSize: 22,
               letterSpacing: '0.12em',

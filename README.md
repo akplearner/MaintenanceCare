@@ -76,16 +76,31 @@ the licensed trades, for instance — mark it:
 
 The reason is mandatory. An exemption you cannot explain is a violation.
 
-## The design system — "The Field Record"
+## The design system — "Documented, and easy to trust"
 
-The product is a documented, dated, photographed record of a property, so the
-site is built to look like one: square corners, 1px hairlines instead of
-shadows (there is no shadow token), a 128px margin rail carrying mono section
-references, monospace reserved for identifiers, and exactly one animated
-element on the entire site — the status stamp on the home hero, which is
-disabled under `prefers-reduced-motion`.
+The product is a documented, dated, photographed record of a property, and the
+hero still shows exactly that — a real work order, not a stock photograph. The
+surface around it is built to be read by a homeowner and a property manager
+without either having to decode it.
 
-Tokens live in `app/globals.css` and are exposed to Tailwind through `@theme`.
+Deep navy ink on warm sand, white cards with 8px corners and a whisper of
+shadow, one warm amber accent, and green reserved for the four things the
+business can actually evidence on request. Monospace means identifier — a
+work-order number, a timestamp, a price cell — and nothing else.
+
+Tokens live in `app/globals.css` and reach Tailwind through `@theme`. Three of
+them are load-bearing for accessibility and are documented in `BUILD.md` 5.2:
+`--accent` never carries text on a light ground, muted text splits into
+`--ink-muted` and `--ink-on-dark` because no single value clears contrast on
+both, and `--focus` clears 3:1 on sand *and* on navy because the focus ring is
+global.
+
+This replaced an earlier system called "The Field Record" — square corners,
+hairlines instead of shadows, a 128px margin rail stamping `REF-03` beside every
+section, and no photography at all. It was internally consistent and wrong for
+the audience: the margin codes were company-internal filing references published
+to customers, and `REF-04` beside a heading reads as "form", not "rigorous". The
+discipline survived; the costume did not.
 
 ## Lead pipeline
 

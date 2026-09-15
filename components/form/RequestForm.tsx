@@ -187,7 +187,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
         {serverError ? (
           <Callout variant="caution" title="We could not send that">
             {serverError}{' '}
-            <a href={company.phoneHref} className="font-mono">
+            <a href={company.phoneHref}>
               {company.phone}
             </a>
           </Callout>
@@ -213,7 +213,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
                 <label
                   key={value}
                   className={cn(
-                    'flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 border bg-paper-raised px-3 py-2.5 text-sm transition-colors',
+                    'flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 rounded-md border bg-paper-raised px-3 py-2.5 text-sm transition-colors',
                     customerType === value
                       ? 'border-2 border-soil bg-paper'
                       : 'hover:border-steel',
@@ -353,7 +353,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
             {(Object.keys(OCCUPANCY_LABELS) as (keyof typeof OCCUPANCY_LABELS)[]).map((value) => (
               <label
                 key={value}
-                className="flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 border bg-paper-raised px-3 py-2.5 text-sm transition-colors hover:border-steel has-checked:border-2 has-checked:border-soil"
+                className="flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 rounded-md border bg-paper-raised px-3 py-2.5 text-sm transition-colors hover:border-steel has-checked:border-2 has-checked:border-soil"
               >
                 <input
                   type="radio"
@@ -399,7 +399,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
                     <label
                       key={d.slug}
                       className={cn(
-                        'flex min-h-[2.75rem] cursor-pointer items-start gap-2.5 border bg-paper-raised px-3 py-2.5 text-sm transition-colors',
+                        'flex min-h-[2.75rem] cursor-pointer items-start gap-2.5 rounded-md border bg-paper-raised px-3 py-2.5 text-sm transition-colors',
                         value.includes(d.slug) ? 'border-2 border-soil bg-paper' : 'hover:border-steel',
                       )}
                     >
@@ -419,7 +419,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
                   ))}
                   <label
                     className={cn(
-                      'flex min-h-[2.75rem] cursor-pointer items-start gap-2.5 border bg-paper-raised px-3 py-2.5 text-sm transition-colors sm:col-span-2',
+                      'flex min-h-[2.75rem] cursor-pointer items-start gap-2.5 rounded-md border bg-paper-raised px-3 py-2.5 text-sm transition-colors sm:col-span-2',
                       value.includes('trade-coordination')
                         ? 'border-2 border-soil bg-paper'
                         : 'hover:border-steel',
@@ -471,7 +471,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
             {(Object.keys(URGENCY_LABELS) as (keyof typeof URGENCY_LABELS)[]).map((value) => (
               <label
                 key={value}
-                className="flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 border bg-paper-raised px-3 py-2.5 text-sm transition-colors hover:border-steel has-checked:border-2 has-checked:border-soil"
+                className="flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 rounded-md border bg-paper-raised px-3 py-2.5 text-sm transition-colors hover:border-steel has-checked:border-2 has-checked:border-soil"
               >
                 <input
                   type="radio"
@@ -485,7 +485,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
           </div>
           <p className="mt-2 text-sm text-steel">
             If water is actively running or someone is unsafe, please call{' '}
-            <a href={company.phoneHref} className="font-mono text-soil underline underline-offset-2">
+            <a href={company.phoneHref} className="text-soil underline underline-offset-2">
               {company.phone}
             </a>{' '}
             rather than waiting on this form.
@@ -557,7 +557,7 @@ export function RequestForm({ defaults }: { defaults: RequestFormDefaults }) {
             ).map((value) => (
               <label
                 key={value}
-                className="flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 border bg-paper-raised px-3 py-2.5 text-sm transition-colors hover:border-steel has-checked:border-2 has-checked:border-soil"
+                className="flex min-h-[2.75rem] cursor-pointer items-center gap-2.5 rounded-md border bg-paper-raised px-3 py-2.5 text-sm transition-colors hover:border-steel has-checked:border-2 has-checked:border-soil"
               >
                 <input
                   type="radio"
@@ -645,7 +645,7 @@ function FormSection({
   return (
     <section className={cn('py-7', !last && 'border-b')}>
       <div className="mb-4 flex items-baseline gap-3">
-        <span className="font-mono text-xs text-steel-light">{index}</span>
+        <span className="text-xs font-semibold text-ink-muted">{index}</span>
         <h2 className="text-xl font-semibold text-soil">{title}</h2>
       </div>
       {children}

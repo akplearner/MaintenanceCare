@@ -19,20 +19,15 @@ export default function ServicesIndexPage() {
     <>
       <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">DIV-00</span>
-            </div>
-            <div className="pt-2 pb-10 lg:pt-14 lg:pb-14">
-              <h1 className="max-w-[18ch] text-3xl font-bold text-soil sm:text-4xl">
-                Eight divisions. Four are running today.
-              </h1>
-              <p className="mt-4 max-w-[48ch] text-lg text-steel">
-                We would rather tell you what is not ready than take a booking we cannot keep.
-                Everything below marked as a later phase is exactly that — you can still ask, and
-                we will tell you honestly when it will be real.
-              </p>
-            </div>
+          <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
+            <h1 className="max-w-[18ch] text-3xl font-bold text-soil sm:text-4xl">
+              Eight divisions. Four are running today.
+            </h1>
+            <p className="mt-4 max-w-[48ch] text-lg text-steel">
+              We would rather tell you what is not ready than take a booking we cannot keep.
+              Everything below marked as a later phase is exactly that — you can still ask, and
+              we will tell you honestly when it will be real.
+            </p>
           </div>
         </Container>
       </section>
@@ -52,7 +47,7 @@ export default function ServicesIndexPage() {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <CTABlock variant="single" location="services-index" />
         </Container>
       </section>

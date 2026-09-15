@@ -33,7 +33,7 @@ export default function PrivacyPage() {
         {company.legalEntity}, operating as {company.name}, {company.address.locality},{' '}
         {company.address.region} {company.address.postalCode}. Contact{' '}
         <a href={`mailto:${company.email}`}>{company.email}</a> or{' '}
-        <a href={company.phoneHref} className="font-mono">
+        <a href={company.phoneHref} >
           {company.phone}
         </a>{' '}
         about anything on this page.

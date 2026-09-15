@@ -34,10 +34,10 @@ const CATEGORIES = [
 
 export function SavingsPanel({ className }: { className?: string }) {
   return (
-    <div className={cn('grid gap-px bg-steel-light sm:grid-cols-2', className)}>
+    <div className={cn('grid gap-px overflow-hidden rounded-lg border bg-rule sm:grid-cols-2', className)}>
       {CATEGORIES.map((c) => (
         <div key={c.ref} className="bg-paper-raised p-5">
-          <p className="font-mono text-xs text-steel-light">{c.ref}</p>
+          <p className="font-mono text-xs text-ink-muted">{c.ref}</p>
           <h3 className="mt-1 text-lg font-semibold text-soil">{c.title}</h3>
           <p className="mt-2 text-sm text-steel">{c.body}</p>
           <p className="mt-3 border-l-2 border-l-hivis pl-3 text-sm text-soil-soft">{c.example}</p>

@@ -22,7 +22,7 @@ export function ServiceAreaMap({ highlight }: { highlight?: string }) {
   const base = project(company.geo.lat, company.geo.lng);
 
   return (
-    <figure className="border bg-paper-raised">
+    <figure className="overflow-hidden rounded-lg border bg-paper-raised shadow-sm">
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="h-auto w-full"
@@ -101,7 +101,7 @@ export function ServiceAreaMap({ highlight }: { highlight?: string }) {
           );
         })}
       </svg>
-      <figcaption className="border-t px-4 py-2.5 font-mono text-xs text-steel">
+      <figcaption className="border-t px-4 py-2.5 text-xs text-steel">
         Service area — {company.serviceRadiusMiles} mile working radius from{' '}
         {company.address.locality}. Drive times are honest averages, not best cases.
       </figcaption>

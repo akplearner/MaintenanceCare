@@ -63,30 +63,25 @@ export default async function DivisionPage({ params }: PageProps) {
     <>
       <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">DIV-01</span>
-            </div>
-            <div className="grid gap-8 pt-2 pb-10 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:pt-14 lg:pb-14">
-              <div>
-                <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
-                  <Link href="/services" className="underline underline-offset-4 hover:text-soil">
-                    Services
-                  </Link>
-                  <span className="mx-2 text-steel-light">/</span>
-                  <span className="text-soil">{division.name}</span>
-                </nav>
-                <h1 className="text-3xl font-bold text-soil sm:text-4xl">{division.name}</h1>
-                <p className="mt-4 max-w-[44ch] text-lg text-soil">{division.promise}</p>
-                <p className="mt-4 max-w-[46ch] text-base text-steel">{division.summary}</p>
-                <div className="mt-6">
-                  <ButtonLink href={`/request?division=${division.slug}`} size="lg">
-                    Request {division.name.toLowerCase()}
-                  </ButtonLink>
-                </div>
+          <div className="grid gap-8 pt-2 pb-10 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:pt-14 lg:pb-14">
+            <div>
+              <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
+                <Link href="/services" className="underline underline-offset-4 hover:text-soil">
+                  Services
+                </Link>
+                <span className="mx-2 text-ink-muted">/</span>
+                <span className="text-soil">{division.name}</span>
+              </nav>
+              <h1 className="text-3xl font-bold text-soil sm:text-4xl">{division.name}</h1>
+              <p className="mt-4 max-w-[44ch] text-lg text-soil">{division.promise}</p>
+              <p className="mt-4 max-w-[46ch] text-base text-steel">{division.summary}</p>
+              <div className="mt-6">
+                <ButtonLink href={`/request?division=${division.slug}`} size="lg">
+                  Request {division.name.toLowerCase()}
+                </ButtonLink>
               </div>
-              <PhotoPlate photo={division.image} priority />
             </div>
+            <PhotoPlate photo={division.image} priority />
           </div>
         </Container>
       </section>
@@ -161,7 +156,7 @@ export default async function DivisionPage({ params }: PageProps) {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <CTABlock
             variant={isPriorityAudience ? 'portfolio' : 'single'}
             location={`division-${division.slug}`}
@@ -198,53 +193,46 @@ function PlaceholderDivision({ slug }: { slug: string }) {
   return (
     <>
       <Container>
-        <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-          <div className="pt-8 lg:pt-14">
-            <span className="font-mono text-xs font-medium tracking-wide text-steel">
-              DIV-{String(division.phase).padStart(2, '0')}
-            </span>
+        <div className="max-w-[46rem] pt-2 pb-14 lg:pt-14">
+          <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
+            <Link href="/services" className="underline underline-offset-4 hover:text-soil">
+              Services
+            </Link>
+            <span className="mx-2 text-ink-muted">/</span>
+            <span className="text-soil">{division.name}</span>
+          </nav>
+          <div className="mb-4">
+            <Chip tone="muted">Phase {division.phase} — not running yet</Chip>
           </div>
-          <div className="max-w-[46rem] pt-2 pb-14 lg:pt-14">
-            <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
-              <Link href="/services" className="underline underline-offset-4 hover:text-soil">
-                Services
-              </Link>
-              <span className="mx-2 text-steel-light">/</span>
-              <span className="text-soil">{division.name}</span>
-            </nav>
-            <div className="mb-4">
-              <Chip tone="muted">Phase {division.phase} — not running yet</Chip>
-            </div>
-            <h1 className="text-3xl font-bold text-soil sm:text-4xl">{division.name}</h1>
-            <p className="mt-4 text-lg text-soil">{division.promise}</p>
-            <p className="mt-4 max-w-[46ch] text-base text-steel">{division.summary}</p>
-            <p className="mt-4 max-w-[46ch] text-base text-steel">
-              This division is not running today and we are not taking bookings for it. If you need
-              it, tell us — knowing there is real demand is what moves a phase forward, and we may
-              be able to cover part of it through a division that is already live.
-            </p>
-            <div className="mt-7">
-              <ButtonLink href={`/request?division=${division.slug}`} size="lg">
-                Ask us about this
-              </ButtonLink>
-            </div>
-            <p className="mt-5 text-sm text-steel">
-              Running today:{' '}
-              {divisions
-                .filter((d) => d.fullyLaunched)
-                .map((d, i, arr) => (
-                  <span key={d.slug}>
-                    <Link
-                      href={`/services/${d.slug}`}
-                      className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
-                    >
-                      {d.name}
-                    </Link>
-                    {i < arr.length - 1 ? ', ' : '.'}
-                  </span>
-                ))}
-            </p>
+          <h1 className="text-3xl font-bold text-soil sm:text-4xl">{division.name}</h1>
+          <p className="mt-4 text-lg text-soil">{division.promise}</p>
+          <p className="mt-4 max-w-[46ch] text-base text-steel">{division.summary}</p>
+          <p className="mt-4 max-w-[46ch] text-base text-steel">
+            This division is not running today and we are not taking bookings for it. If you need
+            it, tell us — knowing there is real demand is what moves a phase forward, and we may
+            be able to cover part of it through a division that is already live.
+          </p>
+          <div className="mt-7">
+            <ButtonLink href={`/request?division=${division.slug}`} size="lg">
+              Ask us about this
+            </ButtonLink>
           </div>
+          <p className="mt-5 text-sm text-steel">
+            Running today:{' '}
+            {divisions
+              .filter((d) => d.fullyLaunched)
+              .map((d, i, arr) => (
+                <span key={d.slug}>
+                  <Link
+                    href={`/services/${d.slug}`}
+                    className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
+                  >
+                    {d.name}
+                  </Link>
+                  {i < arr.length - 1 ? ', ' : '.'}
+                </span>
+              ))}
+          </p>
         </div>
       </Container>
 

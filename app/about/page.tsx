@@ -25,20 +25,15 @@ export default function AboutPage() {
     <>
       <section className="border-b bg-paper-raised">
         <Container>
-          <div className="lg:grid lg:grid-cols-[8rem_1fr] lg:gap-6">
-            <div className="pt-8 lg:pt-14">
-              <span className="font-mono text-xs font-medium tracking-wide text-steel">ABT-00</span>
-            </div>
-            <div className="pt-2 pb-10 lg:pt-14 lg:pb-14">
-              <h1 className="max-w-[22ch] text-3xl font-bold text-soil sm:text-4xl">
-                We are a maintenance company. We are not a handyman service.
-              </h1>
-              <p className="mt-4 max-w-[48ch] text-lg text-steel">
-                The difference matters. A handyman sells hours. We sell a property that has been
-                looked after on a schedule, and a written record proving it — which is the thing
-                an owner, a lender or an insurer actually asks for.
-              </p>
-            </div>
+          <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
+            <h1 className="max-w-[22ch] text-3xl font-bold text-soil sm:text-4xl">
+              We are a maintenance company. We are not a handyman service.
+            </h1>
+            <p className="mt-4 max-w-[48ch] text-lg text-steel">
+              The difference matters. A handyman sells hours. We sell a property that has been
+              looked after on a schedule, and a written record proving it — which is the thing
+              an owner, a lender or an insurer actually asks for.
+            </p>
           </div>
         </Container>
       </section>
@@ -131,18 +126,18 @@ export default function AboutPage() {
         </p>
         <dl className="mt-6 grid max-w-[46rem] gap-px border bg-steel-light sm:grid-cols-2">
           <div className="bg-paper-raised p-4">
-            <dt className="font-mono text-xs tracking-wide text-steel-light uppercase">Call us</dt>
+            <dt className="text-sm font-semibold text-soil">Call us</dt>
             <dd className="mt-1">
               <a
                 href={company.phoneHref}
-                className="font-mono text-lg font-medium text-soil hover:text-hivis-ink"
+                className="text-lg font-medium text-soil hover:text-hivis-ink"
               >
                 {company.phone}
               </a>
             </dd>
           </div>
           <div className="bg-paper-raised p-4">
-            <dt className="font-mono text-xs tracking-wide text-steel-light uppercase">Email</dt>
+            <dt className="text-sm font-semibold text-soil">Email</dt>
             <dd className="mt-1">
               <a href={`mailto:${company.email}`} className="text-soil hover:text-hivis-ink">
                 {company.email}
@@ -150,17 +145,17 @@ export default function AboutPage() {
             </dd>
           </div>
           <div className="bg-paper-raised p-4">
-            <dt className="font-mono text-xs tracking-wide text-steel-light uppercase">Based in</dt>
+            <dt className="text-sm font-semibold text-soil">Based in</dt>
             <dd className="mt-1 text-soil">
               {company.address.locality}, {company.address.region} {company.address.postalCode}
             </dd>
           </div>
           <div className="bg-paper-raised p-4">
-            <dt className="font-mono text-xs tracking-wide text-steel-light uppercase">Hours</dt>
+            <dt className="text-sm font-semibold text-soil">Hours</dt>
             <dd className="mt-1 space-y-0.5 text-sm text-soil">
               {company.hours.map((h) => (
                 <p key={h.days}>
-                  {h.days}: <span className="font-mono">{h.open ? `${h.open}–${h.close}` : 'Closed'}</span>
+                  {h.days}: <span>{h.open ? `${h.open}–${h.close}` : 'Closed'}</span>
                 </p>
               ))}
             </dd>
@@ -169,7 +164,7 @@ export default function AboutPage() {
       </RecordRail>
 
       <section className="border-t">
-        <Container className="py-12 lg:pl-[calc(8rem+1.5rem)]">
+        <Container className="py-12">
           <CTABlock variant="single" location="about-footer" />
         </Container>
       </section>

@@ -310,92 +310,85 @@ Flat-rate handyman menu (door adjustment $75–$150, drywall patch $100–$200, 
 
 ## 5. Design system
 
-### 5.1 Concept — "The Field Record"
+### 5.1 Concept — "Documented, and easy to trust"
 
-The company's actual product is not labor. It is a documented, dated, photographed record of a property. The site should look like that record: an inspection sheet, not a SaaS landing page.
+The company's product is a documented, dated, photographed record of a property. That is still the thing the hero shows. What changed in the redesign is who the surface is *addressed* to.
 
-Concretely, this means:
+The first version of this system was called "The Field Record" and was built to look like an inspection sheet rather than a landing page: square corners, hairlines instead of shadows, a 128px margin rail stamping `REF-03` beside every section, monospace labels throughout, and no photography at all. It was internally consistent and it was wrong for the audience. A homeowner reading `REF-04` next to a heading does not think "rigorous"; they think "form". The margin codes were company-internal filing references published to customers.
 
-- **Square corners.** Field documents do not have rounded corners. Border radius is 0 on cards and panels, 2px on small status chips only.
-- **Rules, not shadows.** Separation comes from 1px hairlines, never from drop shadows. There is no shadow token in this system.
-- **A margin rail.** On desktop, a narrow left rail carries section markers and dates the way annotations sit in a log book's margin. This is the layout's signature.
-- **Monospace for identifiers only.** Work order numbers, dates, property references. Never for decorative labels — that is the thing that makes a page look machine-made.
-- **Real photographs with visible timestamps.** Stock photography of a smiling contractor actively destroys trust with property managers. If a real photo is unavailable, use a neutral placeholder block, never stock.
+The system now keeps the discipline and drops the costume:
+
+- **Evidence over adjectives.** The hero is still a real work order, not a stock photograph. Claims are things we can produce on request — an insurance certificate, a written price, a partner's licence — and they live in `content/company.ts` as `CREDENTIALS`, typed and validated.
+- **Two doors, not one funnel.** A homeowner and a property manager describe themselves differently. The home hero asks which one you are before it explains anything.
+- **Soft corners, quiet depth.** `--radius-md` on cards and controls, `--shadow-sm` on raised surfaces. Hairlines still do most of the structural work; shadow is a whisper, not a lift.
+- **Monospace means identifier.** Work-order numbers, inspection timestamps, price-table figures, the lead reference on the thanks page. Nothing else. Usage went from 96 occurrences to 29 in the redesign, and that was the single biggest comprehension win.
+- **No margin rail.** Sections are separated by space and a hairline. `RecordRail` still accepts `reference`/`date`/`status` so call sites compile, but renders none of them.
+- **Drawn, not stocked.** Where no real job photograph exists, `PhotoPlate` renders original line art from `components/art/PropertyScene.tsx` with a caption saying a real photograph is pending. Stock photography of a smiling contractor is still banned — it reads as false to the property managers this site is built for.
 
 ### 5.2 Color
 
-Derived from the working environment: blackland prairie soil, galvanized steel, high-visibility safety gear.
+Deep navy carries authority, warm sand keeps it from feeling clinical, green is reserved for things we can evidence, and one warm amber is the only decorative accent.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--paper` | `#F2F1ED` | Page background |
-| `--paper-raised` | `#FBFAF8` | Cards, panels, form fields |
-| `--soil` | `#24262A` | Primary text, header, footer |
-| `--soil-soft` | `#3A3E44` | Secondary surfaces |
-| `--steel` | `#5B6670` | Secondary text |
-| `--steel-light` | `#B4BAC0` | Hairlines, dividers, disabled |
-| `--hivis` | `#E5B62B` | The single accent |
-| `--hivis-ink` | `#8A6708` | Accent text on light backgrounds (contrast-safe) |
-| `--verified` | `#2E6B4F` | Status only — complete, verified, included |
-| `--flag` | `#A62F1F` | Status only — needs attention, required |
+| `--paper` | `#F6F4F0` | Warm sand page ground |
+| `--paper-raised` | `#FFFFFF` | Cards, panels, form fields |
+| `--soil` | `#14263F` | Deep navy — body ink, header, footer, dark panels |
+| `--soil-soft` | `#1F3A5F` | Secondary dark surface |
+| `--steel` | `#4F5E74` | Secondary text |
+| `--rule` | `#D3DAE3` | Hairlines and dividers — **never text** |
+| `--ink-muted` | `#4F5E74` | Muted text on light surfaces |
+| `--ink-on-dark` | `#C3CEDC` | Text on navy surfaces |
+| `--accent` | `#C2761B` | Warm amber — fills, rules, underlines |
+| `--accent-ink` | `#8A5310` | Accent **carrying text** on light |
+| `--accent-on-dark` | `#F0B75E` | Accent on navy |
+| `--verified` | `#1E7A52` | Status, and the credential badges |
+| `--verified-soft` | `#E8F3ED` | Tint behind a credential badge |
+| `--flag` | `#B3261E` | Needs attention, required |
+| `--focus` | `#A9701E` | The global focus ring |
 
-**Discipline:** `--hivis` is the only decorative accent. `--verified` and `--flag` are semantic status colors and appear **only** inside status chips and form validation. Never use them as decoration, section backgrounds, or heading colors.
+`--steel-light` survives as an alias of `--rule` so existing `border-steel-light` classes keep working. It means "hairline". Do not use it for text.
 
-Contrast: `--hivis` on `--paper` fails AA for text. Use `--hivis` for fills, rules, and underlines; use `--hivis-ink` whenever the accent must carry text.
+**The three rules that keep this accessible.** Every pairing below was computed, not eyeballed.
+
+1. **`--accent` never carries text on a light ground.** It is 3.2:1 on sand — fine for a fill, a rule or an underline, and it fails AA as text. `--accent-ink` (5.8:1) is the token for accent text. This is the same discipline the old `--hivis`/`--hivis-ink` split enforced.
+2. **Muted text is two tokens, not one.** `--ink-muted` on light (6.0:1), `--ink-on-dark` on navy (9.6:1). These were a single `--steel-light` before the redesign, and the light-surface case sat at **1.88:1** — the worst pairing on the site, and a real WCAG failure rather than a stylistic one.
+3. **`--focus` clears 3:1 on both grounds** — 3.81:1 on sand, 3.64:1 on navy. The focus ring is declared once, globally, and lands on light pages and inside the navy footer alike. The previous ring was 2.90:1 on navy, below SC 1.4.11, and nothing caught it because the accessibility test only checks a light page.
+
+Body ink on sand is 13.9:1; `--verified` is 5.3:1 on white and 4.7:1 on its own tint.
 
 ### 5.3 Typography
 
-Two roles, one primary family.
-
 - **Archivo** — everything. 400 body, 500 UI, 600 subheads, 700 display. Display sizes get `letter-spacing: -0.02em`.
-- **IBM Plex Mono** — 500 weight, identifiers only (work order numbers, dates, property IDs, price effective dates).
+- **IBM Plex Mono** — 500 weight, identifiers only. See 5.1: if it is not a work-order number, a timestamp, a price cell or a reference code, it is not monospace.
 
-Scale (major third, 1.25, base 16px):
+Scale (major third, 1.25, base 16px): `text-xs` 12 · `text-sm` 14 · `text-base` 16 · `text-lg` 20 · `text-xl` 25 · `text-2xl` 31 · `text-3xl` 39 · `text-4xl` 49 · `text-5xl` 61 (home hero only).
 
-| Token | px | Use |
-|---|---|---|
-| `text-xs` | 12 | Status chips, photo timestamps |
-| `text-sm` | 14 | Table cells, captions, legal |
-| `text-base` | 16 | Body |
-| `text-lg` | 20 | Lead paragraphs |
-| `text-xl` | 25 | h3 |
-| `text-2xl` | 31 | h2 |
-| `text-3xl` | 39 | Page titles |
-| `text-4xl` | 49 | Section heroes |
-| `text-5xl` | 61 | Home hero only |
+Body line-height 1.6, prose capped at 68 characters (`max-w-[34rem]`). Headings 1.15.
 
-Body line-height 1.6, line length capped at 68 characters (`max-w-[34rem]` for prose). Headings 1.15.
+**Do not** use all-caps tracked-out monospace eyebrow labels. Small section labels are sentence-case `text-sm font-semibold text-soil`.
 
-**Do not** use all-caps tracked-out eyebrow labels above headings. Where a section marker is needed, it goes in the left rail as a mono identifier, which is content rather than decoration.
+**Do not** change `next/font`'s `display: 'optional'` in `app/layout.tsx`. `'swap'` measured CLS 0.118 on `/for/property-managers` and fails the layout-stability test.
 
 ### 5.4 Spacing and layout
 
 4px base. Scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128.
 
-Grid: 12 columns, 24px gutters, `max-width: 1200px`.
+Grid: 12 columns, 24px gutters, `max-width: 1200px`. Sections run the full container width with `py-12 lg:py-16`. There is no margin rail — `--rail-width` was deleted along with it.
 
-**The record rail.** At `lg` and above, content sits in a container with a 128px left rail. The rail carries a mono section identifier and, on some sections, a date or status. Below `lg` the rail collapses and its identifier renders inline above the section heading at `text-xs`.
+Corners: `--radius-sm` 4px (chips, inputs), `--radius-md` 8px (cards, buttons, panels), `--radius-lg` 14px (feature cards, hero panels).
 
-```
-lg and above:                          below lg:
-┌────────┬──────────────────────┐      ┌───────────────────┐
-│ REF-03 │  Section heading     │      │ REF-03            │
-│        │                      │      │ Section heading   │
-│ 09.26  │  Body content...     │      │                   │
-│        │                      │      │ Body content...   │
-└────────┴──────────────────────┘      └───────────────────┘
-  128px      content column               full width
-```
+Depth: `--shadow-sm` on raised cards, `--shadow-md` on hover and on the hero record card. Separation is still primarily a 1px hairline; shadow only distinguishes a card from the surface it sits on.
 
 ### 5.5 Motion
 
-**One orchestrated moment on the whole site:** on the home page, the hero record card's status stamp animates in once — a 400ms scale-and-settle, as if stamped. Nothing else animates on load.
+**One orchestrated moment on the whole site:** the home hero's status stamp animates in once — a 400ms scale-and-settle, as if stamped. Nothing else animates on load.
 
-Everything else is response-to-action only: focus rings, accordion open/close, form validation appearing, upload progress.
+Everything else is response-to-action only: focus rings, accordion open/close, form validation, upload progress, and a card's shadow deepening on hover.
 
-No fade-and-slide-up on scroll. No hover lift on cards. Both are the generic default and read as machine-made.
+The stamp animates `opacity` and `transform` only. Animating a layout property here would feed straight into the CLS budget, which is tested on four routes at under 0.05.
 
-`prefers-reduced-motion: reduce` disables the stamp and all transitions. Non-negotiable.
+`prefers-reduced-motion: reduce` disables the stamp and all transitions. Non-negotiable, and asserted by `accessibility.spec.ts` against the `.stamp-animate` class name.
 
 ### 5.6 Component inventory
 
@@ -403,38 +396,39 @@ No fade-and-slide-up on scroll. No hover lift on cards. Both are the generic def
 
 | Component | Notes |
 |---|---|
-| `SiteHeader` | Logo, 5 nav items, phone number, "Request service" button. Sticky, 1px bottom hairline, no shadow. |
-| `SiteFooter` | NAP, divisions, audiences, legal links, **licensed-partner disclosure** (required, Section 9.2). |
+| `SiteHeader` | Logo, 5 nav items, phone number, "Request service" button. The label is asserted by the e2e funnel test — do not rename it. |
+| `SiteFooter` | NAP, services, audiences, legal links, **licensed-partner disclosure** (required, Section 9.2). Navy ground; links use `--accent-on-dark`. |
 | `Container` | Max width + responsive padding. |
-| `RecordRail` | The signature layout primitive. Props: `ref` (mono identifier), `date?`, `status?`, `children`. |
+| `RecordRail` | A page section: container, `py-12 lg:py-16`, optional hairline above. Retains `reference`/`date`/`status` props that no longer render. |
 | `SkipLink` | First focusable element in the DOM. |
 
 **Record (signature components)**
 
 | Component | Notes |
 |---|---|
-| `RecordCard` | The hero object. Renders a mock work order: WO number, property line, findings, photo slots, status stamp. Also reused on `/sample-report`. |
-| `StatusStamp` | `complete` / `scheduled` / `needs-attention`. Square, 2px radius, mono. The only animated element on the site. |
-| `PhotoPlate` | Image with a mono timestamp caption bar. Enforces the "real photos, dated" rule. `alt` is required and must not be empty. |
-| `FieldNote` | Inset annotation block with a left `--hivis` rule. Used for the plain-language explanations of what a technician actually checks. |
-| `Checklist` | Inspection-sheet styled list with square checkboxes. Used for "what's included." |
+| `RecordCard` | The hero object — a real work order: WO number, property line, findings, photo slots, status stamp. Also on `/sample-report`. |
+| `StatusStamp` | `complete` / `scheduled` / `needs-attention`. The only animated element on the site. |
+| `PhotoPlate` | Image with a caption bar. Falls back to `PropertyScene` line art plus a "real job photograph pending" caption. `alt` is required and must not be empty. |
+| `FieldNote` | Inset annotation with a left accent rule. |
+| `Checklist` | Inspection-sheet list with square checkboxes. |
 
-**Content**
+**Trust**
 
 | Component | Notes |
 |---|---|
-| `DivisionGrid` | The 8 divisions. `fullyLaunched: false` ones render muted with an "Ask us" affordance. |
-| `DivisionCard` | Name, promise, photo, audience tags. |
-| `PriceTable` | Renders `Service[]`. Formats every `Pricing` variant. **Always renders the effective-date line.** |
-| `PlanComparison` | The three tiers side by side; stacks below `md`. One featured tier. |
-| `AudienceHero` | For the three `/for/*` pages. |
-| `SLATable` | Response-time commitments, on `/for/property-managers`. |
-| `SavingsPanel` | The four honest savings categories. **Must not render a percentage.** See 9.5. |
-| `FAQ` | Accordion, `<details>`-based so it works without JS. |
-| `ServiceAreaMap` | Static SVG or image. Do not embed a live map API in Phase 1. |
-| `CTABlock` | Two variants: `portfolio` (B2B) and `single` (homeowner). |
+| `TrustBar` | The four `CREDENTIALS` as a compact badge row, under the hero. **Server component** — it sits above the fold on a CLS-tested route. |
+| `CredentialGrid` | The same four with their explanatory sentence. |
+| `ProofPanel` | Vendor-qualification rows on `/for/property-managers`. |
 
-**Form** — see Section 7.
+Nothing in this group may render a rating, a star, a review count or a self-issued badge. Section 8 bans review structured data until there are genuine reviews.
+
+**Content**
+
+`DivisionGrid` / `DivisionCard`, `PriceTable` (**always renders the effective-date line**), `PlanComparison` (three tiers, one featured, flag top-right so it never covers the heading), `AudienceHero`, `SLATable`, `SavingsPanel` (**must not render a percentage** — see 9.5), `FAQ` (`<details>`-based, no JS), `ServiceAreaMap` (static SVG), `CTABlock` (`portfolio` / `single`).
+
+**Art**
+
+`components/art/PropertyScene.tsx` exports `PropertyScene` and `PropertyGlyph`. Original line art, CSS-variable fills so it re-themes, `viewBox` supplying the intrinsic ratio so it costs nothing against CLS. Any new artwork follows the same three rules: a `viewBox`, no fixed `height`, and never client-gated.
 
 **UI primitives**
 
@@ -442,7 +436,9 @@ No fade-and-slide-up on scroll. No hover lift on cards. Both are the generic def
 
 ### 5.7 Iconography
 
-Lucide, `stroke-width: 1.5`, sized to the type. Use only where an icon carries meaning — status, file type, phone. Do not put a decorative icon at the top of every card; that is the SaaS-card default this design is deliberately avoiding.
+Lucide, `stroke-width: 1.5` for decorative-scale glyphs and `2` for small badge marks, sized to the type.
+
+Icons are allowed where they carry meaning: the credential badges, the two hero doors, status, file type, phone. They are still not decoration — do not put an arbitrary icon at the top of every card.
 
 ---
 
@@ -450,57 +446,63 @@ Lucide, `stroke-width: 1.5`, sized to the type. Use only where an icon carries m
 
 ### 6.1 Home — `/`
 
-The hero is **not** a headline over a photo with a gradient. The hero is the product: a `RecordCard` showing what a client actually receives after a visit.
+The hero is **not** a headline over a photo with a gradient. The hero is two things at once: a plain sentence that tells a visitor which of them this is for, and the product itself — a `RecordCard` showing what a client actually receives after a visit.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │ SiteHeader                                       (512) ... ▸ │
-├────────┬─────────────────────────────────────────────────────┤
-│        │  We maintain property for people who              │ │
-│ REF-00 │  aren't standing in front of it.                  │ │
-│        │                                                    │ │
-│ 09.26  │  Recurring maintenance, documented inspections,    │ │
-│        │  and one number to call. Elgin and Central Texas.  │ │
-│        │                                                    │ │
-│        │  [ Request service ]  [ Portfolio inquiry ]        │ │
-│        │                                                    │ │
-│        │  ┌──────────────────────────────────┐              │ │
-│        │  │ WO-1428          ⟨ COMPLETE ⟩    │  ← stamp     │ │
-│        │  │ 412 Oak Grove, Elgin TX          │    animates  │ │
-│        │  │ ───────────────────────────────  │    once      │ │
-│        │  │ ▪ Filter replaced — 20x25x1      │              │ │
-│        │  │ ▪ Detector tested — pass         │              │ │
-│        │  │ ▪ Hose bib drip — photo attached │              │ │
-│        │  │ [photo] [photo] [photo]          │              │ │
-│        │  │ 09.14.26  14:22–15:05            │              │ │
-│        │  └──────────────────────────────────┘              │ │
-├────────┼─────────────────────────────────────────────────────┤
-│ REF-01 │  What we do            [4 launched divisions]       │
-│        │  ┌────────┬────────┬────────┬────────┐              │
-│        │  │Property│ Field  │ Home   │Exterior│              │
-│        │  │ Care   │Inspect.│ Repair │ Care   │              │
-│        │  └────────┴────────┴────────┴────────┘              │
-│        │  Also available: Turn Services, Emergency Response,  │
-│        │  Asset Care, Trade Coordination →                    │
-├────────┼─────────────────────────────────────────────────────┤
-│ REF-02 │  Who we work for                                    │
-│        │  [Property managers] [Investors] [Short-term rentals]│
-├────────┼─────────────────────────────────────────────────────┤
-│ REF-03 │  Property Care plans                                │
-│        │  $49 / $89 featured / $149     [ See what's included]│
-├────────┼─────────────────────────────────────────────────────┤
-│ REF-04 │  What we don't do                                   │
-│        │  Plain statement of the licensed-trade boundary.     │
-│        │  This is a trust asset, not a disclaimer. Give it    │
-│        │  a real section, not footer fine print.              │
-├────────┼─────────────────────────────────────────────────────┤
-│ REF-05 │  See a real report      [ Download sample (PDF) ]    │
-├────────┴─────────────────────────────────────────────────────┤
+├──────────────────────────────────────────────────────────────┤
+│  Someone looking after the       What you receive after      │
+│  property when you can't.        every visit                 │
+│                                  ┌────────────────────────┐  │
+│  Maintenance on a schedule,      │ WO-1428    ⟨COMPLETE⟩  │  │
+│  and a dated photo record        │ 412 Oak Grove, Elgin   │  │
+│  after every visit.              │ ─────────────────────  │  │
+│                                  │ ▪ Filter replaced      │  │
+│  ┌──────────────┬─────────────┐  │ ▪ Detector tested      │  │
+│  │ For          │ For my home │  │ ▪ Hose bib drip        │  │
+│  │ properties I │ Get a       │  │ [img] [img] [img]      │  │
+│  │ manage       │ written     │  │ 09.14.26 14:22–15:05   │  │
+│  └──────────────┴─────────────┘  └────────────────────────┘  │
+│                                                              │
+│  ✓ Insured        ✓ Background-checked technicians           │
+│  ✓ Written price  ✓ Verified partner licences                │
+├──────────────────────────────────────────────────────────────┤
+│  What we do                        [4 launched services]     │
+│  ┌────────┬────────┬────────┬────────┐                       │
+│  │Property│ Field  │ Home   │Exterior│                       │
+│  │ Care   │Inspect.│ Repair │ Care   │                       │
+│  └────────┴────────┴────────┴────────┘                       │
+│  Coming later: Turn Services, Emergency Response, …          │
+├──────────────────────────────────────────────────────────────┤
+│  Who we work for                                             │
+│  [Property managers] [Investors] [Short-term rentals]        │
+├──────────────────────────────────────────────────────────────┤
+│  Property Care plans                                         │
+│  $49 / $89 featured / $149          [ See what's included ]  │
+├──────────────────────────────────────────────────────────────┤
+│  What we do not do                                           │
+│  ┌─────────────────────┬─────────────────────┐               │
+│  │ We do not perform   │ What we do instead  │               │
+│  └─────────────────────┴─────────────────────┘               │
+├──────────────────────────────────────────────────────────────┤
+│  See a real report          [ View the sample report ]       │
+├──────────────────────────────────────────────────────────────┤
+│  Questions people actually ask      [ 5 FAQs, not 10 ]       │
+├──────────────────────────────────────────────────────────────┤
 │ SiteFooter — NAP, licensed-partner disclosure, legal         │
 └──────────────────────────────────────────────────────────────┘
 ```
 
-Section REF-04 is unusual and deliberate. Stating the licensing boundary plainly reads as professional to a property manager, because the vendors who get them sued are the ones who quietly did a little electrical work on the side. Do not bury it.
+**The two doors.** A homeowner and a property manager do not describe themselves the same way, and the page should not make either of them work out which half is theirs. "For properties I manage" carries `?type=property-manager&intent=audit`, so `/request` opens on the three-property audit heading; "For my home" goes to the plain form. The portfolio door stays first in the DOM and visually primary, because Section 1.2 ranks that lead roughly 10× the homeowner one — serving both audiences is not the same as weighting them equally.
+
+The previous headline — *"We maintain property for people who aren't standing in front of it"* — was well written and actively excluded half the audience. A homeowner standing in their own kitchen reads it and leaves. Do not reintroduce a headline that defines the customer by absence.
+
+**The credential row.** `TrustBar` renders the four `CREDENTIALS` directly under the doors. Everything in it must be something the business can produce on request. No ratings, no stars, no testimonials — Section 8.
+
+**The licensing boundary is unusual and deliberate.** Stating it plainly reads as professional to a property manager, because the vendors who get them sued are the ones who quietly did a little electrical work on the side. It renders as two cards — what we do not perform, and what we do instead — with the longer argument on `/legal/licensed-partners`. Keep it a real section on the home page. Do not bury it in the footer.
+
+**Five FAQs, not ten.** `faqsFor('home')` is deliberately the shortest context. The rest still render on `/plans`, `/for/*` and `/request`, where the reader has already self-selected.
 
 ### 6.2 Plans — `/plans`
 

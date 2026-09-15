@@ -1,4 +1,6 @@
 import Image from 'next/image';
+
+import { PropertyScene } from '@/components/art/PropertyScene';
 import type { Photo } from '@/content/types';
 import { cn } from '@/lib/cn';
 
@@ -23,7 +25,7 @@ export function PhotoPlate({
   aspect?: string;
 }) {
   return (
-    <figure className={cn('border bg-paper-raised', className)}>
+    <figure className={cn('overflow-hidden rounded-lg border bg-paper-raised', className)}>
       <div className={cn('relative w-full overflow-hidden', aspect)}>
         {photo.placeholder ? (
           <PlaceholderPlate label={photo.alt} />
@@ -41,7 +43,7 @@ export function PhotoPlate({
       <figcaption className="flex items-center justify-between gap-3 border-t px-3 py-2">
         <span className="truncate text-xs text-steel">{photo.alt}</span>
         {photo.timestamp ? (
-          <span className="shrink-0 font-mono text-xs text-steel-light">{photo.timestamp}</span>
+          <span className="shrink-0 font-mono text-xs text-ink-muted">{photo.timestamp}</span>
         ) : null}
       </figcaption>
     </figure>
@@ -49,19 +51,18 @@ export function PhotoPlate({
 }
 
 /**
- * Neutral placeholder. Deliberately reads as "photo pending", not as a design
- * element — nobody should mistake it for finished work.
+ * Drawn placeholder. Original line art rather than stock photography
+ * (BUILD.md 5.1), with the caption still saying plainly that a real photograph
+ * is pending, so nobody mistakes it for finished work.
  */
 function PlaceholderPlate({ label }: { label: string }) {
   return (
-    <div
-      aria-hidden
-      className="absolute inset-0 flex items-center justify-center bg-[repeating-linear-gradient(135deg,var(--paper),var(--paper)_10px,var(--paper-raised)_10px,var(--paper-raised)_20px)]"
-    >
-      <span className="max-w-[80%] border border-dashed border-steel-light bg-paper/80 px-3 py-2 text-center font-mono text-xs text-steel">
-        PHOTO PENDING
-        <span className="mt-1 block font-sans text-xs normal-case text-steel-light">{label}</span>
+    <div aria-hidden className="absolute inset-0">
+      <PropertyScene className="h-full w-full object-cover" />
+      <span className="absolute bottom-2 left-2 rounded-sm bg-paper-raised/85 px-2 py-1 text-[0.625rem] font-medium text-steel">
+        Illustration &mdash; real job photograph pending
       </span>
+      <span className="sr-only">{label}</span>
     </div>
   );
 }
