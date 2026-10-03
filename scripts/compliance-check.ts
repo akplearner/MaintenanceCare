@@ -246,7 +246,9 @@ async function checkLeadSchema(): Promise<void> {
 /* ── 9.2 — SiteFooter renders the licensed-partner disclosure ────────────── */
 
 async function checkFooterDisclosure(): Promise<void> {
-  const { LICENSED_PARTNER_DISCLOSURE } = await import('../content/company');
+  const { LICENSED_PARTNER_DISCLOSURE, LICENSED_PARTNER_DISCLOSURE_ES } = await import(
+    '../content/company'
+  );
   const rel = 'components/layout/SiteFooter.tsx';
   const src = readRequired(rel, '9.2 disclosure');
   if (src === undefined) return;
@@ -261,6 +263,26 @@ async function checkFooterDisclosure(): Promise<void> {
         0,
         '9.2 disclosure',
         `The disclosure string no longer names "${trade}".`,
+      );
+    }
+  }
+
+  // 9.2 applies to every page, and a Spanish page is every page.
+  if (!src.includes('LICENSED_PARTNER_DISCLOSURE_ES')) {
+    fail(
+      rel,
+      0,
+      '9.2 disclosure',
+      'SiteFooter does not render the Spanish disclosure. Every locale needs it.',
+    );
+  }
+  for (const trade of ['plomería', 'electricidad', 'HVAC', 'riego', 'control de plagas']) {
+    if (!LICENSED_PARTNER_DISCLOSURE_ES.includes(trade)) {
+      fail(
+        'content/company.ts',
+        0,
+        '9.2 disclosure',
+        `The Spanish disclosure no longer names "${trade}".`,
       );
     }
   }

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ArrowRight, Building2, Home } from 'lucide-react';
 import { ctaAttrs } from '@/lib/analytics';
+import { localePath, type Locale } from '@/lib/i18n';
+import { ui } from '@/content/i18n/ui';
 
 /**
  * Two doors, because the two audiences describe themselves in different words
@@ -10,18 +12,20 @@ import { ctaAttrs } from '@/lib/analytics';
  * three-property audit heading — BUILD.md 1.2 ranks that lead well above a
  * single homeowner job, so it stays first in the DOM and visually primary.
  */
-export function HomeHeroCta() {
+export function HomeHeroCta({ locale }: { locale: Locale }) {
+  const t = ui(locale).hero;
+  const p = (path: string) => localePath(locale, path);
   return (
     <div className="mt-7 grid gap-3 sm:grid-cols-2">
       <Link
-        href="/request?type=property-manager&intent=audit"
+        href={p('/request?type=property-manager&intent=audit')}
         {...ctaAttrs('audit', 'home-hero')}
         className="group flex items-center gap-3 rounded-lg border border-soil bg-soil px-5 py-4 text-paper shadow-sm transition-colors hover:bg-soil-soft"
       >
         <Building2 aria-hidden size={22} strokeWidth={1.5} className="shrink-0 text-accent-on-dark" />
         <span className="flex-1">
-          <span className="block font-semibold">For properties I manage</span>
-          <span className="block text-sm text-ink-on-dark">Portfolio pricing and response times</span>
+          <span className="block font-semibold">{t.forPortfolio}</span>
+          <span className="block text-sm text-ink-on-dark">{t.forPortfolioSub}</span>
         </span>
         <ArrowRight
           aria-hidden
@@ -32,14 +36,14 @@ export function HomeHeroCta() {
       </Link>
 
       <Link
-        href="/request"
+        href={p('/request')}
         {...ctaAttrs('request', 'home-hero')}
         className="group flex items-center gap-3 rounded-lg border border-soil bg-paper-raised px-5 py-4 text-soil shadow-sm transition-colors hover:bg-paper"
       >
         <Home aria-hidden size={22} strokeWidth={1.5} className="shrink-0 text-accent-ink" />
         <span className="flex-1">
-          <span className="block font-semibold">For my home</span>
-          <span className="block text-sm text-steel">Get a written price</span>
+          <span className="block font-semibold">{t.forHome}</span>
+          <span className="block text-sm text-steel">{t.forHomeSub}</span>
         </span>
         <ArrowRight
           aria-hidden

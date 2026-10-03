@@ -60,6 +60,7 @@ export const company = {
 
   /** Plain-language response commitment. Restated on the thanks page. */
   responseCommitment: 'We reply to every request within one business day.',
+  responseCommitmentEs: 'Respondemos a cada solicitud dentro de un día hábil.',
 
   /** Honest service radius. Anything past this is quoted with a drive-time line. */
   serviceRadiusMiles: 35,
@@ -120,6 +121,18 @@ export const LICENSED_PARTNER_DISCLOSURE =
 /* compliance-allow-end */
 
 /**
+ * The same disclosure in Spanish. BUILD.md 9.2 requires it on every page, and
+ * a Spanish page is still every page. Naming the trades is the entire purpose
+ * of the disclosure — it states who performs them, which is the opposite of
+ * claiming we do — so the banned-phrase check is suspended here exactly as it
+ * is for the English string, and nowhere else.
+ */
+/* compliance-allow-start: 9.2 requires this disclosure to name the licensed trades */
+export const LICENSED_PARTNER_DISCLOSURE_ES =
+  'El trabajo de oficios con licencia — plomería, electricidad, HVAC, riego y control de plagas — lo realizan contratistas asociados con licencia, asegurados y verificados por nosotros.';
+/* compliance-allow-end */
+
+/**
  * The licensing boundary, stated as a trust asset rather than fine print.
  *
  * This block names the licensed trades in the NEGATIVE — it is the disclosure
@@ -149,6 +162,44 @@ export const NOT_PROVIDED_DIRECTLY = [
   'Anything requiring a permit we cannot pull',
 ] as const;
 /* compliance-allow-end */
+
+/**
+ * The same boundary in Spanish. Negative context throughout — it states what we
+ * do NOT perform — so the banned-phrase check is suspended here exactly as it
+ * is for the English block.
+ */
+/* compliance-allow-start: negative-context — this copy states what we do NOT perform */
+export const LICENSING_STANCE_ES = {
+  heading: 'Lo que no hacemos',
+  lead: 'No somos un contratista de oficios con licencia, y no vamos a fingir que lo somos.',
+  body: [
+    'MaintenanceCare hace mantenimiento, inspección, documentación y reparación general que no requiere una licencia estatal de oficio. Eso abarca bastante — filtros, detectores, tablaroca, pintura, cercas, canaletas, jardines, listas de pendientes, revisiones de propiedades vacías, y el registro escrito de todo ello.',
+    'No abarca plomería, electricidad, reparación de HVAC, riego ni control de plagas. En Texas esos oficios requieren licencia. Cuando su propiedad necesita uno, identificamos el problema, lo fotografiamos y mandamos a un contratista asociado con licencia cuya licencia y seguro ya verificamos — y le damos seguimiento hasta que el trabajo queda terminado y documentado.',
+  ],
+  reassurance:
+    'Los administradores de propiedades nos dicen que esto es lo primero que revisan. Los proveedores que les crean problemas legales son los que hacen un poco de trabajo eléctrico por su cuenta y sin decirlo.',
+};
+
+/** Rendered as the explicit exclusion list, in Spanish. Negative context. */
+export const NOT_PROVIDED_DIRECTLY_ES = [
+  'Reparación o reemplazo de plomería',
+  'Reparación eléctrica o circuitos nuevos',
+  'Reparación de HVAC o trabajo con refrigerante',
+  'Reparación de sistemas de riego',
+  'Tratamiento o exterminio de plagas',
+  'Reemplazo de techo o ingeniería estructural',
+  'Cualquier cosa que requiera un permiso que no podemos tramitar',
+] as const;
+/* compliance-allow-end */
+
+/** The Spanish counterpart of ROUTED_INSTEAD. Approved phrasing, live-checked. */
+export const ROUTED_INSTEAD_ES = [
+  { trade: 'Plomería', we: 'Coordinación — encontramos la fuga, cerramos el paso, la fotografiamos y mandamos a un plomero con licencia.' },
+  { trade: 'Electricidad', we: 'Inspección y envío de un proveedor con licencia — probamos, documentamos y entregamos un trabajo ya definido a un electricista con licencia.' },
+  { trade: 'HVAC', we: 'Programa de filtros y manejo del contratista — mantenemos los filtros al día y manejamos al contratista con licencia cuando un sistema falla.' },
+  { trade: 'Plagas', we: 'Inspección y coordinación — registramos la evidencia y la actividad, y traemos a un operador con licencia.' },
+  { trade: 'Riego', we: 'Observación y referencia a un irrigador con licencia — corremos las zonas, anotamos qué falló y lo referimos.' },
+] as const;
 
 /** What we route, and what we do around it. Rendered beside the exclusions. */
 export const ROUTED_INSTEAD = [

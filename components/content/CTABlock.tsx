@@ -1,38 +1,12 @@
 import Link from 'next/link';
+import { locale as rootLocale } from 'next/root-params';
 import { ArrowRight, Phone } from 'lucide-react';
 import { company } from '@/content/company';
+import { ui } from '@/content/i18n/ui';
 import { ctaAttrs } from '@/lib/analytics';
+import { DEFAULT_LOCALE, isLocale, localePath } from '@/lib/i18n';
 
 type Variant = 'portfolio' | 'single';
-
-const COPY: Record<Variant, { eyebrow: string; heading: string; body: string; primary: string }> = {
-  portfolio: {
-    eyebrow: 'For portfolios',
-    heading: 'Start with three properties, free.',
-    body: 'We inspect three of your properties at no cost and send you the same reports your owners would get. No contract. If they are not useful, you have lost nothing.',
-    primary: 'Book the free audit',
-  },
-  single: {
-    eyebrow: 'For your property',
-    heading: 'Tell us what needs doing.',
-    body: 'A short form, a reply within one business day, and a written price before anyone turns up.',
-    primary: 'Request service',
-  },
-};
-
-/** The other audience's path, as one quiet line rather than a competing block. */
-const ALT: Record<Variant, { question: string; label: string; href: string }> = {
-  portfolio: {
-    question: 'Managing more than one property?',
-    label: 'Book a free three-property audit',
-    href: '/request?type=property-manager&intent=audit',
-  },
-  single: {
-    question: 'Just the one property?',
-    label: 'Request service',
-    href: '/request',
-  },
-};
 
 /**
  * Server component. Tracking is declared through data attributes and handled
@@ -43,7 +17,7 @@ const ALT: Record<Variant, { question: string; label: string; href: string }> = 
  * equally loud things, which is a good way to have them choose neither; the
  * second audience gets `alt`, a single line under the block.
  */
-export function CTABlock({
+export async function CTABlock({
   variant = 'single',
   className,
   location,
@@ -58,10 +32,19 @@ export function CTABlock({
   /** Render the other audience's path as a quiet line beneath. */
   alt?: boolean;
 }) {
-  const copy = COPY[variant];
-  const target =
-    href ?? (variant === 'portfolio' ? '/request?type=property-manager&intent=audit' : '/request');
-  const other = ALT[variant === 'portfolio' ? 'single' : 'portfolio'];
+  const raw = await rootLocale();
+  const current = raw && isLocale(raw) ? raw : DEFAULT_LOCALE;
+  const t = ui(current).cta;
+
+  const copy = t[variant];
+  const target = localePath(
+    current,
+    href ?? (variant === 'portfolio' ? '/request?type=property-manager&intent=audit' : '/request'),
+  );
+  const other =
+    variant === 'portfolio'
+      ? { ...t.altToSingle, href: '/request' }
+      : { ...t.altToPortfolio, href: '/request?type=property-manager&intent=audit' };
 
   return (
     <div className={className}>
@@ -89,14 +72,16 @@ export function CTABlock({
             {company.phone}
           </a>
         </div>
-        <p className="mt-4 text-sm text-ink-on-dark">{company.responseCommitment}</p>
+        <p className="mt-4 text-sm text-ink-on-dark">
+          {current === 'es' ? company.responseCommitmentEs : company.responseCommitment}
+        </p>
       </div>
 
       {alt ? (
         <p className="mt-4 text-sm text-steel">
           {other.question}{' '}
           <Link
-            href={other.href}
+            href={localePath(current, other.href)}
             {...ctaAttrs(variant === 'portfolio' ? 'request' : 'audit', `${location}-alt`)}
             className="font-medium text-soil underline decoration-hivis decoration-2 underline-offset-4"
           >

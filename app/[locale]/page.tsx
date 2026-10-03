@@ -4,7 +4,7 @@ import { ArrowRight, BadgeCheck, FileText } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { RecordRail } from '@/components/layout/RecordRail';
 import { JsonLd } from '@/components/layout/JsonLd';
-import { RecordCard, HERO_RECORD } from '@/components/record/RecordCard';
+import { RecordCard, HERO_RECORD, HERO_RECORD_ES } from '@/components/record/RecordCard';
 import { DivisionGrid } from '@/components/content/DivisionGrid';
 import { PlanComparison } from '@/components/content/PlanComparison';
 import { CTABlock } from '@/components/content/CTABlock';
@@ -13,23 +13,45 @@ import { SectionHeading } from '@/components/content/SectionHeading';
 import { ButtonLink } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 
-import { launchedDivisions, upcomingDivisions } from '@/content/divisions';
-import { LICENSING_STANCE, NOT_PROVIDED_DIRECTLY, ROUTED_INSTEAD } from '@/content/company';
-import { faqsFor } from '@/content/faqs';
+import { locale as rootLocale } from 'next/root-params';
+
+import { launchedDivisionsFor, upcomingDivisionsFor } from '@/content/localized';
+import {
+  LICENSING_STANCE,
+  LICENSING_STANCE_ES,
+  NOT_PROVIDED_DIRECTLY,
+  NOT_PROVIDED_DIRECTLY_ES,
+  ROUTED_INSTEAD,
+  ROUTED_INSTEAD_ES,
+} from '@/content/company';
+import { faqsForIn } from '@/content/localized';
+import { ui } from '@/content/i18n/ui';
+import { DEFAULT_LOCALE, isLocale, localePath } from '@/lib/i18n';
 import { faqJsonLd, pageMeta } from '@/lib/seo';
 import { HomeHeroCta } from '@/components/content/HomeHeroCta';
 import { TrustBar } from '@/components/content/TrustBar';
 
-export const metadata = pageMeta({
-  title: 'Property maintenance and field services — Elgin & Central Texas',
-  description:
-    'Recurring maintenance plans, documented property inspections and general repair for property managers, investors and homeowners in Elgin, Bastrop, Manor, Taylor and Pflugerville.',
-  path: '/',
-});
+export async function generateMetadata() {
+  const raw = await rootLocale();
+  const current = raw && isLocale(raw) ? raw : DEFAULT_LOCALE;
+  const t = ui(current).home;
+  return pageMeta({ title: t.metaTitle, description: t.metaDescription, path: '/', locale: current });
+}
 
-const homeFaqs = faqsFor('home');
+export default async function HomePage() {
+  const raw = await rootLocale();
+  const current = raw && isLocale(raw) ? raw : DEFAULT_LOCALE;
+  const t = ui(current);
+  const h = t.home;
+  const p = (path: string) => localePath(current, path);
 
-export default function HomePage() {
+  const launchedDivisions = launchedDivisionsFor(current);
+  const upcomingDivisions = upcomingDivisionsFor(current);
+  const homeFaqs = faqsForIn('home', current);
+  const stance = current === 'es' ? LICENSING_STANCE_ES : LICENSING_STANCE;
+  const notProvided = current === 'es' ? NOT_PROVIDED_DIRECTLY_ES : NOT_PROVIDED_DIRECTLY;
+  const routed = current === 'es' ? ROUTED_INSTEAD_ES : ROUTED_INSTEAD;
+
   return (
     <>
       {/* The hero answers "is this for me?" before it answers anything else. */}
@@ -38,32 +60,31 @@ export default function HomePage() {
           <div className="grid gap-10 pt-10 pb-12 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-12 lg:pt-14 lg:pb-16">
             <div>
               <h1 className="max-w-[18ch] text-4xl font-bold tracking-tight text-soil sm:text-5xl">
-                Someone looking after the property when you can&rsquo;t.
+                {h.h1}
               </h1>
               <p className="mt-5 max-w-[46ch] text-lg text-steel">
-                Maintenance on a schedule, and a dated photo record after every visit. For
-                homeowners and for the people who manage doors across Elgin and Central Texas.
+                {h.lead}
               </p>
 
-              <HomeHeroCta />
+              <HomeHeroCta locale={current} />
 
-              <TrustBar className="mt-8 border-t pt-6" />
+              <TrustBar className="mt-8 border-t pt-6" locale={current} />
             </div>
 
             <div>
               <p className="mb-2 text-sm font-semibold text-soil">
-                What you receive after every visit
+                {h.recordLabel}
               </p>
-              <RecordCard data={HERO_RECORD} animateStamp />
+              <RecordCard data={current === 'es' ? HERO_RECORD_ES : HERO_RECORD} animateStamp />
               <p className="mt-3 text-sm text-steel">
-                This is an example record.{' '}
+                {h.exampleRecord}{' '}
                 <Link
-                  href="/sample-report"
+                  href={p('/sample-report')}
                   className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
                 >
-                  Download a real one
+                  {h.downloadReal}
                 </Link>{' '}
-                — no email address required.
+                {h.noEmailNeeded}
               </p>
             </div>
           </div>
@@ -72,16 +93,14 @@ export default function HomePage() {
 
       {/* What we do */}
       <RecordRail reference="REF-01" date="09.26" divider={false}>
-        <SectionHeading lead="Four services are running today. We say plainly which ones are not.">
-          What we do
-        </SectionHeading>
-        <DivisionGrid divisions={launchedDivisions} className="mt-6" />
+        <SectionHeading lead={h.whatWeDoLead}>{h.whatWeDo}</SectionHeading>
+        <DivisionGrid divisions={launchedDivisions} className="mt-6" locale={current} />
         <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-steel">
-          <span>Coming later:</span>
+          <span>{h.comingLater}</span>
           {upcomingDivisions.map((d, i) => (
             <span key={d.slug}>
               <Link
-                href={`/services/${d.slug}`}
+                href={p(`/services/${d.slug}`)}
                 className="text-soil underline decoration-steel-light underline-offset-4 hover:decoration-soil"
               >
                 {d.name}
@@ -90,10 +109,10 @@ export default function HomePage() {
             </span>
           ))}
           <Link
-            href="/services"
+            href={p('/services')}
             className="inline-flex items-center gap-1 font-medium text-soil underline decoration-hivis decoration-2 underline-offset-4"
           >
-            See all services
+            {h.seeAllServices}
             <ArrowRight aria-hidden size={14} strokeWidth={1.75} />
           </Link>
         </div>
@@ -101,14 +120,12 @@ export default function HomePage() {
 
       {/* Who we work for */}
       <RecordRail reference="REF-02">
-        <SectionHeading lead="Whether it is one home or a portfolio of them.">
-          Who we work for
-        </SectionHeading>
+        <SectionHeading lead={h.whoWeWorkForLead}>{h.whoWeWorkFor}</SectionHeading>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {AUDIENCE_CARDS.map((a) => (
+          {h.audiences.map((a) => (
             <Link
               key={a.href}
-              href={a.href}
+              href={p(a.href)}
               className="group flex flex-col rounded-lg border bg-paper-raised p-5 shadow-sm transition-shadow hover:shadow-md"
             >
               <h3 className="text-xl font-semibold text-soil">{a.title}</h3>
@@ -126,12 +143,12 @@ export default function HomePage() {
           ))}
         </div>
         <p className="mt-5 text-sm text-steel">
-          Also working with Realtors, HOAs, and commercial property.{' '}
+          {h.alsoWorking}{' '}
           <Link
-            href="/request"
+            href={p('/request')}
             className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
           >
-            Tell us what you manage
+            {h.tellUsWhatYouManage}
           </Link>
           .
         </p>
@@ -139,26 +156,24 @@ export default function HomePage() {
 
       {/* Plans */}
       <RecordRail reference="REF-03">
-        <SectionHeading lead="A fixed monthly amount instead of a repair bill you cannot predict. Cancel with thirty days notice.">
-          Property Care plans
-        </SectionHeading>
-        <PlanComparison className="mt-6" compact />
+        <SectionHeading lead={h.plansLead}>{h.plans}</SectionHeading>
+        <PlanComparison className="mt-6" compact locale={current} />
         <div className="mt-5">
-          <ButtonLink href="/plans" variant="secondary">
-            See what&rsquo;s included
+          <ButtonLink href={p('/plans')} variant="secondary">
+            {h.seeWhatsIncluded}
           </ButtonLink>
         </div>
       </RecordRail>
 
       {/* The licensing boundary, as a trust asset. BUILD.md 6.1: do not bury it. */}
       <RecordRail reference="REF-04" status="verified">
-        <SectionHeading>{LICENSING_STANCE.heading}</SectionHeading>
-        <p className="mt-3 max-w-[46ch] text-lg text-soil">{LICENSING_STANCE.lead}</p>
+        <SectionHeading>{stance.heading}</SectionHeading>
+        <p className="mt-3 max-w-[46ch] text-lg text-soil">{stance.lead}</p>
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
           <div className="rounded-lg border bg-paper-raised p-5 shadow-sm">
-            <p className="text-sm font-semibold text-soil">We do not perform</p>
+            <p className="text-sm font-semibold text-soil">{h.weDoNotPerform}</p>
             <ul className="mt-3 space-y-2">
-              {NOT_PROVIDED_DIRECTLY.map((item) => (
+              {notProvided.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-steel">
                   <span aria-hidden className="mt-[0.6em] inline-block h-[2px] w-2.5 shrink-0 bg-flag" />
                   {item}
@@ -167,9 +182,9 @@ export default function HomePage() {
             </ul>
           </div>
           <div className="rounded-lg border bg-paper-raised p-5 shadow-sm">
-            <p className="text-sm font-semibold text-soil">What we do instead</p>
+            <p className="text-sm font-semibold text-soil">{h.whatWeDoInstead}</p>
             <ul className="mt-3 space-y-2.5">
-              {ROUTED_INSTEAD.map((item) => (
+              {routed.map((item) => (
                 <li key={item.trade} className="flex items-start gap-2.5 text-sm">
                   <BadgeCheck
                     aria-hidden
@@ -178,18 +193,16 @@ export default function HomePage() {
                     className="mt-0.5 shrink-0 text-verified"
                   />
                   <span className="text-steel">
-                    <span className="font-medium text-soil">{item.trade}</span> — we identify it,
-                    photograph it, and hand it to a licensed partner whose license and insurance we
-                    have checked.
+                    <span className="font-medium text-soil">{item.trade}</span> {h.routedSuffix}
                   </span>
                 </li>
               ))}
             </ul>
             <Link
-              href="/legal/licensed-partners"
+              href={p('/legal/licensed-partners')}
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-soil underline decoration-hivis decoration-2 underline-offset-4"
             >
-              How we vet a partner contractor
+              {h.howWeVet}
               <ArrowRight aria-hidden size={14} strokeWidth={1.75} />
             </Link>
           </div>
@@ -200,25 +213,25 @@ export default function HomePage() {
       <RecordRail reference="REF-05">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <SectionHeading lead="An anonymized report from a real visit. No form, no email address — read it and decide for yourself whether it is worth paying for.">
-              See a real report
-            </SectionHeading>
+            <SectionHeading lead={h.sampleReportLead}>{h.sampleReport}</SectionHeading>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Chip tone="neutral">Fifteen inspection areas</Chip>
-              <Chip tone="neutral">Dated photographs</Chip>
-              <Chip tone="neutral">Severity on every finding</Chip>
+              {h.sampleChips.map((c) => (
+                <Chip key={c} tone="neutral">
+                  {c}
+                </Chip>
+              ))}
             </div>
           </div>
-          <ButtonLink href="/sample-report" size="lg" className="w-fit">
+          <ButtonLink href={p('/sample-report')} size="lg" className="w-fit">
             <FileText aria-hidden size={18} strokeWidth={1.5} />
-            See a sample report
+            {h.viewSample}
           </ButtonLink>
         </div>
       </RecordRail>
 
       {/* Questions */}
       <RecordRail reference="REF-06">
-        <SectionHeading>Questions people actually ask</SectionHeading>
+        <SectionHeading>{h.questions}</SectionHeading>
         <FAQ items={homeFaqs} className="mt-6 max-w-[52rem]" />
       </RecordRail>
 
@@ -232,24 +245,3 @@ export default function HomePage() {
     </>
   );
 }
-
-const AUDIENCE_CARDS = [
-  {
-    href: '/for/property-managers',
-    title: 'Property managers',
-    body: 'One company for maintenance, inspections and turnovers, with response times in writing and a report on every unit. Start with three properties free.',
-    cta: 'See response times and pricing',
-  },
-  {
-    href: '/for/investors',
-    title: 'Investors & absentee owners',
-    body: 'You do not need a handyman. You need someone standing at the property on a schedule, with photographs to prove they were there.',
-    cta: 'See how we watch empty property',
-  },
-  {
-    href: '/for/short-term-rentals',
-    title: 'Short-term rentals',
-    body: 'Maintenance scheduled around your booking calendar, and the small things caught before a guest photographs them into a review.',
-    cta: 'See how we work around bookings',
-  },
-] as const;

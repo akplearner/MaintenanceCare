@@ -2,21 +2,24 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import type { Division } from '@/content/types';
 import { audienceLabel } from '@/content/audiences';
+import { DEFAULT_LOCALE, localePath, type Locale } from '@/lib/i18n';
 import { Chip } from '@/components/ui/Chip';
 import { cn } from '@/lib/cn';
 
 export function DivisionCard({
   division,
   className,
+  locale = DEFAULT_LOCALE,
 }: {
   division: Division;
   className?: string;
+  locale?: Locale;
 }) {
   const muted = !division.fullyLaunched;
 
   return (
     <Link
-      href={`/services/${division.slug}`}
+      href={localePath(locale, `/services/${division.slug}`)}
       className={cn(
         'group flex flex-col rounded-lg border bg-paper-raised p-5 shadow-sm transition-shadow hover:shadow-md',
         muted && 'bg-transparent',
@@ -50,7 +53,7 @@ export function DivisionCard({
             .slice(0, 3)
             .map((a) => (
               <Chip key={a} tone="neutral">
-                {audienceLabel(a)}
+                {audienceLabel(a, locale)}
               </Chip>
             ))
         )}
@@ -63,10 +66,12 @@ export function DivisionGrid({
   divisions,
   className,
   columns = 4,
+  locale = DEFAULT_LOCALE,
 }: {
   divisions: Division[];
   className?: string;
   columns?: 2 | 3 | 4;
+  locale?: Locale;
 }) {
   return (
     <div
@@ -79,7 +84,7 @@ export function DivisionGrid({
       )}
     >
       {divisions.map((d) => (
-        <DivisionCard key={d.slug} division={d} />
+        <DivisionCard key={d.slug} division={d} locale={locale} />
       ))}
     </div>
   );

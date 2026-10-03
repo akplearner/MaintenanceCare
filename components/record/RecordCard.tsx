@@ -145,3 +145,28 @@ export const HERO_RECORD: RecordCardData = {
   summary:
     'Nothing urgent. The hose bib needs a licensed plumber — we have a partner quote coming and will forward it. Gutter clearing quoted at $125 and can ride the next visit.',
 };
+
+/** The same record in Spanish, for the Spanish hero and the PM page. */
+export const HERO_RECORD_ES: RecordCardData = {
+  workOrder: 'WO-1428',
+  property: '412 Oak Grove Dr, Elgin TX 78621',
+  technician: 'TECH-04',
+  status: 'complete',
+  date: '09.14.26',
+  window: '14:22 – 15:05',
+  findings: [
+    { label: 'Filtro de HVAC cambiado — 20 × 25 × 1', result: 'Hecho' },
+    { label: 'Detectores de humo y CO probados (4 unidades)', result: 'Bien' },
+    { label: 'Calentador de agua — placa de datos anotada, 2016', result: 'Registrado' },
+    { label: 'Llave de manguera goteando en el lado norte', result: 'Atención', flagged: true },
+    { label: 'Canaleta sobre la cochera con basura acumulada', result: 'Atención', flagged: true },
+    { label: 'Recorrido exterior — sin movimiento ni manchas nuevas', result: 'Bien' },
+  ],
+  photoSlots: [
+    { caption: 'Filtro instalado' },
+    { caption: 'Goteo de la llave' },
+    { caption: 'Canaleta, lado NE' },
+  ],
+  summary:
+    'Nada urgente. La llave de manguera necesita un plomero con licencia — ya viene la cotización del socio y se la mandamos. La limpieza de la canaleta se cotizó en $125 y puede hacerse en la siguiente visita.',
+};

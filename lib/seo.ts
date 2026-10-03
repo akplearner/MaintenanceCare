@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { company } from '@/content/company';
+import { DEFAULT_LOCALE, LOCALES, OG_LOCALE, localePath, type Locale } from '@/lib/i18n';
 import { areas } from '@/content/areas';
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://maintenancecare.vercel.app')
@@ -16,14 +17,30 @@ interface PageMetaInput {
   /** Omit to fall back to the route's own opengraph-image. */
   ogImage?: string;
   noIndex?: boolean;
+  locale?: Locale;
 }
 
-export function pageMeta({ title, description, path, ogImage, noIndex }: PageMetaInput): Metadata {
-  const url = absolute(path);
+export function pageMeta({
+  title,
+  description,
+  path,
+  ogImage,
+  noIndex,
+  locale = DEFAULT_LOCALE,
+}: PageMetaInput): Metadata {
+  const url = absolute(localePath(locale, path));
+
+  // Each page points at every language it exists in, and at itself as the
+  // canonical for this one. x-default goes to the unprefixed English URL.
+  const languages = Object.fromEntries([
+    ...LOCALES.map((l) => [l, absolute(localePath(l, path))]),
+    ['x-default', absolute(localePath(DEFAULT_LOCALE, path))],
+  ]);
+
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages },
     robots: noIndex ? { index: false, follow: false } : undefined,
     openGraph: {
       type: 'website',
@@ -31,7 +48,7 @@ export function pageMeta({ title, description, path, ogImage, noIndex }: PageMet
       title,
       description,
       siteName: company.name,
-      locale: 'en_US',
+      locale: OG_LOCALE[locale],
       ...(ogImage ? { images: [{ url: absolute(ogImage) }] } : {}),
     },
     twitter: {

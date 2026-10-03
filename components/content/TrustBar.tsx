@@ -1,7 +1,8 @@
 import { BadgeCheck, FileText, ShieldCheck, UserCheck } from 'lucide-react';
 
 import { cn } from '@/lib/cn';
-import { CREDENTIALS } from '@/content/company';
+import { credentialsFor } from '@/content/localized';
+import { DEFAULT_LOCALE, type Locale } from '@/lib/i18n';
 import type { Credential } from '@/content/types';
 
 const ICON = {
@@ -16,7 +17,14 @@ const ICON = {
  * fold. A server component on purpose: it sits above the fold on two routes
  * with a CLS budget, so every item must be in the first paint.
  */
-export function TrustBar({ className }: { className?: string }) {
+export function TrustBar({
+  className,
+  locale = DEFAULT_LOCALE,
+}: {
+  className?: string;
+  locale?: Locale;
+}) {
+  const CREDENTIALS = credentialsFor(locale);
   return (
     <ul className={cn('grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2', className)}>
       {CREDENTIALS.map((c) => {
@@ -41,7 +49,14 @@ export function TrustBar({ className }: { className?: string }) {
  * The same four commitments with the sentence that explains each one. For
  * pages where a reader has already decided to take us seriously.
  */
-export function CredentialGrid({ className }: { className?: string }) {
+export function CredentialGrid({
+  className,
+  locale = DEFAULT_LOCALE,
+}: {
+  className?: string;
+  locale?: Locale;
+}) {
+  const CREDENTIALS = credentialsFor(locale);
   return (
     <ul className={cn('grid gap-4 sm:grid-cols-2', className)}>
       {CREDENTIALS.map((c) => {

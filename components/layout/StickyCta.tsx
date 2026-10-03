@@ -6,6 +6,7 @@ import { Phone } from 'lucide-react';
 import { company } from '@/content/company';
 import { ctaAttrs } from '@/lib/analytics';
 import { localePath, type Locale } from '@/lib/i18n';
+import { ui } from '@/content/i18n/ui';
 
 /**
  * Persistent conversion bar on small screens. A property manager reading this
@@ -14,8 +15,9 @@ import { localePath, type Locale } from '@/lib/i18n';
  * with the submit button.
  */
 export function StickyCta({ locale }: { locale: Locale }) {
+  const t = ui(locale).nav;
   const pathname = usePathname();
-  if (pathname.startsWith('/request')) return null;
+  if (pathname.startsWith(localePath(locale, '/request'))) return null;
 
   return (
     <div className="no-print sticky bottom-0 z-30 border-t bg-paper-raised/97 backdrop-blur-[2px] lg:hidden">
@@ -26,14 +28,14 @@ export function StickyCta({ locale }: { locale: Locale }) {
           className="flex min-h-[3.25rem] items-center justify-center gap-2 border-r text-sm font-medium text-soil"
         >
           <Phone aria-hidden size={16} strokeWidth={1.5} />
-          Call now
+          {t.callNow}
         </a>
         <Link
           href={localePath(locale, '/request')}
           {...ctaAttrs('request', 'sticky-bar')}
           className="flex min-h-[3.25rem] items-center justify-center bg-soil text-sm font-medium text-paper"
         >
-          Request service
+          {t.requestService}
         </Link>
       </div>
     </div>

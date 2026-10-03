@@ -12,7 +12,18 @@ export const audiences: Audience[] = [
 
 const bySlug = new Map(audiences.map((a) => [a.slug, a]));
 
-export function audienceLabel(slug: AudienceSlug): string {
+const SHORT_ES: Record<AudienceSlug, string> = {
+  homeowner: 'Dueños de casa',
+  'property-manager': 'Administradores',
+  investor: 'Inversionistas',
+  'str-operator': 'Rentas de corto plazo',
+  realtor: 'Agentes de bienes raíces',
+  hoa: 'Asociaciones de vecinos',
+  commercial: 'Propiedad comercial',
+};
+
+export function audienceLabel(slug: AudienceSlug, locale: 'en' | 'es' = 'en'): string {
+  if (locale === 'es') return SHORT_ES[slug] ?? slug;
   return bySlug.get(slug)?.short ?? slug;
 }
 

@@ -40,14 +40,14 @@ export function pricingNote(pricing: Pricing): string | undefined {
 }
 
 /** "Pricing effective September 2026" — rendered beneath every price table. */
-export function effectiveLabel(isoDate: string): string {
+export function effectiveLabel(isoDate: string, locale: 'en' | 'es' = 'en'): string {
   const [y, m] = isoDate.split('-').map(Number);
   if (!y || !m) return isoDate;
-  const month = new Date(Date.UTC(y, m - 1, 1)).toLocaleString('en-US', {
-    month: 'long',
-    timeZone: 'UTC',
-  });
-  return `${month} ${y}`;
+  const month = new Date(Date.UTC(y, m - 1, 1)).toLocaleString(
+    locale === 'es' ? 'es-MX' : 'en-US',
+    { month: 'long', timeZone: 'UTC' },
+  );
+  return locale === 'es' ? `${month} de ${y}` : `${month} ${y}`;
 }
 
 /** The most recent effective date across a set of priced items. */
