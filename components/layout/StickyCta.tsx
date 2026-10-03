@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Phone } from 'lucide-react';
 import { company } from '@/content/company';
 import { ctaAttrs } from '@/lib/analytics';
+import { localePath, type Locale } from '@/lib/i18n';
 
 /**
  * Persistent conversion bar on small screens. A property manager reading this
@@ -12,7 +13,7 @@ import { ctaAttrs } from '@/lib/analytics';
  * either action. Hidden on the form and thanks pages, where it would compete
  * with the submit button.
  */
-export function StickyCta() {
+export function StickyCta({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   if (pathname.startsWith('/request')) return null;
 
@@ -28,7 +29,7 @@ export function StickyCta() {
           Call now
         </a>
         <Link
-          href="/request"
+          href={localePath(locale, '/request')}
           {...ctaAttrs('request', 'sticky-bar')}
           className="flex min-h-[3.25rem] items-center justify-center bg-soil text-sm font-medium text-paper"
         >

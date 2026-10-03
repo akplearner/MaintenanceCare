@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next';
+import { locale } from 'next/root-params';
+import { notFound } from 'next/navigation';
 import { Archivo, IBM_Plex_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
-import './globals.css';
+import '../globals.css';
 
 import { SkipLink } from '@/components/layout/SkipLink';
 import { SiteHeader } from '@/components/layout/SiteHeader';
@@ -11,6 +13,7 @@ import { JsonLd } from '@/components/layout/JsonLd';
 import { CtaTracker } from '@/components/analytics/CtaTracker';
 import { localBusinessJsonLd, SITE_URL } from '@/lib/seo';
 import { company } from '@/content/company';
+import { isLocale, LOCALES } from '@/lib/i18n';
 
 // Fails the build on malformed content. See content/validate.ts.
 import '@/content/validate';
@@ -65,21 +68,32 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+/** Both locales are generated at build time. */
+export function generateStaticParams() {
+  return LOCALES.map((l) => ({ locale: l }));
+}
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // `[locale]` sits above the root layout, so every Server Component below can
+  // read it from next/root-params without prop drilling. Client components
+  // cannot, which is why the header and sticky bar take it as a prop.
+  const current = await locale();
+  if (!current || !isLocale(current)) notFound();
+
   return (
     <html
-      lang="en"
+      lang={current}
       data-scroll-behavior="smooth"
       className={`${archivo.variable} ${plexMono.variable}`}
     >
       <body className="flex min-h-dvh flex-col antialiased">
         <SkipLink />
-        <SiteHeader />
+        <SiteHeader locale={current} />
         <main id="main" className="flex-1">
           {children}
         </main>
         <SiteFooter />
-        <StickyCta />
+        <StickyCta locale={current} />
         <JsonLd data={localBusinessJsonLd()} />
         <CtaTracker />
         <Analytics />

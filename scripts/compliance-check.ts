@@ -26,6 +26,19 @@ interface Violation {
 }
 
 const violations: Violation[] = [];
+
+/**
+ * Read a file the checks depend on. A missing file is a compliance failure,
+ * not a crash: moving a route must not be able to silently disable a rule.
+ */
+function readRequired(rel: string, rule: string): string | undefined {
+  try {
+    return readFileSync(path.join(ROOT, rel), 'utf8');
+  } catch {
+    fail(rel, 0, rule, `Expected file is missing. A rule cannot be enforced against it.`);
+    return undefined;
+  }
+}
 const warnings: string[] = [];
 
 function fail(file: string, line: number, rule: string, detail: string): void {
@@ -35,6 +48,7 @@ function fail(file: string, line: number, rule: string, detail: string): void {
 /* ── 9.1 — never describe unlicensed trade work as a service we provide ─── */
 
 const BANNED_TRADE = [
+  // English
   'plumbing services',
   'plumbing repair',
   'electrical services',
@@ -46,22 +60,53 @@ const BANNED_TRADE = [
   'extermination',
   'irrigation repair',
   'sprinkler repair',
+
+  // Spanish. The site is bilingual; these rules are Texas licensing law and do
+  // not stop applying because the sentence is in Spanish.
+  'servicios de plomería',
+  'servicios de fontanería',
+  'reparación de plomería',
+  'reparaciones de plomería',
+  'reparación de fontanería',
+  'servicios eléctricos',
+  'reparación eléctrica',
+  'reparaciones eléctricas',
+  'reparación de hvac',
+  'reparación de aire acondicionado',
+  'reparación de aire',
+  'control de plagas',
+  'exterminación',
+  'fumigación',
+  'reparación de riego',
+  'reparación de irrigación',
+  'reparación de rociadores',
+  'reparación de aspersores',
 ];
 
 /* ── 9.5 — no savings claims ─────────────────────────────────────────────── */
 
 const BANNED_SAVINGS = [
+  // English
   'save 30%',
   'guaranteed savings',
   "we'll cut your costs",
   'we will cut your costs',
   'cut your costs',
   'guaranteed',
+
+  // Spanish
+  'garantizado',
+  'garantizada',
+  'ahorro garantizado',
+  'ahorros garantizados',
+  'reduzca sus costos',
+  'reduzca sus gastos',
+  'le ahorramos',
 ];
 
 /** Any percentage within a few words of a savings word. */
 const SAVINGS_PERCENT =
-  /(?:sav(?:e|ing|ings)|reduc(?:e|tion)|cut|cheaper|discount|less)\D{0,40}\d{1,3}\s?%|\d{1,3}\s?%\D{0,40}(?:sav(?:e|ing|ings)|reduc(?:e|tion)|cheaper|off your|lower)/i;
+  /(?:sav(?:e|ing|ings)|reduc(?:e|tion|ir|ción)|cut|cheaper|discount|less|ahorr(?:a|e|o|os)|descuento|barato|menos)\D{0,40}\d{1,3}\s?%|\d{1,3}\s?%\D{0,40}(?:sav(?:e|ing|ings)|reduc(?:e|tion|ir|ción)|cheaper|off your|lower|ahorr(?:a|e|o|os)|descuento|barato|menos)/i;
 
 function walk(dir: string, out: string[] = []): string[] {
   let entries: string[];
@@ -203,7 +248,8 @@ async function checkLeadSchema(): Promise<void> {
 async function checkFooterDisclosure(): Promise<void> {
   const { LICENSED_PARTNER_DISCLOSURE } = await import('../content/company');
   const rel = 'components/layout/SiteFooter.tsx';
-  const src = readFileSync(path.join(ROOT, rel), 'utf8');
+  const src = readRequired(rel, '9.2 disclosure');
+  if (src === undefined) return;
 
   if (!src.includes('LICENSED_PARTNER_DISCLOSURE')) {
     fail(rel, 0, '9.2 disclosure', 'SiteFooter does not render LICENSED_PARTNER_DISCLOSURE.');
@@ -218,10 +264,11 @@ async function checkFooterDisclosure(): Promise<void> {
       );
     }
   }
-  // The footer must be in the root layout, i.e. on every page.
-  const layout = readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-  if (!layout.includes('<SiteFooter />')) {
-    fail('app/layout.tsx', 0, '9.2 disclosure', 'SiteFooter is not rendered in the root layout.');
+  // The footer must be in the root layout, i.e. on every page of every locale.
+  const layoutRel = 'app/[locale]/layout.tsx';
+  const layout = readRequired(layoutRel, '9.2 disclosure');
+  if (layout !== undefined && !layout.includes('<SiteFooter />')) {
+    fail(layoutRel, 0, '9.2 disclosure', 'SiteFooter is not rendered in the root layout.');
   }
 }
 
@@ -237,8 +284,9 @@ async function checkCautionCallouts(): Promise<void> {
 
   if (divisionsNeedingCaution.size === 0) return;
 
-  const rel = 'app/services/[division]/page.tsx';
-  const src = readFileSync(path.join(ROOT, rel), 'utf8');
+  const rel = 'app/[locale]/services/[division]/page.tsx';
+  const src = readRequired(rel, '6.3 caution callout');
+  if (src === undefined) return;
 
   if (!src.includes('hasLicensedTrade')) {
     fail(rel, 0, '6.3 caution callout', 'Division page does not compute hasLicensedTrade.');

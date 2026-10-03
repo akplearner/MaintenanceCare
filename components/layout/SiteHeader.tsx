@@ -10,8 +10,9 @@ import { company } from '@/content/company';
 import { PRIMARY_NAV } from '@/lib/nav';
 import { ctaAttrs } from '@/lib/analytics';
 import { cn } from '@/lib/cn';
+import { localePath, type Locale } from '@/lib/i18n';
 
-export function SiteHeader() {
+export function SiteHeader({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [openedAt, setOpenedAt] = useState(pathname);
@@ -36,7 +37,7 @@ export function SiteHeader() {
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
           <Link
-            href="/"
+            href={localePath(locale, '/')}
             className="flex items-baseline gap-2 text-lg font-bold tracking-tight text-soil"
           >
             <span
@@ -49,11 +50,12 @@ export function SiteHeader() {
           <nav aria-label="Primary" className="hidden lg:block">
             <ul className="flex items-center gap-6">
               {PRIMARY_NAV.map((item) => {
-                const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                const href = localePath(locale, item.href);
+                const active = pathname === href || pathname.startsWith(`${href}/`);
                 return (
                   <li key={item.href}>
                     <Link
-                      href={item.href}
+                      href={href}
                       aria-current={active ? 'page' : undefined}
                       className={cn(
                         'border-b-2 py-1 text-sm font-medium transition-colors',
@@ -84,7 +86,7 @@ export function SiteHeader() {
                 `inline-flex` is a display utility too, and which one wins is
                 decided by stylesheet order, not by class order. */}
             <span className="hidden sm:inline-flex">
-              <ButtonLink href="/request" {...ctaAttrs('request', 'header')}>
+              <ButtonLink href={localePath(locale, '/request')} {...ctaAttrs('request', 'header')}>
                 Request service
               </ButtonLink>
             </span>
@@ -114,7 +116,7 @@ export function SiteHeader() {
                 {PRIMARY_NAV.map((item) => (
                   <li key={item.href}>
                     <Link
-                      href={item.href}
+                      href={localePath(locale, item.href)}
                       className="block border-b py-3.5 text-base font-medium text-soil"
                     >
                       {item.label}
@@ -123,20 +125,20 @@ export function SiteHeader() {
                 ))}
                 <li>
                   <Link
-                    href="/for/investors"
+                    href={localePath(locale, '/for/investors')}
                     className="block border-b py-3.5 text-base font-medium text-soil"
                   >
                     Investors &amp; absentee owners
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="block border-b py-3.5 text-base font-medium text-soil">
+                  <Link href={localePath(locale, '/about')} className="block border-b py-3.5 text-base font-medium text-soil">
                     About
                   </Link>
                 </li>
               </ul>
               <div className="mt-4 flex flex-col gap-3">
-                <ButtonLink href="/request" size="lg" {...ctaAttrs('request', 'mobile-nav')}>
+                <ButtonLink href={localePath(locale, '/request')} size="lg" {...ctaAttrs('request', 'mobile-nav')}>
                   Request service
                 </ButtonLink>
                 <a
