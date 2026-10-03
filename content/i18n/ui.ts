@@ -86,6 +86,37 @@ export interface Ui {
 
   portfolio: { heading: string; body: string; cta: string };
 
+  servicesPage: {
+    metaTitle: string;
+    metaDescription: string;
+    h1: string;
+    lead: string;
+    runningNow: string;
+    runningNowLead: string;
+    laterPhases: string;
+    laterPhasesLead: string;
+    breadcrumbServices: string;
+  };
+
+  plansPage: {
+    metaTitle: string;
+    metaDescription: string;
+    h1: string;
+    lead: string;
+    fifteenAreas: string;
+    fifteenAreasLead: string;
+    observationLabel: string;
+    observationBody: string;
+    whereMoneyGoes: string;
+    whereMoneyGoesLead: string;
+    questions: string;
+    notSure: string;
+    describeProperty: string;
+    notSureTail: string;
+    breadcrumbHome: string;
+    breadcrumbPlans: string;
+  };
+
   cta: {
     portfolio: { eyebrow: string; heading: string; body: string; primary: string };
     single: { eyebrow: string; heading: string; body: string; primary: string };
@@ -199,6 +230,44 @@ export const uiEn: Ui = {
     startWith: 'Start with',
     effectivePrefix: 'Pricing effective',
     effectiveSuffix: '. Month to month, cancel with thirty days notice. Reviewed quarterly.',
+  },
+
+  servicesPage: {
+    metaTitle: 'Services — eight divisions, four running today',
+    metaDescription:
+      'Property Care, Field Inspections, Home Repair and Exterior Care are live across Elgin and Central Texas. Turn Services, Emergency Response, Asset Care and Trade Coordination are later phases.',
+    h1: 'Eight services. Four are running today.',
+    lead: 'We would rather tell you what is not ready than take a booking we cannot keep. Everything below marked as a later phase is exactly that — you can still ask, and we will tell you honestly when it will be real.',
+    runningNow: 'Running now',
+    runningNowLead: 'Live today, with published pricing on every page.',
+    laterPhases: 'Later phases',
+    laterPhasesLead:
+      'Not running yet. Each page says what it will be and when — no aspirational copy pretending otherwise.',
+    breadcrumbServices: 'Services',
+  },
+
+  plansPage: {
+    metaTitle: 'Property Care plans — $49, $89 and $149 a month',
+    metaDescription:
+      'Recurring property maintenance on a plan: quarterly or monthly inspections, filter service, detector testing and a photo report every visit. Month to month, no long-term contract. Elgin and Central Texas.',
+    h1: 'A maintenance budget you can actually predict.',
+    lead: 'A technician on a fixed schedule, the same checks every visit, and a dated photo report afterwards. Month to month, cancel with thirty days notice, and every price on this page carries the date it took effect.',
+    fifteenAreas: 'The fifteen inspection areas',
+    fifteenAreasLead:
+      'This is what a quarterly inspection actually covers. Specificity is the difference between a real product and a vague retainer — and it is the list your technician works from, not marketing copy.',
+    observationLabel: 'Observation vs. repair',
+    observationBody:
+      'Areas marked “observation only” mean exactly that: we look, test what is safe to test, photograph what we find and write it down. We do not open a panel or a supply line. When something in those areas needs work, we price it and hand it to a licensed partner contractor — and you get the photographs either way.',
+    whereMoneyGoes: 'Where the money actually goes',
+    whereMoneyGoesLead:
+      'Four categories where a plan is defensibly worth more than it costs. No percentages, because nobody can honestly promise you one.',
+    questions: 'Questions about plans',
+    notSure: 'Not sure which tier fits?',
+    describeProperty: 'Describe the property',
+    notSureTail:
+      'and we will tell you which one we would put it on — including telling you when the cheapest one is the right answer.',
+    breadcrumbHome: 'Home',
+    breadcrumbPlans: 'Plans',
   },
 
   portfolio: {
@@ -337,6 +406,44 @@ export const uiEs: Ui = {
     startWith: 'Empiece con',
     effectivePrefix: 'Precios vigentes desde',
     effectiveSuffix: '. Mes a mes, cancele avisando con treinta días. Revisados cada trimestre.',
+  },
+
+  servicesPage: {
+    metaTitle: 'Servicios — ocho áreas, cuatro funcionando hoy',
+    metaDescription:
+      'Cuidado de Propiedades, Inspecciones de Campo, Reparaciones del Hogar y Cuidado Exterior ya funcionan en Elgin y Texas Central. Servicios de Entrega, Respuesta de Emergencia, Cuidado de Equipos y Coordinación de Oficios vienen más adelante.',
+    h1: 'Ocho servicios. Cuatro ya funcionan hoy.',
+    lead: 'Preferimos decirle qué no está listo a aceptar un trabajo que no podemos cumplir. Todo lo que aparece abajo marcado para más adelante es exactamente eso — igual puede preguntar, y le diremos con honestidad cuándo será real.',
+    runningNow: 'Funcionando hoy',
+    runningNowLead: 'Ya disponibles, con precios publicados en cada página.',
+    laterPhases: 'Más adelante',
+    laterPhasesLead:
+      'Todavía no funcionan. Cada página dice qué será y cuándo — sin texto que finja lo contrario.',
+    breadcrumbServices: 'Servicios',
+  },
+
+  plansPage: {
+    metaTitle: 'Planes de Cuidado de Propiedades — $49, $89 y $149 al mes',
+    metaDescription:
+      'Mantenimiento recurrente con plan: inspecciones trimestrales o mensuales, servicio de filtros, prueba de detectores y un informe con fotos en cada visita. Mes a mes, sin contrato de largo plazo. Elgin y Texas Central.',
+    h1: 'Un presupuesto de mantenimiento que sí puede predecir.',
+    lead: 'Un técnico en un horario fijo, las mismas revisiones en cada visita y un informe con fotos y fecha después. Mes a mes, cancele avisando con treinta días, y cada precio de esta página trae la fecha en que entró en vigor.',
+    fifteenAreas: 'Las quince áreas de inspección',
+    fifteenAreasLead:
+      'Esto es lo que cubre de verdad una inspección trimestral. El detalle es la diferencia entre un producto real y una iguala vaga — y es la lista con la que trabaja su técnico, no texto publicitario.',
+    observationLabel: 'Observación y reparación no son lo mismo',
+    observationBody:
+      'Las áreas marcadas como «solo observación» son exactamente eso: vemos, probamos lo que se puede probar con seguridad, fotografiamos lo que encontramos y lo anotamos. No abrimos un panel ni una línea de agua. Cuando algo de esas áreas necesita trabajo, lo cotizamos y se lo entregamos a un contratista asociado con licencia — y usted recibe las fotografías de todos modos.',
+    whereMoneyGoes: 'A dónde se va el dinero en realidad',
+    whereMoneyGoesLead:
+      'Cuatro categorías donde un plan vale de forma demostrable más de lo que cuesta. Sin porcentajes, porque nadie puede prometerle uno con honestidad.',
+    questions: 'Preguntas sobre los planes',
+    notSure: '¿No sabe cuál nivel le conviene?',
+    describeProperty: 'Describa la propiedad',
+    notSureTail:
+      'y le decimos en cuál la pondríamos nosotros — incluso si la respuesta correcta es el más barato.',
+    breadcrumbHome: 'Inicio',
+    breadcrumbPlans: 'Planes',
   },
 
   portfolio: {

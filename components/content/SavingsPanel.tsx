@@ -32,10 +32,44 @@ const CATEGORIES = [
   },
 ] as const;
 
-export function SavingsPanel({ className }: { className?: string }) {
+const CATEGORIES_ES = [
+  {
+    ref: '01',
+    title: 'Prevención',
+    body: 'Limpiar una canaleta cuesta entre $125 y $175, y está en la lista de precios. El agua que lleva dos temporadas corriendo detrás de la fascia no está en la lista de nadie. El valor de una visita programada es que usted paga el primer número.',
+    example: 'Un costo conocido, en una fecha conocida, contra uno que no se conoce.',
+  },
+  {
+    ref: '02',
+    title: 'Unidades vacías',
+    body: 'Cada día que una unidad está sin rentar es un día de renta que usted puede calcular exacto. Una entrega que se atora esperando a que tres proveedores devuelvan la llamada cuesta esos días. Nosotros manejamos el calendario y el acceso, para que el límite sea la agenda y no el teléfono.',
+    example: 'Usted ya sabe cuánto renta al día. Multiplíquelo por los días que perdió en la última entrega.',
+  },
+  {
+    ref: '03',
+    title: 'Coordinación',
+    body: 'Una llamada en lugar de cuatro. Cotizamos el trabajo antes de mandar a un contratista con licencia, lo recibimos para darle acceso y verificamos que quedó hecho — así usted no paga un cargo por viaje porque nadie pudo entrar, ni anda persiguiendo una foto del trabajo terminado tres semanas después.',
+    example: 'Menos cargos por viaje, ninguna segunda visita por el acceso, una sola factura que revisar.',
+  },
+  {
+    ref: '04',
+    title: 'Precio por portafolio',
+    body: 'El precio va según cuántas propiedades administra, no por plan. Un portafolio es una mezcla — ocupadas, vacías, entre inquilinos — y cobrar lo mismo por todas le cobra de más en las fáciles. Ponemos el precio contra la mezcla real y lo revisamos conforme cambia.',
+    example: 'Cobertura del tamaño del portafolio, no de un nivel fijo.',
+  },
+] as const;
+
+export function SavingsPanel({
+  className,
+  locale = 'en',
+}: {
+  className?: string;
+  locale?: 'en' | 'es';
+}) {
+  const CATEGORIES_FOR = locale === 'es' ? CATEGORIES_ES : CATEGORIES;
   return (
     <div className={cn('grid gap-px overflow-hidden rounded-lg border bg-rule sm:grid-cols-2', className)}>
-      {CATEGORIES.map((c) => (
+      {CATEGORIES_FOR.map((c) => (
         <div key={c.ref} className="bg-paper-raised p-5">
           <p className="font-mono text-xs text-ink-muted">{c.ref}</p>
           <h3 className="mt-1 text-lg font-semibold text-soil">{c.title}</h3>
