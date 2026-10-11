@@ -13,10 +13,19 @@ import { FieldNote } from '@/components/record/FieldNote';
 import { Callout } from '@/components/ui/Callout';
 import { ButtonLink } from '@/components/ui/Button';
 
-import { areas, getArea } from '@/content/areas';
-import { getDivision } from '@/content/divisions';
+import { locale as rootLocale } from 'next/root-params';
+
+import { areas } from '@/content/areas';
+import { areasFor, getAreaFor, getDivisionFor } from '@/content/localized';
 import { company } from '@/content/company';
+import { ui } from '@/content/i18n/ui';
+import { DEFAULT_LOCALE, isLocale, localePath, type Locale } from '@/lib/i18n';
 import { absolute, breadcrumbJsonLd, pageMeta, SITE_URL } from '@/lib/seo';
+
+async function current(): Promise<Locale> {
+  const raw = await rootLocale();
+  return raw && isLocale(raw) ? raw : DEFAULT_LOCALE;
+}
 
 export function generateStaticParams() {
   return areas.map((a) => ({ city: a.slug }));
@@ -30,27 +39,33 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { city: slug } = await params;
-  const area = getArea(slug);
+  const locale = await current();
+  const area = getAreaFor(slug, locale);
   if (!area) return {};
+  const t = ui(locale).cityPage;
 
   return pageMeta({
-    title: `Property maintenance in ${area.city}, TX`,
-    description: `Recurring maintenance, documented inspections and general repair in ${area.city}, ${area.county}. ${
-      area.driveTimeMinutes === 0
-        ? 'Our home base — the fastest response times we offer.'
-        : `About ${area.driveTimeMinutes} minutes from our Elgin base.`
-    }`,
+    title: t.metaTitle(area.city),
+    description: t.metaDescription(
+      area.city,
+      area.county,
+      area.driveTimeMinutes === 0 ? t.homeBase : t.aboutMinutes(area.driveTimeMinutes),
+    ),
     path: `/service-area/${area.slug}`,
+    locale,
   });
 }
 
 export default async function CityPage({ params }: PageProps) {
   const { city: slug } = await params;
-  const area = getArea(slug);
+  const locale = await current();
+  const t = ui(locale).cityPage;
+  const p = (path: string) => localePath(locale, path);
+  const area = getAreaFor(slug, locale);
   if (!area) notFound();
 
   const divisions = area.divisions
-    .map((d) => getDivision(d))
+    .map((d) => getDivisionFor(d, locale))
     .filter((d): d is NonNullable<typeof d> => Boolean(d));
 
   const localJsonLd = {
@@ -80,24 +95,22 @@ export default async function CityPage({ params }: PageProps) {
         <Container>
           <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
             <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
-              <Link href="/service-area" className="underline underline-offset-4 hover:text-soil">
-                Service area
+              <Link href={p('/service-area')} className="underline underline-offset-4 hover:text-soil">
+                {ui(locale).areaPage.breadcrumbArea}
               </Link>
               <span className="mx-2 text-ink-muted">/</span>
               <span className="text-soil">{area.city}</span>
             </nav>
             <h1 className="text-3xl font-bold text-soil sm:text-4xl">
-              Property maintenance in {area.city}, Texas
+              {t.h1(area.city)}
             </h1>
             <p className="mt-4 max-w-[46ch] text-lg text-steel">
               {area.county} · {area.zips.join(', ')} ·{' '}
-              {area.driveTimeMinutes === 0
-                ? 'Our home base.'
-                : `About ${area.driveTimeMinutes} minutes from our Elgin base.`}
+              {area.driveTimeMinutes === 0 ? t.homeBase : t.aboutMinutes(area.driveTimeMinutes)}
             </p>
             <div className="mt-6">
-              <ButtonLink href={`/request?city=${encodeURIComponent(area.city)}`} size="lg">
-                Request service in {area.city}
+              <ButtonLink href={p(`/request?city=${encodeURIComponent(area.city)}`)} size="lg">
+                {t.requestIn(area.city)}
               </ButtonLink>
             </div>
           </div>
@@ -107,68 +120,67 @@ export default async function CityPage({ params }: PageProps) {
       <RecordRail reference="ARE-02" date="09.26" divider={false}>
         <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-10">
           <div>
-            <SectionHeading as="h2">What {area.city} property actually needs</SectionHeading>
+            <SectionHeading as="h2">{t.whatNeeds(area.city)}</SectionHeading>
             <p className="mt-4 max-w-[34rem] text-base text-steel">{area.local}</p>
             {area.note ? (
               <Callout className="mt-5 max-w-[34rem]">
-                <strong className="font-semibold text-soil">Scheduling in {area.city}:</strong>{' '}
+                <strong className="font-semibold text-soil">{t.schedulingIn(area.city)}</strong>{' '}
                 {area.note}
               </Callout>
             ) : null}
-            <FieldNote label="Drive time" className="mt-5 max-w-[34rem]">
+            <FieldNote label={t.driveTime} className="mt-5 max-w-[34rem]">
               {area.driveTimeMinutes === 0
-                ? `${area.city} is where we are based, so there is no drive-time consideration on scheduling here and emergencies during business hours get the fastest response we offer.`
-                : `${area.driveTimeMinutes} minutes each way is real cost, and we would rather state it than bury it. We route ${area.city} in blocks so one drive covers several properties, which is why scheduled work is cheaper here than a single same-day call-out.`}
+                ? t.driveBase(area.city)
+                : t.driveAway(area.driveTimeMinutes, area.city)}
             </FieldNote>
           </div>
-          <ServiceAreaMap highlight={area.slug} />
+          <ServiceAreaMap highlight={area.slug} locale={locale} />
         </div>
       </RecordRail>
 
       <RecordRail reference="ARE-03">
-        <SectionHeading as="h2" lead={`Everything below runs in ${area.city} today.`}>
-          Services in {area.city}
+        <SectionHeading as="h2" lead={t.servicesLead(area.city)}>
+          {t.servicesIn(area.city)}
         </SectionHeading>
-        <DivisionGrid divisions={divisions} className="mt-6" columns={2} />
+        <DivisionGrid divisions={divisions} className="mt-6" columns={2} locale={locale} />
         <p className="mt-5 max-w-[46rem] text-sm text-steel">
-          Licensed trade work — handled by our verified partner contractors — is available
-          throughout the service area.{' '}
+          {t.licensedNote}{' '}
           <Link
-            href="/legal/licensed-partners"
+            href={p('/legal/licensed-partners')}
             className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
           >
-            How that works
+            {t.howThatWorks}
           </Link>
           .
         </p>
       </RecordRail>
 
       <RecordRail reference="ARE-04">
-        <SectionHeading as="h2">Nearby</SectionHeading>
+        <SectionHeading as="h2">{t.nearby}</SectionHeading>
         <ul className="mt-4 flex flex-wrap gap-2">
-          {areas
+          {areasFor(locale)
             .filter((a) => a.slug !== area.slug)
             .map((a) => (
               <li key={a.slug}>
                 <Link
-                  href={`/service-area/${a.slug}`}
+                  href={p(`/service-area/${a.slug}`)}
                   className="inline-flex items-center gap-2 rounded-md border bg-paper-raised px-3 py-2 text-sm text-soil transition-colors hover:border-soil"
                 >
                   {a.city}
                   <span className="text-xs text-ink-muted">
-                    {a.driveTimeMinutes === 0 ? 'BASE' : `${a.driveTimeMinutes}m`}
+                    {a.driveTimeMinutes === 0 ? ui(locale).areaPage.base : `${a.driveTimeMinutes}m`}
                   </span>
                 </Link>
               </li>
             ))}
         </ul>
         <p className="mt-5 text-sm text-steel">
-          Working radius is roughly {company.serviceRadiusMiles} miles from Elgin.{' '}
+          {t.radiusNote(company.serviceRadiusMiles)}{' '}
           <Link
-            href="/service-area"
+            href={p('/service-area')}
             className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
           >
-            See the whole service area
+            {t.seeWholeArea}
           </Link>
           .
         </p>

@@ -86,6 +86,68 @@ export interface Ui {
 
   portfolio: { heading: string; body: string; cta: string };
 
+  cityPage: {
+    metaTitle: (city: string) => string;
+    metaDescription: (city: string, county: string, drive: string) => string;
+    homeBase: string;
+    aboutMinutes: (n: number) => string;
+    h1: (city: string) => string;
+    requestIn: (city: string) => string;
+    whatNeeds: (city: string) => string;
+    schedulingIn: (city: string) => string;
+    driveTime: string;
+    driveBase: (city: string) => string;
+    driveAway: (n: number, city: string) => string;
+    servicesIn: (city: string) => string;
+    servicesLead: (city: string) => string;
+    licensedNote: string;
+    howThatWorks: string;
+    nearby: string;
+    radiusNote: (miles: number) => string;
+    seeWholeArea: string;
+  };
+
+  mapCaption: (miles: number, city: string) => string;
+
+  aboutPage: {
+    metaTitle: string;
+    metaDescription: string;
+    h1: string;
+    lead: string;
+    whatItIs: string;
+    whatItIsBody: string[];
+    howWeWork: string;
+    howWeWorkList: string[];
+    sayNo: string;
+    sayNoBody: string;
+    whyDates: string;
+    whyDatesBody: string;
+    readVetting: string;
+    whereWeWork: string;
+    roughly: (miles: number) => string;
+    driveTimesLink: string;
+    callUs: string;
+    email: string;
+    basedIn: string;
+    hours: string;
+    breadcrumbAbout: string;
+  };
+
+  areaPage: {
+    metaTitle: string;
+    metaDescription: string;
+    h1: string;
+    lead: string;
+    whereWeWork: string;
+    base: string;
+    minutes: string;
+    outsideRadius: string;
+    outsideRadiusBody: string;
+    coverageQuestions: string;
+    notSureRadius: (miles: number) => string;
+    breadcrumbArea: string;
+  };
+
   priceTable: {
     service: string;
     price: string;
@@ -265,6 +327,92 @@ export const uiEn: Ui = {
     startWith: 'Start with',
     effectivePrefix: 'Pricing effective',
     effectiveSuffix: '. Month to month, cancel with thirty days notice. Reviewed quarterly.',
+  },
+
+  cityPage: {
+    metaTitle: (city) => `Property maintenance in ${city}, TX`,
+    metaDescription: (city, county, drive) =>
+      `Recurring maintenance, documented inspections and general repair in ${city}, ${county}. ${drive}`,
+    homeBase: 'Our home base — the fastest response times we offer.',
+    aboutMinutes: (n) => `About ${n} minutes from our Elgin base.`,
+    h1: (city) => `Property maintenance in ${city}, Texas`,
+    requestIn: (city) => `Request service in ${city}`,
+    whatNeeds: (city) => `What ${city} property actually needs`,
+    schedulingIn: (city) => `Scheduling in ${city}:`,
+    driveTime: 'Drive time',
+    driveBase: (city) =>
+      `${city} is where we are based, so there is no drive-time consideration on scheduling here and emergencies during business hours get the fastest response we offer.`,
+    driveAway: (n, city) =>
+      `${n} minutes each way is real cost, and we would rather state it than bury it. We route ${city} in blocks so one drive covers several properties, which is why scheduled work is cheaper here than a single same-day call-out.`,
+    servicesIn: (city) => `Services in ${city}`,
+    servicesLead: (city) => `Everything below runs in ${city} today.`,
+    licensedNote:
+      'Licensed trade work — handled by our verified partner contractors — is available throughout the service area.',
+    howThatWorks: 'How that works',
+    nearby: 'Nearby',
+    radiusNote: (miles) => `Working radius is roughly ${miles} miles from Elgin.`,
+    seeWholeArea: 'See the whole service area',
+  },
+
+  mapCaption: (miles, city) =>
+    `Service area — ${miles} mile working radius from ${city}. Drive times are honest averages, not best cases.`,
+
+  aboutPage: {
+    metaTitle: 'About — a maintenance company, not a handyman service',
+    metaDescription:
+      'MaintenanceCare sells recurring maintenance coverage and documented field records across Elgin and Central Texas. What we do, what we deliberately do not, and how we work.',
+    h1: 'We are a maintenance company. We are not a handyman service.',
+    lead: 'The difference matters. A handyman sells hours. We sell a property that has been looked after on a schedule, and a written record proving it — which is the thing an owner, a lender or an insurer actually asks for.',
+    whatItIs: 'What the business actually is',
+    whatItIsBody: [
+      'MaintenanceCare is based in Elgin, Texas, and works across Bastrop, Travis and Williamson counties. We sell two things: recurring maintenance coverage, and documented field records.',
+      'Most of our customers are not standing in front of the property. They are property managers with a portfolio, investors two states away, absentee owners, short-term rental operators, Realtors between listings, and homeowners who would simply rather someone competent handled it. What all of them need is the same: somebody reliable who turns up on the date, does the same checks every time, and writes down what they found.',
+      'The product is the record. A visit with no documentation is a visit you have to take on trust, and trust does not survive a deposit dispute, an insurance claim, or an owner asking why a repair was not caught six months earlier.',
+    ],
+    howWeWork: 'How we work',
+    howWeWorkList: [
+      'Published pricing, dated, and reviewed quarterly against local benchmarks',
+      'A written price before any work starts — never an open hourly meter',
+      'The same inspection checklist every visit, so findings are comparable over time',
+      'Dated photographs on every finding, not just the ones that need selling',
+      'A named date for scheduled work, not a four-hour window',
+      'Licensed trade work routed to verified partner contractors, never attempted',
+      'Access arranged with a named contact, never by collecting codes over the internet',
+      'Honest drive times, including telling you when we are the wrong choice',
+    ],
+    sayNo: 'What we will tell you no about',
+    sayNoBody:
+      'Work outside our radius where the drive makes the price bad value. Licensed trade work we are not permitted to do. Same-day turnover cleaning, because that service is not running yet. A cheaper plan tier when the cheaper one is the right answer. We would rather lose a job than take one we will do badly.',
+    whyDates: 'Why every price carries a date',
+    whyDatesBody:
+      'Because we review pricing quarterly, and a price with no date is a price you cannot rely on. If a figure on this site is stale, the date tells you before you call.',
+    readVetting: 'Read how we vet a licensed partner contractor',
+    whereWeWork: 'Where we work',
+    roughly: (miles: number) => `— roughly ${miles} miles from Elgin.`,
+    driveTimesLink: 'Drive times and local detail for each town',
+    callUs: 'Call us',
+    email: 'Email',
+    basedIn: 'Based in',
+    hours: 'Hours',
+    breadcrumbAbout: 'About',
+  },
+
+  areaPage: {
+    metaTitle: 'Service area — Elgin, Bastrop, Manor, Taylor and Pflugerville',
+    metaDescription:
+      'Property maintenance and inspection across Elgin, Bastrop, Manor, Taylor and Pflugerville, within roughly 35 miles of Elgin. Honest drive times on every city page.',
+    h1: 'Five towns, honestly stated drive times.',
+    lead: 'Drive time is the fastest way to destroy margin in this business, so we are straightforward about it. Inside the radius below you get our real response times. Outside it we will still talk to you — and tell you whether the drive makes it worth your money.',
+    whereWeWork: 'Where we work',
+    base: 'BASE',
+    minutes: 'min',
+    outsideRadius: 'Outside the radius',
+    outsideRadiusBody:
+      'We will quote work further out, but the drive shows up in the price and we will not pretend otherwise. If you have several properties in one direction, that changes the arithmetic — tell us the addresses and we will quote the route.',
+    coverageQuestions: 'Questions about coverage',
+    notSureRadius: (miles: number) =>
+      `Not sure whether you are inside the ${miles} mile radius? Send the address through the request form and we will tell you straight away, at no cost and with no follow-up call if the answer is no.`,
+    breadcrumbArea: 'Service area',
   },
 
   priceTable: {
@@ -483,6 +631,92 @@ export const uiEs: Ui = {
     startWith: 'Empiece con',
     effectivePrefix: 'Precios vigentes desde',
     effectiveSuffix: '. Mes a mes, cancele avisando con treinta días. Revisados cada trimestre.',
+  },
+
+  cityPage: {
+    metaTitle: (city) => `Mantenimiento de propiedades en ${city}, TX`,
+    metaDescription: (city, county, drive) =>
+      `Mantenimiento recurrente, inspecciones documentadas y reparación general en ${city}, ${county}. ${drive}`,
+    homeBase: 'Nuestra base — los tiempos de respuesta más rápidos que ofrecemos.',
+    aboutMinutes: (n) => `A unos ${n} minutos de nuestra base en Elgin.`,
+    h1: (city) => `Mantenimiento de propiedades en ${city}, Texas`,
+    requestIn: (city) => `Solicitar servicio en ${city}`,
+    whatNeeds: (city) => `Qué necesita de verdad una propiedad en ${city}`,
+    schedulingIn: (city) => `Programación en ${city}:`,
+    driveTime: 'Tiempo de camino',
+    driveBase: (city) =>
+      `${city} es donde estamos basados, así que aquí el tiempo de camino no afecta la programación y las emergencias en horario de oficina reciben la respuesta más rápida que ofrecemos.`,
+    driveAway: (n, city) =>
+      `${n} minutos de ida y otros de vuelta son un costo real, y preferimos decirlo a esconderlo. Programamos ${city} en bloques para que un solo viaje cubra varias propiedades, y por eso el trabajo agendado sale más barato aquí que una salida del mismo día.`,
+    servicesIn: (city) => `Servicios en ${city}`,
+    servicesLead: (city) => `Todo lo de abajo ya funciona hoy en ${city}.`,
+    licensedNote:
+      'El trabajo de oficios con licencia — a cargo de nuestros contratistas asociados verificados — está disponible en toda la zona de servicio.',
+    howThatWorks: 'Cómo funciona',
+    nearby: 'Cerca de aquí',
+    radiusNote: (miles) => `El radio de trabajo es de unas ${miles} millas desde Elgin.`,
+    seeWholeArea: 'Ver toda la zona de servicio',
+  },
+
+  mapCaption: (miles, city) =>
+    `Zona de servicio — radio de trabajo de ${miles} millas desde ${city}. Los tiempos de camino son promedios honestos, no el mejor caso.`,
+
+  aboutPage: {
+    metaTitle: 'Quiénes somos — una empresa de mantenimiento, no un handyman',
+    metaDescription:
+      'MaintenanceCare vende cobertura de mantenimiento recurrente y registros documentados de campo en Elgin y Texas Central. Qué hacemos, qué no hacemos a propósito, y cómo trabajamos.',
+    h1: 'Somos una empresa de mantenimiento. No somos un servicio de handyman.',
+    lead: 'La diferencia importa. Un handyman vende horas. Nosotros vendemos una propiedad que se ha cuidado en un horario fijo, y un registro escrito que lo comprueba — que es justo lo que pide un dueño, un prestamista o una aseguradora.',
+    whatItIs: 'Qué es el negocio en realidad',
+    whatItIsBody: [
+      'MaintenanceCare tiene su base en Elgin, Texas, y trabaja en los condados de Bastrop, Travis y Williamson. Vendemos dos cosas: cobertura de mantenimiento recurrente y registros documentados de campo.',
+      'La mayoría de nuestros clientes no está parada frente a la propiedad. Son administradores con un portafolio, inversionistas a dos estados de distancia, dueños ausentes, operadores de rentas de corto plazo, agentes de bienes raíces entre una venta y otra, y dueños de casa que simplemente prefieren que alguien competente se encargue. Todos necesitan lo mismo: alguien confiable que llegue en la fecha, haga las mismas revisiones cada vez y anote lo que encontró.',
+      'El producto es el registro. Una visita sin documentación es una visita que usted tiene que creer de palabra, y la palabra no aguanta una disputa por el depósito, un reclamo al seguro, ni a un dueño preguntando por qué no se detectó una reparación seis meses antes.',
+    ],
+    howWeWork: 'Cómo trabajamos',
+    howWeWorkList: [
+      'Precios publicados, con fecha, y revisados cada trimestre contra el mercado local',
+      'Un precio por escrito antes de empezar cualquier trabajo — nunca un reloj por hora abierto',
+      'La misma lista de inspección en cada visita, para poder comparar los hallazgos con el tiempo',
+      'Fotografías con fecha en cada hallazgo, no solo en los que conviene vender',
+      'Una fecha exacta para el trabajo programado, no una ventana de cuatro horas',
+      'El trabajo de oficios con licencia se canaliza a contratistas asociados verificados, nunca se intenta',
+      'El acceso se coordina con una persona de contacto, nunca juntando códigos por internet',
+      'Tiempos de camino honestos, incluso cuando eso significa decirle que no somos la opción correcta',
+    ],
+    sayNo: 'A qué le vamos a decir que no',
+    sayNoBody:
+      'Trabajo fuera de nuestro radio donde el camino hace que el precio no valga la pena. Trabajo de oficios con licencia que no tenemos permitido hacer. Limpieza de entrega el mismo día, porque ese servicio todavía no funciona. Un plan más caro cuando el más barato es la respuesta correcta. Preferimos perder un trabajo a aceptar uno que vamos a hacer mal.',
+    whyDates: 'Por qué cada precio trae una fecha',
+    whyDatesBody:
+      'Porque revisamos los precios cada trimestre, y un precio sin fecha es un precio en el que no se puede confiar. Si una cifra de este sitio ya quedó vieja, la fecha se lo dice antes de que llame.',
+    readVetting: 'Lea cómo verificamos a un contratista asociado con licencia',
+    whereWeWork: 'Dónde trabajamos',
+    roughly: (miles: number) => `— a unas ${miles} millas de Elgin.`,
+    driveTimesLink: 'Tiempos de camino y detalle local de cada pueblo',
+    callUs: 'Llámenos',
+    email: 'Correo',
+    basedIn: 'Basados en',
+    hours: 'Horario',
+    breadcrumbAbout: 'Quiénes somos',
+  },
+
+  areaPage: {
+    metaTitle: 'Zona de servicio — Elgin, Bastrop, Manor, Taylor y Pflugerville',
+    metaDescription:
+      'Mantenimiento e inspección de propiedades en Elgin, Bastrop, Manor, Taylor y Pflugerville, dentro de unas 35 millas de Elgin. Tiempos de camino honestos en la página de cada ciudad.',
+    h1: 'Cinco pueblos, con los tiempos de camino dichos con honestidad.',
+    lead: 'El tiempo de camino es lo que más rápido acaba con el margen en este negocio, así que lo decimos claro. Dentro del radio de abajo usted recibe nuestros tiempos de respuesta reales. Fuera de él igual hablamos con usted — y le decimos si el camino hace que valga la pena o no.',
+    whereWeWork: 'Dónde trabajamos',
+    base: 'BASE',
+    minutes: 'min',
+    outsideRadius: 'Fuera del radio',
+    outsideRadiusBody:
+      'Cotizamos trabajo más lejos, pero el camino se refleja en el precio y no vamos a fingir lo contrario. Si tiene varias propiedades en la misma dirección, eso cambia las cuentas — díganos las direcciones y cotizamos la ruta.',
+    coverageQuestions: 'Preguntas sobre la cobertura',
+    notSureRadius: (miles: number) =>
+      `¿No sabe si está dentro del radio de ${miles} millas? Mande la dirección por el formulario y le decimos de inmediato, sin costo y sin llamada de seguimiento si la respuesta es no.`,
+    breadcrumbArea: 'Zona de servicio',
   },
 
   priceTable: {

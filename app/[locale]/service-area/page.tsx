@@ -10,34 +10,44 @@ import { FAQ } from '@/components/content/FAQ';
 import { SectionHeading } from '@/components/content/SectionHeading';
 import { FieldNote } from '@/components/record/FieldNote';
 
-import { areas } from '@/content/areas';
+import { locale as rootLocale } from 'next/root-params';
+
+import { areasFor, faqsForIn } from '@/content/localized';
 import { company } from '@/content/company';
-import { faqsFor } from '@/content/faqs';
+import { ui } from '@/content/i18n/ui';
+import { DEFAULT_LOCALE, isLocale, localePath } from '@/lib/i18n';
 import { breadcrumbJsonLd, faqJsonLd, pageMeta } from '@/lib/seo';
 
-export const metadata = pageMeta({
-  title: 'Service area — Elgin, Bastrop, Manor, Taylor and Pflugerville',
-  description:
-    'Property maintenance and inspection across Elgin, Bastrop, Manor, Taylor and Pflugerville, within roughly 35 miles of Elgin. Honest drive times on every city page.',
-  path: '/service-area',
-});
+export async function generateMetadata() {
+  const raw = await rootLocale();
+  const current = raw && isLocale(raw) ? raw : DEFAULT_LOCALE;
+  const t = ui(current).areaPage;
+  return pageMeta({
+    title: t.metaTitle,
+    description: t.metaDescription,
+    path: '/service-area',
+    locale: current,
+  });
+}
 
-const areaFaqs = faqsFor('service-area');
+export default async function ServiceAreaPage() {
+  const raw = await rootLocale();
+  const current = raw && isLocale(raw) ? raw : DEFAULT_LOCALE;
+  const t = ui(current).areaPage;
+  const p = (path: string) => localePath(current, path);
+  const areas = areasFor(current);
+  const areaFaqs = faqsForIn('service-area', current);
 
-export default function ServiceAreaPage() {
   return (
     <>
       <section className="border-b bg-paper-raised">
         <Container>
           <div className="pt-10 pb-10 lg:pt-16 lg:pb-14">
             <h1 className="max-w-[20ch] text-3xl font-bold text-soil sm:text-4xl">
-              Five towns, honestly stated drive times.
+              {t.h1}
             </h1>
             <p className="mt-4 max-w-[48ch] text-lg text-steel">
-              Drive time is the fastest way to destroy margin in this business, so we are
-              straightforward about it. Inside the radius below you get our real response times.
-              Outside it we will still talk to you — and tell you whether the drive makes it
-              worth your money.
+              {t.lead}
             </p>
           </div>
         </Container>
@@ -46,12 +56,12 @@ export default function ServiceAreaPage() {
       <RecordRail reference="ARE-01" date="09.26" divider={false}>
         <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-10">
           <div>
-            <SectionHeading>Where we work</SectionHeading>
+            <SectionHeading>{t.whereWeWork}</SectionHeading>
             <ul className="mt-5 border-t">
               {areas.map((a) => (
                 <li key={a.slug}>
                   <Link
-                    href={`/service-area/${a.slug}`}
+                    href={p(`/service-area/${a.slug}`)}
                     className="group flex items-start justify-between gap-4 border-b py-3.5"
                   >
                     <span>
@@ -64,7 +74,7 @@ export default function ServiceAreaPage() {
                     </span>
                     <span className="flex shrink-0 items-center gap-2">
                       <span className="text-sm text-steel">
-                        {a.driveTimeMinutes === 0 ? 'BASE' : `${a.driveTimeMinutes} min`}
+                        {a.driveTimeMinutes === 0 ? t.base : `${a.driveTimeMinutes} ${t.minutes}`}
                       </span>
                       <ArrowUpRight
                         aria-hidden
@@ -77,23 +87,19 @@ export default function ServiceAreaPage() {
                 </li>
               ))}
             </ul>
-            <FieldNote label="Outside the radius" className="mt-6">
-              We will quote work further out, but the drive shows up in the price and we will not
-              pretend otherwise. If you have several properties in one direction, that changes the
-              arithmetic — tell us the addresses and we will quote the route.
+            <FieldNote label={t.outsideRadius} className="mt-6">
+              {t.outsideRadiusBody}
             </FieldNote>
           </div>
-          <ServiceAreaMap />
+          <ServiceAreaMap locale={current} />
         </div>
       </RecordRail>
 
       <RecordRail reference="ARE-02">
-        <SectionHeading>Questions about coverage</SectionHeading>
+        <SectionHeading>{t.coverageQuestions}</SectionHeading>
         <FAQ items={areaFaqs} className="mt-6 max-w-[52rem]" />
         <p className="mt-6 max-w-[46rem] text-sm text-steel">
-          Not sure whether you are inside the {company.serviceRadiusMiles} mile radius? Send the
-          address through the request form and we will tell you straight away, at no cost and with
-          no follow-up call if the answer is no.
+          {t.notSureRadius(company.serviceRadiusMiles)}
         </p>
       </RecordRail>
 

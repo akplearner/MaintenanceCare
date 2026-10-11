@@ -1,5 +1,7 @@
 import { areas } from '@/content/areas';
 import { company } from '@/content/company';
+import { ui } from '@/content/i18n/ui';
+import { DEFAULT_LOCALE, type Locale } from '@/lib/i18n';
 
 /**
  * Static SVG. No live map API in Phase 1 — it would be the heaviest thing on
@@ -18,7 +20,13 @@ function project(lat: number, lng: number) {
   return { x: Math.round(x), y: Math.round(y) };
 }
 
-export function ServiceAreaMap({ highlight }: { highlight?: string }) {
+export function ServiceAreaMap({
+  highlight,
+  locale = DEFAULT_LOCALE,
+}: {
+  highlight?: string;
+  locale?: Locale;
+}) {
   const base = project(company.geo.lat, company.geo.lng);
 
   return (
@@ -102,8 +110,7 @@ export function ServiceAreaMap({ highlight }: { highlight?: string }) {
         })}
       </svg>
       <figcaption className="border-t px-4 py-2.5 text-xs text-steel">
-        Service area — {company.serviceRadiusMiles} mile working radius from{' '}
-        {company.address.locality}. Drive times are honest averages, not best cases.
+        {ui(locale).mapCaption(company.serviceRadiusMiles, company.address.locality)}
       </figcaption>
     </figure>
   );
