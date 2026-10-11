@@ -111,6 +111,135 @@ export const es: ContentCopy = {
     },
   },
 
+  services: {
+    'property-care-essential': { name: 'Cuidado de Propiedades — Esencial', description: 'Revisión exterior trimestral con registro fotográfico, prioridad para agendar y tarifa con descuento en la visita de servicio.' },
+    'property-care-standard': { name: 'Cuidado de Propiedades — Estándar', description: 'Inspección completa trimestral con servicio de filtros, prueba de detectores, ajustes menores e informe con fotos.' },
+    'property-care-premium': { name: 'Cuidado de Propiedades — Premium', description: 'Revisiones exteriores mensuales, inspección interior trimestral, respuesta prioritaria y un crédito anual para canaletas o lavado a presión.' },
+    'hvac-filter-service': {
+      name: 'Servicio de filtros de HVAC',
+      description: 'Cambio de filtro con la medida anotada en el expediente de la propiedad, más revisión del retorno de aire y del termostato. Es parte de nuestro programa de filtros; la reparación del sistema la hace un contratista con licencia.',
+      includes: [
+        'Medida correcta del filtro anotada en el expediente de la propiedad',
+        'Revisión del retorno de aire y de las rejillas',
+        'Revisión del ajuste y de las baterías del termostato',
+        'Fotografía del filtro instalado, con fecha',
+      ],
+      pricingNote: 'Más el costo del filtro',
+    },
+    'smoke-co-check': {
+      name: 'Revisión de detectores de humo y CO',
+      description: 'Se prueba cada detector, se fechan las baterías y se reportan los que faltan o ya vencieron. Texas exige detectores de humo funcionando en propiedades de renta; este es el registro que comprueba que cumplió.',
+      includes: [
+        'Prueba del botón y, donde aplique, verificación de entrada de humo en cada unidad',
+        'Cambio de batería con la fecha de instalación escrita en la unidad',
+        'Revisión de la fecha de fabricación — los detectores vencen a los diez años',
+        'Lista escrita, por cuarto, de los que faltan o están vencidos',
+      ],
+      pricingNote: 'Más los dispositivos',
+    },
+    'water-heater-flush-observation': { name: 'Observación y registro del calentador de agua', description: 'Edad, modelo, capacidad y estado visible anotados con una fotografía de la placa de datos, más revisión de corrosión y charola. Cualquier reparación se pasa a un plomero con licencia.' },
+    'seasonal-checklist': { name: 'Visita de preparación por temporada', description: 'Preparación para el frío en otoño y para la temporada de calor en primavera. Llaves de manguera, tuberías expuestas, acceso al ático, sellos contra el clima y drenaje.' },
+    'health-check-basic': {
+      name: 'Revisión de Estado — Básica',
+      description: 'Recorrido exterior y observación de los puntos clave del interior, con resumen fotográfico. La forma más rápida de responder «¿en qué estado está ahorita?».',
+      includes: [
+        'Recorrido completo del perímetro exterior',
+        'Observación del techo y el drenaje desde el piso',
+        'Revisión de entradas, ventanas y chapas',
+        '10 a 15 fotografías con fecha',
+        'Resumen de una página enviado el mismo día',
+      ],
+    },
+    'health-check-standard': {
+      name: 'Revisión de Estado — Estándar',
+      description: 'Inspección interior y exterior siguiendo nuestra lista de quince áreas, con fotografías en cada hallazgo.',
+      includes: [
+        'Todo lo de la revisión Básica',
+        'Recorrido interior cuarto por cuarto',
+        'Observación de fugas visibles, manchas y humedad',
+        'Verificación de detectores y dispositivos de seguridad',
+        'Observación del funcionamiento de electrodomésticos',
+        '25 a 40 fotografías con fecha',
+      ],
+    },
+    'health-check-detailed': {
+      name: 'Revisión de Estado — Informe detallado',
+      description: 'La inspección completa más un informe escrito del estado, con nivel de gravedad, acciones recomendadas e inventario de equipos. Hecho para reenviarse a un dueño, un prestamista o una aseguradora.',
+      includes: [
+        'Todo lo de la revisión Estándar',
+        'Nivel de gravedad en cada hallazgo',
+        'Inventario de sistemas importantes con su edad donde se alcanza a leer la placa de datos',
+        'Qué recomendamos hacer al respecto, y más o menos cuánto cuesta',
+        'PDF con formato, listo para reenviarse a un dueño o a un prestamista',
+      ],
+    },
+    'vacant-watch-biweekly': {
+      name: 'Vacant Property Watch — cada dos semanas',
+      description: 'Una visita documentada cada dos semanas. Filtraciones de agua, evidencia de plagas, entradas forzadas, jardín y acumulación de correo.',
+      includes: [
+        'Dos visitas documentadas al mes',
+        'Recorrido interior y exterior en cada visita',
+        'Revisión de filtraciones y de riesgo de congelamiento',
+        'Revisión de entrada forzada, vandalismo y ocupación indebida',
+        'Se retira el correo, la publicidad y los avisos acumulados',
+        'Informe con fotos el mismo día de cada visita',
+        'Llamada dentro de la hora si algo es urgente',
+      ],
+    },
+    'vacant-watch-weekly': {
+      name: 'Vacant Property Watch — semanal',
+      description: 'Una visita documentada cada semana. Es la frecuencia que la mayoría de las aseguradoras y los prestamistas quieren ver en una propiedad vacía.',
+      includes: [
+        'Cuatro visitas documentadas al mes',
+        'Todo lo del programa de cada dos semanas',
+        'Registro fotográfico semanal, apto para un expediente de seguro',
+        'Prioridad para agendar cualquier trabajo que se derive',
+      ],
+    },
+    'storm-check': { name: 'Revisión después de una tormenta', description: 'Se envía después de un evento climático con nombre. Documentación de daños exteriores, revisión de filtraciones y un juego de fotos con fecha para el expediente del reclamo.' },
+    'move-in-condition-report': { name: 'Informe de estado de entrada y salida', description: 'Registro fotográfico del estado, cuarto por cuarto, al momento de la entrega. El documento que resuelve una disputa por el depósito antes de que se vuelva una.' },
+    'handyman-call-minimum': { name: 'Mínimo por visita de servicio', description: 'Cubre el viaje y el primer bloque de trabajo. Se aplica una vez por visita, no por tarea — junte varios trabajos chicos en una sola visita.' },
+    'handyman-hourly': { name: 'Tarifa por hora, después del mínimo', description: 'Para trabajo que no tiene precio fijo. Se cotiza por adelantado con un tope que no se pasa, para que una tarifa por hora nunca se vuelva un cheque en blanco.' },
+    'door-adjustment': { name: 'Ajuste o alineación de puerta', description: 'Puerta que se atora, raspa o está desalineada: se vuelve a colgar y ajustar, y se reubica el contrachapa.' },
+    'drywall-patch-small': { name: 'Resane de tablaroca — chico (hasta 1 pie²)', description: 'Se corta, resana, encinta, aplana y lija, listo para pintar. Se iguala la textura donde se puede.' },
+    'drywall-patch-large': { name: 'Resane de tablaroca — grande (hasta 4 pies²)', description: 'Abertura más grande resanada con respaldo, encintada, aplanada y lijada.' },
+    'interior-door-install': { name: 'Instalación de puerta interior premontada', description: 'Se retira la pieza vieja, se coloca la puerta premontada, se calza, se cuelga y se instala la herrería.', pricingNote: 'La puerta la pone usted o se cotiza por separado' },
+    'blind-install': { name: 'Instalación de persiana — por ventana', description: 'Soportes a nivel, pieza colgada y funcionamiento probado.' },
+    'shelving-install': { name: 'Instalación de repisas — por tramo', description: 'Repisas de pared o de clóset fijadas a los postes o con anclas adecuadas, y niveladas.' },
+    'tv-mount': { name: 'Montaje de televisión — hasta 65 pulgadas', description: 'Soporte fijado a los postes, pantalla colgada y cables acomodados. Ocultar el cableado se cotiza por separado.' },
+    'caulk-reseal-bath': { name: 'Sellado de tina o regadera', description: 'Se retira el sellador viejo, se limpia y seca la superficie, y se aplica sellador nuevo resistente al moho.' },
+    'weatherstrip-door': { name: 'Burlete y guardapolvo de puerta exterior', description: 'Se cambia el sello del perímetro y el guardapolvo del umbral. Un arreglo barato que se nota en el siguiente recibo de luz.' },
+    'cabinet-hardware': { name: 'Herrería de gabinetes — por cada 10 piezas', description: 'Perillas o jaladeras colocadas con plantilla para que todo el tramo quede parejo.' },
+    'fence-picket-repair': { name: 'Reparación de cerca — hasta 10 tablas', description: 'Se cambian las tablas dañadas y se vuelven a fijar los travesaños. Materiales desglosados.' },
+    'fence-gate-rehang': { name: 'Recolgado o ajuste de portón de cerca', description: 'Portón vencido escuadrado, bisagras y pasador reajustados, y poste revisado.' },
+    'trim-baseboard-repair': { name: 'Reparación de molduras o zoclo — por cada 10 pies', description: 'Se retira y cambia la moldura dañada, se corta a inglete, se resana y se sella, lista para pintar.' },
+    'screen-repair': { name: 'Reparación de mosquitero — por pieza', description: 'Se cambia la malla o el marco y se vuelve a colocar.' },
+    'mailbox-post-reset': { name: 'Reinstalación de buzón o poste', description: 'Poste chueco o dañado colocado a plomo y asegurado, con el buzón reinstalado.' },
+    'paint-single-room': { name: 'Pintura de un cuarto — muros, 12 × 12 estándar', description: 'Muros preparados, perfilados y rodillados, dos manos. Techo y molduras se cotizan por separado.', pricingNote: 'La pintura la pone usted o se desglosa' },
+    'punch-list-half-day': { name: 'Lista de pendientes — medio día (hasta 4 horas)', description: 'Un bloque de trabajos chicos resueltos en una sola visita. Sale más barato que cotizar pieza por pieza, y es como deberían comprarse casi todas las entregas.' },
+    'fixture-coordination': { name: 'Coordinación de cambio de accesorios', description: 'Llaves, excusados, trituradores, ventiladores de techo y lámparas. Cotizamos el trabajo, lo fotografiamos, le damos acceso al contratista y manejamos a un socio con licencia hasta el final.', pricingNote: 'Se cotiza junto con el socio con licencia — no le ponemos un sobreprecio escondido a su mano de obra' },
+    'lawn-standard-lot': { name: 'Jardinería — lote estándar', description: 'Poda, orillado, recorte y soplado. Se retira el pasto cortado si lo pide.' },
+    'lawn-large-lot': { name: 'Jardinería — lote grande (más de ¼ de acre)', description: 'Poda, orillado, recorte y soplado en un lote más grande, cotizado por área.' },
+    'gutter-clean-single': {
+      name: 'Limpieza de canaletas — una planta',
+      description: 'Tramos despejados a mano, bajadas destapadas y flujo verificado, con el escombro retirado.',
+      includes: [
+        'Tramos despejados a mano, no soplados hacia el techo',
+        'Bajadas destapadas y flujo verificado en la salida',
+        'Escombro embolsado y retirado',
+        'Fotografías de cada tramo antes y después',
+        'Se reportan los soportes flojos y las uniones separadas',
+      ],
+    },
+    'gutter-clean-two-story': { name: 'Limpieza de canaletas — dos plantas', description: 'Igual que en una planta, con el acceso y el tiempo que requiere un segundo piso.' },
+    'pressure-wash-driveway': { name: 'Lavado a presión — entrada de cochera', description: 'Superficie lavada a la presión correcta para el material, después de una prueba en un área pequeña.' },
+    'pressure-wash-house': { name: 'Lavado a presión — exterior de la casa', description: 'Lavado suave en recubrimiento y molduras, cotizado por número de fachadas y tipo de superficie.' },
+    'junk-removal-small': { name: 'Retiro de escombro — carga de camioneta', description: 'Se carga, se lleva y se tira. Los costos de tiradero se dicen por adelantado.' },
+    'junk-removal-large': { name: 'Retiro de escombro — remolque completo', description: 'Limpieza más grande, normalmente de una entrega o de una propiedad heredada.' },
+    'cleaning-standard-house': { name: 'Limpieza — casa estándar', description: 'Limpieza completa para una entrega, para poner la propiedad en venta, o al volver a ocuparla.' },
+    'lot-clearing-light': { name: 'Desmonte ligero y corte de maleza', description: 'Se corta y retira la maleza de un lote vacío o descuidado. Se cotiza después de verlo.', pricingNote: 'Se cotiza después de una visita — el estado del lote define el precio' },
+  },
+
   plans: {
     essential: {
       name: 'Esencial',
@@ -244,6 +373,31 @@ export const es: ContentCopy = {
       question: '¿Por qué cada precio en este sitio trae una fecha?',
       answer:
         'Porque revisamos nuestros precios contra los del mercado local cada trimestre, y un precio sin fecha es un precio en el que no se puede confiar. Si una cifra aquí ya quedó vieja, la fecha se lo dice antes de que llame.',
+    },
+  },
+
+  areas: {
+    elgin: {
+      local:
+        'Elgin es donde estamos basados, así que recibe los tiempos de respuesta más rápidos que ofrecemos y sin que el tiempo de camino afecte la programación. Las casas aquí se dividen en dos grupos muy distintos: un centro histórico alrededor de Main Street con mucha construcción anterior a 1978, y fraccionamientos nuevos saliendo por la Carretera 290 levantados en los últimos quince años. Eso cambia lo que buscamos. En las casas viejas revisamos los requisitos de seguridad por plomo antes de programar cualquier pintura o demolición, y dedicamos más tiempo al movimiento de los cimientos y a observar la instalación eléctrica original. Las casas nuevas tienen su propio patrón: accesorios de línea económica, drenajes que nunca quedaron del todo terminados, y sistemas de HVAC ya con la edad suficiente para que estar al día con los filtros decida si llegan al año quince.',
+    },
+    bastrop: {
+      local:
+        'Bastrop está a unos veinticinco minutos de nuestra base, y lo programamos en días fijos en lugar de cuando caiga, para que el camino se reparta entre varias propiedades. Mucho de lo que hacemos aquí es vigilancia de propiedades vacías y documentación después de tormentas. Por el historial de incendios forestales y la zona inundable del río Colorado, las aseguradoras y los prestamistas piden pruebas del estado de la propiedad más seguido que en cualquier otro lugar donde trabajamos. Un juego de fotografías con fecha les vale mucho más que una llamada diciendo que todo se ve bien. La cantidad de árboles y maleza en los lotes grandes también genera trabajo exterior real — despejar alrededor de las construcciones aquí no es jardinería, es reducir el riesgo.',
+      note: 'Programado en días fijos de servicio para que el tiempo de camino no se le cobre.',
+    },
+    manor: {
+      local:
+        'Manor está a veinte minutos al oeste y es el mercado con más inversionistas de nuestra zona. Grandes conjuntos de rentas casi idénticas construidas en los años 2010 significan dos cosas: los inquilinos cambian constantemente, y las mismas fallas aparecen propiedad tras propiedad. Esa repetición es una ventaja — una vez que hemos inspeccionado una docena de unidades en el mismo fraccionamiento, ya sabemos qué atajos del constructor buscar y los encontramos más rápido. La mayor parte de nuestro trabajo en Manor se programa alrededor del cambio de inquilino, con informes del estado de la propiedad a la entrada y a la salida.',
+    },
+    taylor: {
+      local:
+        'Taylor está a veinticinco minutos al norte, y su mercado ha cambiado más rápido que el de cualquier otro pueblo que cubrimos desde que se anunció la planta de semiconductores. Las casas viejas cerca del centro histórico las están comprando como rentas inversionistas que nunca las han visto en persona. Eso es exactamente para quien están hechos Vacant Property Watch y nuestros informes del estado de la propiedad. Buena parte de las casas antiguas de aquí se construyeron antes de 1978, así que siempre preguntamos el año de construcción antes de programar pintura o demolición.',
+    },
+    pflugerville: {
+      local:
+        'Pflugerville está en el extremo oeste de nuestro radio de servicio, a unos treinta minutos, y le vamos a decir con claridad qué significa eso. Lo programamos en bloques y no una visita a la vez, y no vamos a prometer aquí una salida de emergencia el mismo día cuando sí la podemos prometer en Elgin. Lo que funciona bien en Pflugerville es la cobertura con plan recurrente y el trabajo de inspección programado, donde la fecha se conoce con anticipación. En los fraccionamientos con asociación de vecinos, cómo se ve el exterior no es solo cuestión de estética. Un jardín descuidado o una entrada sucia se convierte en una carta, y adelantarse a eso cuesta menos que contestarla.',
+      note: 'Extremo oeste de nuestro radio — solo trabajo programado, agrupado por día.',
     },
   },
 

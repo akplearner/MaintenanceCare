@@ -15,10 +15,20 @@ import { Callout } from '@/components/ui/Callout';
 import { Chip } from '@/components/ui/Chip';
 import { ButtonLink } from '@/components/ui/Button';
 
-import { divisions, getDivision } from '@/content/divisions';
-import { getServices } from '@/content/services';
+import { locale as rootLocale } from 'next/root-params';
+
+import { divisions } from '@/content/divisions';
+import { divisionsFor, getDivisionFor, servicesFor } from '@/content/localized';
 import { audienceLabel, PRIORITY_AUDIENCES } from '@/content/audiences';
+import { ui } from '@/content/i18n/ui';
+import { DEFAULT_LOCALE, isLocale, localePath, type Locale } from '@/lib/i18n';
 import { breadcrumbJsonLd, pageMeta, serviceJsonLd } from '@/lib/seo';
+
+/** The active locale, narrowed, for any server component on this route. */
+async function current(): Promise<Locale> {
+  const raw = await rootLocale();
+  return raw && isLocale(raw) ? raw : DEFAULT_LOCALE;
+}
 
 export function generateStaticParams() {
   return divisions.map((d) => ({ division: d.slug }));
@@ -32,27 +42,34 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { division: slug } = await params;
-  const division = getDivision(slug);
+  const locale = await current();
+  const division = getDivisionFor(slug, locale);
   if (!division) return {};
+  const t = ui(locale).divisionPage;
 
   return pageMeta({
     title: `${division.name} — ${division.promise.replace(/\.$/, '')}`,
     description: division.fullyLaunched
-      ? `${division.summary} Serving Elgin, Bastrop, Manor, Taylor and Pflugerville.`
-      : `${division.name} is a Phase ${division.phase} division and is not running yet. ${division.promise}`,
+      ? `${division.summary}`
+      : `${division.name}: ${t.notRunning}. ${division.promise}`,
     path: `/services/${division.slug}`,
+    locale,
     noIndex: false,
   });
 }
 
 export default async function DivisionPage({ params }: PageProps) {
   const { division: slug } = await params;
-  const division = getDivision(slug);
+  const locale = await current();
+  const division = getDivisionFor(slug, locale);
   if (!division) notFound();
 
-  if (!division.fullyLaunched) return <PlaceholderDivision slug={slug} />;
+  if (!division.fullyLaunched) return <PlaceholderDivision slug={slug} locale={locale} />;
 
-  const allServices = getServices(division.services);
+  const t = ui(locale).divisionPage;
+  const p = (path: string) => localePath(locale, path);
+  const byId = new Map(servicesFor(locale).map((x) => [x.id, x]));
+  const allServices = division.services.map((id) => byId.get(id)!).filter(Boolean);
   const flatRate = allServices.filter((s) => s.flatRateMenu);
   const priced = allServices.filter((s) => !s.flatRateMenu);
   const hasLicensedTrade = allServices.some((s) => s.licensedTradeRequired);
@@ -66,8 +83,8 @@ export default async function DivisionPage({ params }: PageProps) {
           <div className="grid gap-8 pt-2 pb-10 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:pt-14 lg:pb-14">
             <div>
               <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
-                <Link href="/services" className="underline underline-offset-4 hover:text-soil">
-                  Services
+                <Link href={p('/services')} className="underline underline-offset-4 hover:text-soil">
+                  {t.breadcrumbServices}
                 </Link>
                 <span className="mx-2 text-ink-muted">/</span>
                 <span className="text-soil">{division.name}</span>
@@ -76,8 +93,8 @@ export default async function DivisionPage({ params }: PageProps) {
               <p className="mt-4 max-w-[44ch] text-lg text-soil">{division.promise}</p>
               <p className="mt-4 max-w-[46ch] text-base text-steel">{division.summary}</p>
               <div className="mt-6">
-                <ButtonLink href={`/request?division=${division.slug}`} size="lg">
-                  Request {division.name.toLowerCase()}
+                <ButtonLink href={p(`/request?division=${division.slug}`)} size="lg">
+                  {t.requestPrefix} {division.name.toLowerCase()}
                 </ButtonLink>
               </div>
             </div>
@@ -87,69 +104,56 @@ export default async function DivisionPage({ params }: PageProps) {
       </section>
 
       <RecordRail reference="DIV-02" divider={false}>
-        <SectionHeading lead="Every visit, the same list, so findings are comparable over time.">
-          What&rsquo;s included
-        </SectionHeading>
+        <SectionHeading lead={t.includedLead}>{t.included}</SectionHeading>
         <Checklist items={division.included} className="mt-6 max-w-[52rem] border-t" columns={2} />
       </RecordRail>
 
       <RecordRail reference="DIV-03">
-        <SectionHeading lead="Published, dated, and reviewed quarterly. You will get a written price before anyone turns up.">
-          Pricing
-        </SectionHeading>
+        <SectionHeading lead={t.pricingLead}>{t.pricing}</SectionHeading>
 
         {hasLicensedTrade ? (
-          <Callout variant="caution" title="Licensed partner work" className="mt-5 max-w-[52rem]">
-            Some items below are performed by a verified, insured, licensed partner contractor
-            rather than by our own technicians. We price the job, let them in, manage the
-            contractor and check the work is finished — their labor is quoted directly and never marked up
-            silently.{' '}
-            <Link href="/legal/licensed-partners">How the partner model works</Link>.
+          <Callout variant="caution" title={t.licensedPartnerWork} className="mt-5 max-w-[52rem]">
+            {t.licensedPartnerBody}{' '}
+            <Link href={p('/legal/licensed-partners')}>{t.partnerModelLink}</Link>.
           </Callout>
         ) : null}
 
         {hasLeadPaintGate ? (
-          <Callout title="Homes built before 1978" className="mt-4 max-w-[52rem]">
-            Federal Renovation, Repair and Painting rules can require Lead-Safe Certified Firm
-            status for qualifying paint and demolition work in pre-1978 housing. That is why the
-            request form asks for the year built, and why we confirm certification before
-            scheduling that work rather than after.
+          <Callout title={t.pre1978} className="mt-4 max-w-[52rem]">
+            {t.pre1978Body}
           </Callout>
         ) : null}
 
         {flatRate.length > 0 ? (
           <div className="mt-8 max-w-[52rem]">
-            <h3 className="text-xl font-semibold text-soil">Flat-rate menu</h3>
+            <h3 className="text-xl font-semibold text-soil">{t.flatRateMenu}</h3>
             <p className="mt-2 max-w-[46ch] text-base text-steel">
-              A named price for the jobs we do most. Most companies will only give you an hourly
-              rate; a named price is the thing you actually wanted to know.
+              {t.flatRateLead}
             </p>
-            <FlatRateMenu services={flatRate} />
+            <FlatRateMenu services={flatRate} locale={locale} />
           </div>
         ) : null}
 
         {priced.length > 0 ? (
           <div className="mt-8 max-w-[52rem]">
             {flatRate.length > 0 ? (
-              <h3 className="mb-4 text-xl font-semibold text-soil">Everything else</h3>
+              <h3 className="mb-4 text-xl font-semibold text-soil">{t.everythingElse}</h3>
             ) : null}
-            <PriceTable services={priced} />
+            <PriceTable services={priced} locale={locale} />
           </div>
         ) : null}
 
-        <FieldNote label="How we quote" className="mt-8 max-w-[52rem]">
-          Ranges exist because properties differ, not because we are hedging. Send photographs
-          with your request and we will usually quote at a point inside the range rather than
-          quoting the range itself.
+        <FieldNote label={t.howWeQuote} className="mt-8 max-w-[52rem]">
+          {t.howWeQuoteBody}
         </FieldNote>
       </RecordRail>
 
       <RecordRail reference="DIV-04">
-        <SectionHeading>Who this is for</SectionHeading>
+        <SectionHeading>{t.whoThisIsFor}</SectionHeading>
         <div className="mt-5 flex flex-wrap gap-2">
           {division.audiences.map((a) => (
             <Chip key={a} tone="neutral">
-              {audienceLabel(a)}
+              {audienceLabel(a, locale)}
             </Chip>
           ))}
         </div>
@@ -186,8 +190,10 @@ export default async function DivisionPage({ params }: PageProps) {
  * Placeholder pattern: name, promise, one paragraph, one CTA reading
  * "Ask us about this." No aspirational copy implying the service runs today.
  */
-function PlaceholderDivision({ slug }: { slug: string }) {
-  const division = getDivision(slug);
+function PlaceholderDivision({ slug, locale }: { slug: string; locale: Locale }) {
+  const t = ui(locale).divisionPage;
+  const p = (path: string) => localePath(locale, path);
+  const division = getDivisionFor(slug, locale);
   if (!division) notFound();
 
   return (
@@ -195,36 +201,34 @@ function PlaceholderDivision({ slug }: { slug: string }) {
       <Container>
         <div className="max-w-[46rem] pt-2 pb-14 lg:pt-14">
           <nav aria-label="Breadcrumb" className="mb-4 text-sm text-steel">
-            <Link href="/services" className="underline underline-offset-4 hover:text-soil">
-              Services
+            <Link href={p('/services')} className="underline underline-offset-4 hover:text-soil">
+              {t.breadcrumbServices}
             </Link>
             <span className="mx-2 text-ink-muted">/</span>
             <span className="text-soil">{division.name}</span>
           </nav>
           <div className="mb-4">
-            <Chip tone="muted">Phase {division.phase} — not running yet</Chip>
+            <Chip tone="muted">{t.notRunning}</Chip>
           </div>
           <h1 className="text-3xl font-bold text-soil sm:text-4xl">{division.name}</h1>
           <p className="mt-4 text-lg text-soil">{division.promise}</p>
           <p className="mt-4 max-w-[46ch] text-base text-steel">{division.summary}</p>
           <p className="mt-4 max-w-[46ch] text-base text-steel">
-            This division is not running today and we are not taking bookings for it. If you need
-            it, tell us — knowing there is real demand is what moves a phase forward, and we may
-            be able to cover part of it through a division that is already live.
+            {t.notRunningBody}
           </p>
           <div className="mt-7">
-            <ButtonLink href={`/request?division=${division.slug}`} size="lg">
-              Ask us about this
+            <ButtonLink href={p(`/request?division=${division.slug}`)} size="lg">
+              {t.askUs}
             </ButtonLink>
           </div>
           <p className="mt-5 text-sm text-steel">
-            Running today:{' '}
-            {divisions
+            {t.runningToday}{' '}
+            {divisionsFor(locale)
               .filter((d) => d.fullyLaunched)
               .map((d, i, arr) => (
                 <span key={d.slug}>
                   <Link
-                    href={`/services/${d.slug}`}
+                    href={p(`/services/${d.slug}`)}
                     className="text-soil underline decoration-hivis decoration-2 underline-offset-4"
                   >
                     {d.name}

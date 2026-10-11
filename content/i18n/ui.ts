@@ -86,6 +86,41 @@ export interface Ui {
 
   portfolio: { heading: string; body: string; cta: string };
 
+  priceTable: {
+    service: string;
+    price: string;
+    onQuote: string;
+    effectivePrefix: string;
+    tableSuffix: string;
+    menuSuffix: string;
+    licensedPartnerChip: string;
+    pre1978Chip: string;
+  };
+
+  divisionPage: {
+    breadcrumbServices: string;
+    requestPrefix: string;
+    included: string;
+    includedLead: string;
+    pricing: string;
+    pricingLead: string;
+    licensedPartnerWork: string;
+    licensedPartnerBody: string;
+    partnerModelLink: string;
+    pre1978: string;
+    pre1978Body: string;
+    flatRateMenu: string;
+    flatRateLead: string;
+    everythingElse: string;
+    howWeQuote: string;
+    howWeQuoteBody: string;
+    whoThisIsFor: string;
+    notRunning: string;
+    notRunningBody: string;
+    askUs: string;
+    runningToday: string;
+  };
+
   servicesPage: {
     metaTitle: string;
     metaDescription: string;
@@ -230,6 +265,48 @@ export const uiEn: Ui = {
     startWith: 'Start with',
     effectivePrefix: 'Pricing effective',
     effectiveSuffix: '. Month to month, cancel with thirty days notice. Reviewed quarterly.',
+  },
+
+  priceTable: {
+    service: 'Service',
+    price: 'Price',
+    onQuote: 'on quote',
+    effectivePrefix: 'Pricing effective',
+    tableSuffix: '. Reviewed quarterly.',
+    menuSuffix:
+      '. Materials itemised separately. One service call minimum per visit, not per job.',
+    licensedPartnerChip: 'Licensed partner',
+    pre1978Chip: 'PRE-1978 CHECK',
+  },
+
+  divisionPage: {
+    breadcrumbServices: 'Services',
+    requestPrefix: 'Request',
+    included: 'What’s included',
+    includedLead: 'Every visit, the same list, so findings are comparable over time.',
+    pricing: 'Pricing',
+    pricingLead:
+      'Published, dated, and reviewed quarterly. You will get a written price before anyone turns up.',
+    licensedPartnerWork: 'Licensed partner work',
+    licensedPartnerBody:
+      'Some items below are performed by a verified, insured, licensed partner contractor rather than by our own technicians. We price the job, let them in, manage the contractor and check the work is finished — their labor is quoted directly and never marked up silently.',
+    partnerModelLink: 'How the partner model works',
+    pre1978: 'Homes built before 1978',
+    pre1978Body:
+      'Federal Renovation, Repair and Painting rules can require Lead-Safe Certified Firm status for qualifying paint and demolition work in pre-1978 housing. That is why the request form asks for the year built, and why we confirm certification before scheduling that work rather than after.',
+    flatRateMenu: 'Flat-rate menu',
+    flatRateLead:
+      'A named price for the jobs we do most. Most companies will only give you an hourly rate; a named price is the thing you actually wanted to know.',
+    everythingElse: 'Everything else',
+    howWeQuote: 'How we quote',
+    howWeQuoteBody:
+      'Ranges exist because properties differ, not because we are hedging. Send photographs with your request and we will usually quote at a point inside the range rather than quoting the range itself.',
+    whoThisIsFor: 'Who this is for',
+    notRunning: 'Not running yet',
+    notRunningBody:
+      'This service is not running today and we are not taking bookings for it. If you need it, tell us — knowing there is real demand is what moves it forward, and we may be able to cover part of it through a service that is already live.',
+    askUs: 'Ask us about this',
+    runningToday: 'Running today:',
   },
 
   servicesPage: {
@@ -406,6 +483,48 @@ export const uiEs: Ui = {
     startWith: 'Empiece con',
     effectivePrefix: 'Precios vigentes desde',
     effectiveSuffix: '. Mes a mes, cancele avisando con treinta días. Revisados cada trimestre.',
+  },
+
+  priceTable: {
+    service: 'Servicio',
+    price: 'Precio',
+    onQuote: 'a cotizar',
+    effectivePrefix: 'Precios vigentes desde',
+    tableSuffix: '. Revisados cada trimestre.',
+    menuSuffix:
+      '. Los materiales se desglosan por separado. Un mínimo por visita de servicio, no por trabajo.',
+    licensedPartnerChip: 'Contratista con licencia',
+    pre1978Chip: 'REVISIÓN PRE-1978',
+  },
+
+  divisionPage: {
+    breadcrumbServices: 'Servicios',
+    requestPrefix: 'Solicitar',
+    included: 'Qué incluye',
+    includedLead: 'Cada visita, la misma lista, para poder comparar los hallazgos con el tiempo.',
+    pricing: 'Precios',
+    pricingLead:
+      'Publicados, con fecha y revisados cada trimestre. Usted recibe un precio por escrito antes de que alguien se presente.',
+    licensedPartnerWork: 'Trabajo de contratista con licencia',
+    licensedPartnerBody:
+      'Algunos de los puntos de abajo los realiza un contratista asociado con licencia, asegurado y verificado, y no nuestros propios técnicos. Nosotros cotizamos el trabajo, le damos acceso, manejamos al contratista y verificamos que quedó terminado — su mano de obra se cotiza directo y nunca le ponemos un sobreprecio escondido.',
+    partnerModelLink: 'Cómo funciona el modelo de contratistas asociados',
+    pre1978: 'Casas construidas antes de 1978',
+    pre1978Body:
+      'Las reglas federales de Renovación, Reparación y Pintura pueden exigir la certificación Lead-Safe para cierto trabajo de pintura y demolición en viviendas anteriores a 1978. Por eso el formulario pregunta el año de construcción, y por eso confirmamos la certificación antes de programar ese trabajo y no después.',
+    flatRateMenu: 'Menú de precio fijo',
+    flatRateLead:
+      'Un precio con nombre para los trabajos que hacemos más seguido. Casi todas las empresas solo le dan una tarifa por hora; un precio con nombre es lo que usted de verdad quería saber.',
+    everythingElse: 'Todo lo demás',
+    howWeQuote: 'Cómo cotizamos',
+    howWeQuoteBody:
+      'Los rangos existen porque las propiedades son distintas, no porque estemos midiendo el agua. Mande fotografías con su solicitud y normalmente cotizamos un punto dentro del rango en lugar de darle el rango completo.',
+    whoThisIsFor: 'Para quién es esto',
+    notRunning: 'Todavía no disponible',
+    notRunningBody:
+      'Este servicio todavía no funciona y no estamos aceptando trabajos de este tipo. Si lo necesita, díganos — saber que hay demanda real es lo que lo hace avanzar, y puede que podamos cubrir parte con un servicio que ya está disponible.',
+    askUs: 'Pregúntenos sobre esto',
+    runningToday: 'Disponibles hoy:',
   },
 
   servicesPage: {
